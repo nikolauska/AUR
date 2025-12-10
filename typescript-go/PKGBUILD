@@ -1,0 +1,16 @@
+pkgname=typescript-native
+pkgver=20251210
+pkgrel=1
+pkgdesc="Native typescript"
+arch=('any')
+url="https://www.npmjs.com/package/@typescript/native-preview"
+license=('Apache')
+makedepends=('npm')
+source=(http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.$pkgver.${pkgrel}.tgz)
+noextract=(native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz)
+
+package() {
+  npm install -g --prefix ${pkgdir}/usr ${srcdir}/native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz
+}
+
+sha1sums=('6ae4a3fb5615ff85b9e9315e8e44402ba0e4c890')

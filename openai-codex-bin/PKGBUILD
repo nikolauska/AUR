@@ -1,0 +1,24 @@
+pkgname=openai-codex-bin
+pkgver=0.66.0
+pkgrel=1
+pkgdesc="Lightweight coding agent that runs in your terminal (binary release)"
+arch=('x86_64')
+url="https://github.com/openai/codex"
+license=('Apache')
+provides=('openai-codex')
+conflicts=('openai-codex')
+optdepends=(
+  'git: for working with git repositories'
+  'ripgrep: accelerated large-repo search'
+)
+
+source_x86_64=(
+  "codex-${pkgver}-x86_64.tar.gz::https://github.com/openai/codex/releases/download/rust-v${pkgver}/codex-x86_64-unknown-linux-gnu.tar.gz"
+)
+sha256sums_x86_64=('1f7bdea53c4db7e9482796520aac94f8e75d93b5785a496bdef3d3c6e5128b19')
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 "codex-x86_64-unknown-linux-gnu" "$pkgdir/usr/bin/codex"
+}
