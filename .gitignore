@@ -2,4 +2,5 @@
 *.tar.zst
 *.tgz
 pkg/
+.npm-cache
 src/
