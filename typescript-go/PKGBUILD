@@ -1,5 +1,5 @@
 pkgname=typescript-native
-pkgver=20251210
+pkgver=20251212
 pkgrel=1
 pkgdesc="Native typescript"
 arch=('any')
@@ -13,4 +13,4 @@ package() {
   npm install -g --prefix ${pkgdir}/usr ${srcdir}/native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz
 }
 
-sha1sums=('6ae4a3fb5615ff85b9e9315e8e44402ba0e4c890')
+sha1sums=('ef417646981eaf40552591e53ec1fbea89722efb')
