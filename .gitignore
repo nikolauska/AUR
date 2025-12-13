@@ -4,3 +4,4 @@
 pkg/
 .npm-cache
 src/
+tidewave-cli/tidewave-cli-x86_64-*

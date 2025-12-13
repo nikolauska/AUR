@@ -9,6 +9,12 @@ Fetches the latest upstream release for a supported package, downloads the
 matching asset into the package directory, updates PKGBUILD (pkgver, pkgrel,
 checksums), and refreshes .SRCINFO.
 
+Supported package dirs:
+  mcp-proxy-bin
+  openai-codex-bin
+  tidewave-cli
+  typescript-go
+
 Environment:
   GITHUB_TOKEN (optional) to raise GitHub API rate limits.
 EOF
@@ -32,6 +38,45 @@ done
 [[ -d "$pkg_dir" ]] || { echo "Package dir not found: $pkg_dir" >&2; exit 1; }
 [[ -f "$pkg_dir/PKGBUILD" ]] || { echo "PKGBUILD missing in $pkg_dir" >&2; exit 1; }
 
+resolve_dest_name_from_pkgbuild() {
+  local pkgbuild_path="$1"
+  local asset_basename="$2"
+  local pkgver="$3"
+  local pkgrel="$4"
+
+  local token=""
+  token="$(
+    awk -v needle="$asset_basename" '
+      {
+        line = $0
+        while (match(line, /"[^"]+"/)) {
+          token = substr(line, RSTART + 1, RLENGTH - 2)
+          if (index(token, needle)) {
+            print token
+            exit
+          }
+          line = substr(line, RSTART + RLENGTH)
+        }
+      }
+    ' "$pkgbuild_path" 2>/dev/null || true
+  )"
+
+  local dest_name=""
+  if [[ -n "$token" && "$token" == *"::"* ]]; then
+    dest_name="${token%%::*}"
+  else
+    dest_name="$asset_basename"
+  fi
+
+  dest_name="${dest_name//\$\{pkgver\}/$pkgver}"
+  dest_name="${dest_name//\$pkgver/$pkgver}"
+  dest_name="${dest_name//\$\{pkgrel\}/$pkgrel}"
+  dest_name="${dest_name//\$pkgrel/$pkgrel}"
+  dest_name="$(printf '%s' "$dest_name" | sed -E 's/\$\{[[:alpha:]_][[:alnum:]_]*\}//g; s/\$[[:alpha:]_][[:alnum:]_]*//g')"
+
+  printf '%s' "$dest_name"
+}
+
 pkg_type=""
 repo=""
 asset_regex=""
@@ -51,13 +96,19 @@ case "$(basename "$pkg_dir")" in
     asset_regex='codex-x86_64-unknown-linux-gnu\.tar\.gz'
     strip_prefix="rust-v"
     ;;
+  tidewave-cli)
+    pkg_type="github"
+    repo="tidewave-ai/tidewave_app"
+    asset_regex='tidewave-cli-x86_64-unknown-linux-gnu$'
+    strip_prefix="v"
+    ;;
   typescript-go)
     pkg_type="npm"
     npm_pkg="@typescript/native-preview"
     ;;
   *)
-    echo "Unsupported package: $pkg_dir" >&2
-    exit 1
+    echo "Unsupported package: $(basename "$pkg_dir")" >&2
+    usage
     ;;
 esac
 
@@ -75,22 +126,24 @@ if [[ "$pkg_type" == "github" ]]; then
   asset_url="$(jq -r --arg re "$asset_regex" '.assets[] | select(.name|test($re)) | .browser_download_url' <<<"$release_json" | head -n1)"
   [[ -n "$asset_url" ]] || { echo "No asset matching /$asset_regex/ found in latest release" >&2; exit 1; }
 
-  pkgver="${tag_name#$strip_prefix}"
+  pkgver="${tag_name#"$strip_prefix"}"
   pkgrel="1"
   asset_name="$(basename "$asset_url")"
+  dest_name="$(resolve_dest_name_from_pkgbuild "$pkg_dir/PKGBUILD" "$asset_name" "$pkgver" "$pkgrel")"
 
   echo "Latest tag: $tag_name -> pkgver=${pkgver}"
   echo "Asset: $asset_name"
+  echo "Download as: $dest_name"
 
   if [[ "$dry_run" -eq 1 ]]; then
-    echo "[dry-run] Would download to ${pkg_dir}/${asset_name}"
+    echo "[dry-run] Would download to ${pkg_dir}/${dest_name}"
     exit 0
   fi
 
   cd "$pkg_dir"
 
   echo "Downloading asset…"
-  curl -fL "$asset_url" -o "$asset_name"
+  curl -fL "$asset_url" -o "$dest_name"
 
   echo "Updating PKGBUILD (pkgver=${pkgver}, pkgrel=${pkgrel})…"
   sed -i -E "s/^pkgver=.*/pkgver=${pkgver}/" PKGBUILD

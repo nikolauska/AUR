@@ -1,0 +1,19 @@
+pkgname=tidewave-cli
+pkgver=0.2.7
+pkgrel=1
+pkgdesc="Tidewave CLI"
+arch=('x86_64')
+url="https://github.com/tidewave-ai/tidewave_app"
+license=('Apache')
+provides=('tidewave-cli')
+
+source=(
+  "tidewave-cli-x86_64-${pkgver}-${pkgrel}-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-cli-x86_64-unknown-linux-gnu"
+)
+sha256sums=('e7d65b2d046e4180211f0cd528e57d62a1ff9878ffcef92f622d3144e38e82e5')
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 "tidewave-cli-x86_64-${pkgver}-${pkgrel}-unknown-linux-gnu" "$pkgdir/usr/bin/tidewave"
+}
