@@ -1,13 +1,13 @@
 pkgbase = typescript-native
 	pkgdesc = Native typescript
-	pkgver = 20251214
+	pkgver = 20251217
 	pkgrel = 1
 	url = https://www.npmjs.com/package/@typescript/native-preview
 	arch = any
 	license = Apache
 	makedepends = npm
-	noextract = native-preview-7.0.0-dev.20251214.1.tgz
-	source = http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.20251214.1.tgz
-	sha1sums = e93aa90f680ef1aa211c231f70c129d96b41c74b
+	noextract = native-preview-7.0.0-dev.20251217.1.tgz
+	source = http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.20251217.1.tgz
+	sha1sums = ec52c136796f26d7072026b0eeed7b5390c06437
 
 pkgname = typescript-native
