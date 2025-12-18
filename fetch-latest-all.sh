@@ -43,6 +43,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
   package_dirs=(
     mcp-proxy-bin
     openai-codex-bin
+    tidewave-app
     tidewave-cli
     typescript-go
   )

@@ -12,6 +12,7 @@ checksums), and refreshes .SRCINFO.
 Supported package dirs:
   mcp-proxy-bin
   openai-codex-bin
+  tidewave-app
   tidewave-cli
   typescript-go
 
@@ -102,6 +103,12 @@ case "$(basename "$pkg_dir")" in
     asset_regex='tidewave-cli-x86_64-unknown-linux-gnu$'
     strip_prefix="v"
     ;;
+  tidewave-app)
+    pkg_type="github"
+    repo="tidewave-ai/tidewave_app"
+    asset_regex='tidewave-app-amd64\.AppImage$'
+    strip_prefix="v"
+    ;;
   typescript-go)
     pkg_type="npm"
     npm_pkg="@typescript/native-preview"
@@ -117,6 +124,10 @@ if [[ "$pkg_type" == "github" ]]; then
   auth_header=()
   [[ -n "${GITHUB_TOKEN:-}" ]] && auth_header=(-H "Authorization: token ${GITHUB_TOKEN}")
 
+  current_pkgver="$(awk -F= '/^pkgver=/{print $2; exit}' "$pkg_dir/PKGBUILD")"
+  current_pkgrel="$(awk -F= '/^pkgrel=/{print $2; exit}' "$pkg_dir/PKGBUILD")"
+  [[ -n "$current_pkgrel" ]] || current_pkgrel="1"
+
   echo "Querying latest release for ${repo}…"
   release_json="$(curl -sfL "${auth_header[@]}" "$api_url")"
 
@@ -127,11 +138,15 @@ if [[ "$pkg_type" == "github" ]]; then
   [[ -n "$asset_url" ]] || { echo "No asset matching /$asset_regex/ found in latest release" >&2; exit 1; }
 
   pkgver="${tag_name#"$strip_prefix"}"
-  pkgrel="1"
+  if [[ "$pkgver" == "$current_pkgver" ]]; then
+    pkgrel="$current_pkgrel"
+  else
+    pkgrel="1"
+  fi
   asset_name="$(basename "$asset_url")"
   dest_name="$(resolve_dest_name_from_pkgbuild "$pkg_dir/PKGBUILD" "$asset_name" "$pkgver" "$pkgrel")"
 
-  echo "Latest tag: $tag_name -> pkgver=${pkgver}"
+  echo "Latest tag: $tag_name -> pkgver=${pkgver} (current ${current_pkgver}-${current_pkgrel})"
   echo "Asset: $asset_name"
   echo "Download as: $dest_name"
 

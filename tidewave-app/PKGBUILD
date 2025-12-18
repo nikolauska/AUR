@@ -1,0 +1,51 @@
+pkgname=tidewave-app
+pkgver=0.2.7
+pkgrel=2
+pkgdesc="Tidewave Desktop App"
+arch=('x86_64')
+url="https://github.com/tidewave-ai/tidewave_app"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('tidewave-app')
+options=('!strip')
+
+source=(
+  "tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-app-amd64.AppImage"
+)
+sha256sums=('50cb28f58c7493cc7e28b52d33eeb28d59bea91e6b5cb59b4dd7554782a4de77')
+
+prepare() {
+  cd "$srcdir"
+
+  chmod +x "tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage"
+  ./tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage --appimage-extract
+}
+
+package() {
+  cd "$srcdir"
+
+  install -d "$pkgdir/opt/$pkgname"
+  cp -a "squashfs-root/." "$pkgdir/opt/$pkgname/"
+  chmod -R u+rwX,go+rX "$pkgdir/opt/$pkgname"
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/tidewave-app" <<EOF
+#!/bin/sh
+exec "/opt/$pkgname/AppRun" "\$@"
+EOF
+
+  if [[ -f squashfs-root/usr/share/applications/Tidewave.desktop ]]; then
+    install -Dm644 \
+      squashfs-root/usr/share/applications/Tidewave.desktop \
+      "$pkgdir/usr/share/applications/$pkgname.desktop"
+    sed -i \
+      -e 's|^Categories=.*|Categories=Development;|g' \
+      -e 's|^Exec=.*|Exec=tidewave-app|g' \
+      -e "s|^Icon=.*|Icon=$pkgname|g" \
+      "$pkgdir/usr/share/applications/$pkgname.desktop"
+  fi
+
+  if [[ -d squashfs-root/usr/share/icons/hicolor ]]; then
+    install -d "$pkgdir/usr/share/icons"
+    cp -a squashfs-root/usr/share/icons/hicolor "$pkgdir/usr/share/icons/"
+  fi
+}
