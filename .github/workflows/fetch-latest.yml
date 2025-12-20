@@ -1,0 +1,60 @@
+name: Auto update packages
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-packages:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:base-devel
+    steps:
+      - name: Initialize pacman and install dependencies
+        run: |
+          pacman-key --init
+          pacman-key --populate archlinux
+          pacman -Syu --noconfirm --needed \
+            curl \
+            git \
+            jq \
+            npm \
+            pacman-contrib
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create build user
+        run: |
+          useradd -m builder
+          chown -R builder:builder "$GITHUB_WORKSPACE"
+      - name: Run update script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          su - builder -c "cd \"$GITHUB_WORKSPACE\" && GITHUB_TOKEN=\"$GITHUB_TOKEN\" NPM_CONFIG_CACHE=/tmp/npm-cache ./fetch-latest-all.sh"
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          changes="$(su - builder -c "cd \"$GITHUB_WORKSPACE\" && git status --porcelain")"
+          if [[ -z "$changes" ]]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          if [[ -z "${GITHUB_TOKEN}" ]]; then
+            echo "GITHUB_TOKEN is empty; skipping push."
+            exit 0
+          fi
+          su - builder -c "cd \"$GITHUB_WORKSPACE\" && \
+            git remote set-url origin \"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git\""
+          su - builder -c "cd \"$GITHUB_WORKSPACE\" && \
+            git config user.name 'github-actions[bot]' && \
+            git config user.email 'github-actions[bot]@users.noreply.github.com' && \
+            git add -A && \
+            git commit -m 'chore: update packages' && \
+            git push"
