@@ -8,7 +8,7 @@ pkgbase = tidewave-app
 	depends = glibc
 	provides = tidewave-app
 	options = !strip
-	source = tidewave-app-amd64-0.2.7-2.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.2.7/tidewave-app-amd64.AppImage
+	source = tidewave-app-amd64-0.2.7-3.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.2.7/tidewave-app-amd64.AppImage
 	sha256sums = 2fe1b82dbc1c596a4a5312118562306c108f3116e2f3b49b959897c210281d05
 
 pkgname = tidewave-app
