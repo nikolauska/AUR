@@ -2,15 +2,46 @@ pkgname=typescript-native
 pkgver=20251227
 pkgrel=1
 pkgdesc="Native typescript"
-arch=('any')
 url="https://www.npmjs.com/package/@typescript/native-preview"
-license=('Apache')
-makedepends=('npm')
+
+arch=("any")
+options=(!strip emptydirs staticlibs zipman)
+license=("LicenseRef-GitHub")
+
+depends=("glibc" "gcc-libs" "nodejs" "glib2" "libsecret")
+makedepends=("npm" "jq")
+
 source=(http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.$pkgver.${pkgrel}.tgz)
 noextract=(native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz)
 
-package() {
-  npm install -g --prefix ${pkgdir}/usr ${srcdir}/native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz
-}
-
 sha1sums=('2ec23fb0bfe3e4bf1215da30533ad1c761b41db5')
+
+package() {
+	msg2 "Install using Using NPM"
+	npm install -s -g \
+		--cache "${srcdir}/npm-cache" \
+		--prefix "${pkgdir}/usr" \
+		"${srcdir}/native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz"
+
+	msg2 "Fix ownership of ALL FILES"
+	find "${pkgdir}/usr" -type d -exec chmod 755 {} +
+	chown -R root:root "${pkgdir}"
+
+	msg2 "Remove references to PKGDIR"
+	find "${pkgdir}" -name package.json -print0 | xargs -r -0 sed -i '/_where/d'
+
+	msg2 "Fixing 'package.json'"
+	local tmppackage="$(mktemp)"
+	local pkgjson="${pkgdir}/usr/lib/node_modules/@typescript/native-preview/package.json"
+	jq '.|=with_entries(select(.key|test("_.+")|not))' "${pkgjson}" > "${tmppackage}"
+	mv "${tmppackage}" "${pkgjson}"
+	chmod 644 "${pkgjson}"
+
+	msg2 "More fixes for 'package.json'"
+	find "${pkgdir}" -type f -name package.json | while read pkgjson; do
+		local tmppackage="$(mktemp)"
+		jq 'del(.man)' "${pkgjson}" > "${tmppackage}"
+		mv "${tmppackage}" "${pkgjson}"
+		chmod 644 "${pkgjson}"
+	done
+}
