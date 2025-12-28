@@ -113,6 +113,10 @@ case "$(basename "$pkg_dir")" in
     pkg_type="npm"
     npm_pkg="@typescript/native-preview"
     ;;
+  copilot-cli)
+    pkg_type="npm"
+    npm_pkg="@github/copilot"
+    ;;
   *)
     echo "Unsupported package: $(basename "$pkg_dir")" >&2
     usage
