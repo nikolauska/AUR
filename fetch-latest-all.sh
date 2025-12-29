@@ -46,7 +46,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
     tidewave-app
     tidewave-cli
     typescript-go
-    copilot-cli
+    github-copilot-cli
   )
 fi
 

@@ -15,6 +15,7 @@ Supported package dirs:
   tidewave-app
   tidewave-cli
   typescript-go
+  github-copilot-cli
 
 Environment:
   GITHUB_TOKEN (optional) to raise GitHub API rate limits.
@@ -113,7 +114,7 @@ case "$(basename "$pkg_dir")" in
     pkg_type="npm"
     npm_pkg="@typescript/native-preview"
     ;;
-  copilot-cli)
+  github-copilot-cli)
     pkg_type="npm"
     npm_pkg="@github/copilot"
     ;;
