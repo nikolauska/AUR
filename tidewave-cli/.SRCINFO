@@ -1,12 +1,12 @@
 pkgbase = tidewave-cli
 	pkgdesc = Tidewave CLI
-	pkgver = 0.3.0
+	pkgver = 0.3.1
 	pkgrel = 1
 	url = https://github.com/tidewave-ai/tidewave_app
 	arch = x86_64
 	license = Apache
 	provides = tidewave-cli
-	source = tidewave-cli-x86_64-0.3.0-1-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.3.0/tidewave-cli-x86_64-unknown-linux-gnu
-	sha256sums = 2ccfebd3f64c7a35f7eff57b6f503b952683b706197aca9dba8778ced796149d
+	source = tidewave-cli-x86_64-0.3.1-1-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.3.1/tidewave-cli-x86_64-unknown-linux-gnu
+	sha256sums = 62d0845f0efb4ae475b64979287eb2d8afe1550ad30b278029166fba12317d0c
 
 pkgname = tidewave-cli

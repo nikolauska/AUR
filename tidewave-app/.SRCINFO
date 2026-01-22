@@ -1,6 +1,6 @@
 pkgbase = tidewave-app
 	pkgdesc = Tidewave Desktop App
-	pkgver = 0.3.0
+	pkgver = 0.3.1
 	pkgrel = 1
 	url = https://github.com/tidewave-ai/tidewave_app
 	arch = x86_64
@@ -8,7 +8,7 @@ pkgbase = tidewave-app
 	depends = glibc
 	provides = tidewave-app
 	options = !strip
-	source = tidewave-app-amd64-0.3.0-1.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.3.0/tidewave-app-amd64.AppImage
-	sha256sums = 8436d987d2124ff59e15d80d6ed948a4e5fff288131849114e2893104ff3c5a0
+	source = tidewave-app-amd64-0.3.1-1.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.3.1/tidewave-app-amd64.AppImage
+	sha256sums = 1a12f37df950875fd201de168812749fb27652eaf767d4de2b444243cd54016f
 
 pkgname = tidewave-app
