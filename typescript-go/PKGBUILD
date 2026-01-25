@@ -1,6 +1,6 @@
 pkgname=typescript-native
-pkgver=20260123
-pkgrel=3
+pkgver=20260124
+pkgrel=1
 pkgdesc="Native typescript"
 url="https://www.npmjs.com/package/@typescript/native-preview"
 
@@ -14,7 +14,7 @@ makedepends=("npm" "jq")
 source=(http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.$pkgver.${pkgrel}.tgz)
 noextract=(native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz)
 
-sha1sums=('5adb9b70da23d4410be1e86a096212ab68db0829')
+sha1sums=('99a033f159b58b4d3c160553132203a27da8f691')
 
 package() {
 	msg2 "Install using Using NPM"
