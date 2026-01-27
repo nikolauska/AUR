@@ -1,5 +1,5 @@
 pkgname=tidewave-cli
-pkgver=0.3.2
+pkgver=0.3.3
 pkgrel=1
 pkgdesc="Tidewave CLI"
 arch=('x86_64')
@@ -10,7 +10,7 @@ provides=('tidewave-cli')
 source=(
   "tidewave-cli-x86_64-${pkgver}-${pkgrel}-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-cli-x86_64-unknown-linux-gnu"
 )
-sha256sums=('6a52e945ad3c81446ce5aa121369a85871825278ecbae4a8234b79ac7dc7bda6')
+sha256sums=('f0399cadc6b5b474818901483c2de669f2caa879e74a356aa5a17219deb9f9f2')
 
 package() {
   cd "$srcdir"
