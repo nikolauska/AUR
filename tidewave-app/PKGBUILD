@@ -1,5 +1,5 @@
 pkgname=tidewave-app
-pkgver=0.3.4
+pkgver=0.3.5
 pkgrel=1
 pkgdesc="Tidewave Desktop App"
 arch=('x86_64')
@@ -12,7 +12,7 @@ options=('!strip')
 source=(
   "tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-app-amd64.AppImage"
 )
-sha256sums=('e8c5ece1aa6651032efaa3ce197287810097ed3da05d3dbed7904acf3226d0c5')
+sha256sums=('00e2ffb0fd3c17f04ba715cf9cb18ec4561889fc236b1a12dbda3401a884bef5')
 
 prepare() {
   cd "$srcdir"
