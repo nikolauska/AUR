@@ -4,9 +4,12 @@ pkgbase = mcp-proxy-bin
 	pkgrel = 1
 	url = https://github.com/tidewave-ai/mcp_proxy_rust
 	arch = x86_64
-	license = Apache
+	license = Apache-2.0
+	depends = glibc
+	depends = libgcc_s.so
 	provides = mcp-proxy
-	source = mcp-proxy-x86_64--unknown-linux-gnu.tar.gz::https://github.com/tidewave-ai/mcp_proxy_rust/releases/download/v0.2.3/mcp-proxy-x86_64-unknown-linux-gnu.tar.gz
+	options = !debug
+	source = mcp-proxy-x86_64-0.2.3-unknown-linux-gnu.tar.gz::https://github.com/tidewave-ai/mcp_proxy_rust/releases/download/v0.2.3/mcp-proxy-x86_64-unknown-linux-gnu.tar.gz
 	sha256sums = 10807bc79ce111a0be7643b18a7fb18331439c70ee10058dd1bee3f65e7c0e66
 
 pkgname = mcp-proxy-bin

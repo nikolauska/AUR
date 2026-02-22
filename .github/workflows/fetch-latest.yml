@@ -22,8 +22,10 @@ jobs:
             curl \
             git \
             jq \
+            namcap \
             npm \
-            pacman-contrib
+            pacman-contrib \
+            shellcheck
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
@@ -37,6 +39,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           su - builder -c "cd \"$GITHUB_WORKSPACE\" && GITHUB_TOKEN=\"$GITHUB_TOKEN\" NPM_CONFIG_CACHE=/tmp/npm-cache ./fetch-latest-all.sh"
+      - name: Validate packages
+        run: |
+          su - builder -c "cd \"$GITHUB_WORKSPACE\" && ./validate-packages.sh"
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

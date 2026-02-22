@@ -5,9 +5,9 @@ pkgbase = tidewave-app
 	url = https://github.com/tidewave-ai/tidewave_app
 	arch = x86_64
 	license = Apache-2.0
-	depends = glibc
 	provides = tidewave-app
 	options = !strip
+	options = !debug
 	source = tidewave-app-amd64-0.3.5-1.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.3.5/tidewave-app-amd64.AppImage
 	sha256sums = 00e2ffb0fd3c17f04ba715cf9cb18ec4561889fc236b1a12dbda3401a884bef5
 

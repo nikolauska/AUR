@@ -1,19 +1,23 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
 pkgname=tidewave-cli
 pkgver=0.3.5
 pkgrel=1
 pkgdesc="Tidewave CLI"
 arch=('x86_64')
+options=('!debug')
 url="https://github.com/tidewave-ai/tidewave_app"
-license=('Apache')
+license=('Apache-2.0')
+depends=('glibc' 'libgcc_s.so')
 provides=('tidewave-cli')
 
 source=(
-  "tidewave-cli-x86_64-${pkgver}-${pkgrel}-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-cli-x86_64-unknown-linux-gnu"
+  "tidewave-cli-${CARCH}-${pkgver}-${pkgrel}-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-cli-${CARCH}-unknown-linux-gnu"
 )
 sha256sums=('1ea435f4471b34a4037f4c13295ddb8e206a2830e8f8457bd2045afbcc7318c3')
 
 package() {
   cd "$srcdir"
 
-  install -Dm755 "tidewave-cli-x86_64-${pkgver}-${pkgrel}-unknown-linux-gnu" "$pkgdir/usr/bin/tidewave"
+  install -Dm755 "tidewave-cli-${CARCH}-${pkgver}-${pkgrel}-unknown-linux-gnu" "$pkgdir/usr/bin/tidewave"
 }

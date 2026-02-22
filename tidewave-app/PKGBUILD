@@ -1,3 +1,5 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
 pkgname=tidewave-app
 pkgver=0.3.5
 pkgrel=1
@@ -5,47 +7,35 @@ pkgdesc="Tidewave Desktop App"
 arch=('x86_64')
 url="https://github.com/tidewave-ai/tidewave_app"
 license=('Apache-2.0')
-depends=('glibc')
+depends=()
 provides=('tidewave-app')
-options=('!strip')
+options=('!strip' '!debug')
 
 source=(
   "tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-app-amd64.AppImage"
 )
 sha256sums=('00e2ffb0fd3c17f04ba715cf9cb18ec4561889fc236b1a12dbda3401a884bef5')
 
-prepare() {
-  cd "$srcdir"
-
-  chmod +x "tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage"
-  ./tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage --appimage-extract
-}
-
 package() {
-  cd "$srcdir"
+  local srcdir="${srcdir:?srcdir is not set}"
+  local pkgdir="${pkgdir:?pkgdir is not set}"
+  local appimage="tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage"
 
-  install -d "$pkgdir/opt/$pkgname"
-  cp -a "squashfs-root/." "$pkgdir/opt/$pkgname/"
-  chmod -R u+rwX,go+rX "$pkgdir/opt/$pkgname"
+  install -Dm755 \
+    "$srcdir/$appimage" \
+    "$pkgdir/usr/lib/$pkgname/$pkgname.AppImage"
 
-  install -Dm755 /dev/stdin "$pkgdir/usr/bin/tidewave-app" <<EOF
-#!/bin/sh
-exec "/opt/$pkgname/AppRun" "\$@"
+  install -dm755 "$pkgdir/usr/bin"
+  ln -s "../lib/$pkgname/$pkgname.AppImage" "$pkgdir/usr/bin/$pkgname"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$pkgname.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=Tidewave
+Comment=Tidewave Desktop App
+Exec=$pkgname
+Icon=applications-development
+Categories=Development;
+Terminal=false
 EOF
-
-  if [[ -f squashfs-root/usr/share/applications/Tidewave.desktop ]]; then
-    install -Dm644 \
-      squashfs-root/usr/share/applications/Tidewave.desktop \
-      "$pkgdir/usr/share/applications/$pkgname.desktop"
-    sed -i \
-      -e 's|^Categories=.*|Categories=Development;|g' \
-      -e 's|^Exec=.*|Exec=tidewave-app|g' \
-      -e "s|^Icon=.*|Icon=$pkgname|g" \
-      "$pkgdir/usr/share/applications/$pkgname.desktop"
-  fi
-
-  if [[ -d squashfs-root/usr/share/icons/hicolor ]]; then
-    install -d "$pkgdir/usr/share/icons"
-    cp -a squashfs-root/usr/share/icons/hicolor "$pkgdir/usr/share/icons/"
-  fi
 }

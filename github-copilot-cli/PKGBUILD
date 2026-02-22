@@ -1,3 +1,5 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
 pkgname=github-copilot-cli
 _pkgexec=copilot
 
@@ -9,47 +11,76 @@ pkgdesc="GitHub Copilot CLI brings the power of Copilot coding agent directly to
 url="https://github.com/github/copilot-cli"
 _urlraw="https://raw.githubusercontent.com/github/copilot-cli/v${pkgver}"
 
+depends=("glibc" "nodejs" "glib2" "libsecret")
 conflicts=("github-copilot-cli" "github-copilot-cli-legacy")
-depends=("glibc" "gcc-libs" "nodejs" "glib2" "libsecret")
-conflicts=("github-copilot-cli")
 makedepends=("npm" "jq")
 provides=("${_pkgexec}")
 
 arch=("x86_64")
-options=(!strip emptydirs staticlibs zipman)
+options=(!strip !debug emptydirs staticlibs zipman)
 
 license=("LicenseRef-GitHub")
 
 source=("https://registry.npmjs.org/@github/copilot/-/copilot-${pkgver}.tgz")
 noextract=("copilot-${pkgver}.tgz")
 
-sha1sums=("8ff1b3478969b363e46a9a5b229cbb1353afc6c7")
+sha1sums=('9adf53110d3717b9d1638c18aafcc72b09dc459c')
 
 # Document: https://wiki.archlinux.org/title/Node.js_package_guidelines
 package() {
-  msg2 "Install using Using NPM"
+  printf '  -> Installing with npm\n'
   npm install -s -g \
     --cache "${srcdir}/npm-cache" \
     --prefix "${pkgdir}/usr" \
     "${srcdir}/copilot-${pkgver}.tgz"
 
-  msg2 "Fix ownership of ALL FILES"
+  local copilot_dir="${pkgdir}/usr/lib/node_modules/@github/copilot"
+  local node_arch="${CARCH}"
+  if [[ "${node_arch}" == *_64 ]]; then
+    node_arch="x64"
+  elif [[ "${node_arch}" == *arch64 ]]; then
+    node_arch="arm64"
+  fi
+
+  printf '  -> Pruning non-%s prebuilt artifacts\n' "${CARCH}"
+  if [[ -d "${copilot_dir}/prebuilds" ]]; then
+    find "${copilot_dir}/prebuilds" -mindepth 1 -maxdepth 1 -type d \
+      ! -name "linux-${node_arch}" -exec rm -rf {} +
+  fi
+  if [[ -d "${copilot_dir}/ripgrep/bin" ]]; then
+    find "${copilot_dir}/ripgrep/bin" -mindepth 1 -maxdepth 1 -type d \
+      ! -name "linux-${node_arch}" -exec rm -rf {} +
+  fi
+  if [[ -d "${copilot_dir}/clipboard/node_modules" ]]; then
+    find "${copilot_dir}/clipboard/node_modules" -type d \
+      -name 'clipboard-linux-*-gnu' ! -name "clipboard-linux-${node_arch}-gnu" -exec rm -rf {} +
+  fi
+
+  printf '  -> Fixing ownership for packaged files\n'
   find "${pkgdir}/usr" -type d -exec chmod 755 {} +
   chown -R root:root "${pkgdir}"
 
-  msg2 "Remove references to PKGDIR"
+  if [[ -f "${pkgdir}/usr/lib/node_modules/@github/copilot/LICENSE.md" ]]; then
+    install -Dm644 \
+      "${pkgdir}/usr/lib/node_modules/@github/copilot/LICENSE.md" \
+      "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md"
+  fi
+
+  printf '  -> Removing PKGDIR references from package metadata\n'
   find "${pkgdir}" -name package.json -print0 | xargs -r -0 sed -i '/_where/d'
 
-  msg2 "Fixing 'package.json'"
-  local tmppackage="$(mktemp)"
+  printf "  -> Cleaning package.json keys\n"
   local pkgjson="${pkgdir}/usr/lib/node_modules/@github/copilot/package.json"
+  local tmppackage
+  tmppackage="$(mktemp)"
   jq '.|=with_entries(select(.key|test("_.+")|not))' "${pkgjson}" >"${tmppackage}"
   mv "${tmppackage}" "${pkgjson}"
   chmod 644 "${pkgjson}"
 
-  msg2 "More fixes for 'package.json'"
-  find "${pkgdir}" -type f -name package.json | while read pkgjson; do
-    local tmppackage="$(mktemp)"
+  printf "  -> Removing unsupported man entries from package.json files\n"
+  find "${pkgdir}" -type f -name package.json | while IFS= read -r pkgjson; do
+    local tmppackage
+    tmppackage="$(mktemp)"
     jq 'del(.man)' "${pkgjson}" >"${tmppackage}"
     mv "${tmppackage}" "${pkgjson}"
     chmod 644 "${pkgjson}"
