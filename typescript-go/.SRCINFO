@@ -1,6 +1,6 @@
 pkgbase = typescript-native
 	pkgdesc = Native typescript
-	pkgver = 20260303
+	pkgver = 20260304
 	pkgrel = 1
 	url = https://www.npmjs.com/package/@typescript/native-preview
 	arch = x86_64
@@ -8,13 +8,13 @@ pkgbase = typescript-native
 	makedepends = npm
 	makedepends = jq
 	depends = nodejs
-	noextract = native-preview-7.0.0-dev.20260303.1.tgz
+	noextract = native-preview-7.0.0-dev.20260304.1.tgz
 	options = !strip
 	options = !debug
 	options = emptydirs
 	options = staticlibs
 	options = zipman
-	source = http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.20260303.1.tgz
-	sha1sums = e09402e98920901f2a868b5626ae1555858b1a7c
+	source = http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.20260304.1.tgz
+	sha1sums = 3dcc39572613a0fdda562e26a9593febda062a94
 
 pkgname = typescript-native
