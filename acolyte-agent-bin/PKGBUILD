@@ -1,0 +1,29 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=acolyte-agent-bin
+pkgver=0.5.0
+pkgrel=1
+pkgdesc="A terminal-first AI coding assistant: local-first, observable, and built for extension"
+arch=('x86_64')
+options=('!debug')
+url="https://github.com/cniska/acolyte"
+license=('MIT')
+depends=('glibc')
+provides=('acolyte-agent')
+conflicts=('acolyte-agent')
+
+source=(
+  "acolyte-${pkgver}-linux-x64.tar.gz::https://github.com/cniska/acolyte/releases/download/v${pkgver}/acolyte-linux-x64.tar.gz"
+  "LICENSE::https://raw.githubusercontent.com/cniska/acolyte/v${pkgver}/LICENSE"
+)
+sha256sums=(
+  '8a8325e9ba8c475053000b2269b5769272258ba74b63b0d34599124826b383cf'
+  'b7b35ff331074f29ea4ff1887c097833d979a453eb877f2f818d0f76584b8476'
+)
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 "acolyte" "$pkgdir/usr/bin/acolyte"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

@@ -10,6 +10,7 @@ matching asset into the package directory, updates PKGBUILD (pkgver, pkgrel,
 checksums), and refreshes .SRCINFO.
 
 Supported package dirs:
+  acolyte-agent-bin
   mcp-proxy-bin
   openai-codex-bin
   tidewave-app
@@ -86,6 +87,12 @@ strip_prefix=""
 npm_pkg=""
 
 case "$(basename "$pkg_dir")" in
+  acolyte-agent-bin)
+    pkg_type="github"
+    repo="cniska/acolyte"
+    asset_regex='acolyte-linux-x64\.tar\.gz'
+    strip_prefix="v"
+    ;;
   mcp-proxy-bin)
     pkg_type="github"
     repo="tidewave-ai/mcp_proxy_rust"
