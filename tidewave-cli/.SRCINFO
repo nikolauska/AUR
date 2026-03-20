@@ -1,6 +1,6 @@
 pkgbase = tidewave-cli
 	pkgdesc = Tidewave CLI
-	pkgver = 0.3.7
+	pkgver = 0.3.8
 	pkgrel = 1
 	url = https://github.com/tidewave-ai/tidewave_app
 	arch = x86_64
@@ -9,7 +9,7 @@ pkgbase = tidewave-cli
 	depends = libgcc_s.so
 	provides = tidewave-cli
 	options = !debug
-	source = tidewave-cli-x86_64-0.3.7-1-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.3.7/tidewave-cli-x86_64-unknown-linux-gnu
-	sha256sums = 44ec9804ca26603b62b230fcbd8e18063d9f70f455a799876c35eba988c127bf
+	source = tidewave-cli-x86_64-0.3.8-1-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.3.8/tidewave-cli-x86_64-unknown-linux-gnu
+	sha256sums = 709c9f7f14eca89ae0e04bc1ba11d20a9660374e568a2c7ed3e3b5b95e2eb73b
 
 pkgname = tidewave-cli
