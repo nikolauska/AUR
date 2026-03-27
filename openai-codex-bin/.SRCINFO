@@ -1,6 +1,6 @@
 pkgbase = openai-codex-bin
 	pkgdesc = Lightweight coding agent that runs in your terminal (binary release)
-	pkgver = 0.116.0
+	pkgver = 0.117.0
 	pkgrel = 1
 	url = https://github.com/openai/codex
 	arch = x86_64
@@ -16,7 +16,7 @@ pkgbase = openai-codex-bin
 	provides = openai-codex
 	conflicts = openai-codex
 	options = !debug
-	source = codex-0.116.0-x86_64.tar.gz::https://github.com/openai/codex/releases/download/rust-v0.116.0/codex-x86_64-unknown-linux-gnu.tar.gz
-	sha256sums = 9c7ccb6ae2dacd92b6ce25d552594edc9bb0683f7f1836a825996e29e8ded954
+	source = codex-0.117.0-x86_64.tar.gz::https://github.com/openai/codex/releases/download/rust-v0.117.0/codex-x86_64-unknown-linux-gnu.tar.gz
+	sha256sums = 05c1decf82e9e8dd3dd7565352b447d55f481dd0d3b35afaab628e449d68895d
 
 pkgname = openai-codex-bin
