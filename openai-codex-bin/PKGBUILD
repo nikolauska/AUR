@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=openai-codex-bin
-pkgver=0.117.0
+pkgver=0.118.0
 pkgrel=1
 pkgdesc="Lightweight coding agent that runs in your terminal (binary release)"
 arch=('x86_64')
@@ -19,7 +19,7 @@ optdepends=(
 source=(
   "codex-${pkgver}-${CARCH}.tar.gz::https://github.com/openai/codex/releases/download/rust-v${pkgver}/codex-${CARCH}-unknown-linux-gnu.tar.gz"
 )
-sha256sums=('05c1decf82e9e8dd3dd7565352b447d55f481dd0d3b35afaab628e449d68895d')
+sha256sums=('220f15ca1c639e905aae385da960e1897882fee76653f5f9f5dffa5f754f7c98')
 
 package() {
   cd "$srcdir"
