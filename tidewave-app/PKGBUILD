@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=tidewave-app
-pkgver=0.4.0
+pkgver=0.4.1
 pkgrel=1
 pkgdesc="Tidewave Desktop App"
 arch=('x86_64')
@@ -14,7 +14,7 @@ options=('!strip' '!debug')
 source=(
   "tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-app-amd64.AppImage"
 )
-sha256sums=('d90a0f5f30cda1b6a783d12721413cbf1ce7af6e2bd8171aa91fba5ad997fa2e')
+sha256sums=('7e97e96733fdf637a2d1ea672b1ca0304eaa6122c422d756a438b55bbac9815c')
 
 package() {
   local srcdir="${srcdir:?srcdir is not set}"
