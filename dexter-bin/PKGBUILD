@@ -1,0 +1,30 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=dexter-bin
+pkgver=0.5.3
+pkgrel=1
+pkgdesc="A fast, full-featured Elixir LSP optimized for large codebases"
+arch=('x86_64')
+options=('!debug')
+url="https://github.com/remoteoss/dexter"
+license=('MIT')
+depends=('glibc')
+optdepends=(
+  'elixir: for project formatting and Elixir standard library indexing'
+)
+provides=('dexter')
+conflicts=('dexter')
+
+source=(
+  "dexter-${pkgver}-Linux-${CARCH}.tar.gz::https://github.com/remoteoss/dexter/releases/download/v${pkgver}/dexter_Linux_${CARCH}.tar.gz"
+  "LICENSE::https://raw.githubusercontent.com/remoteoss/dexter/v${pkgver}/LICENSE"
+)
+sha256sums=('5d2df2120b13f5c872745de4e319e1f654551c04ad562804f2df0e722850b12a'
+            '7c2a85d1e7f4a6a5e6b7b9418b72b5b55aba573a9a3a088d1e2a815caab28cec')
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 "dexter_Linux_${CARCH}/dexter" "$pkgdir/usr/bin/dexter"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

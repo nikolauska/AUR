@@ -11,6 +11,7 @@ checksums), and refreshes .SRCINFO.
 
 Supported package dirs:
   acolyte-agent-bin
+  dexter-bin
   mcp-proxy-bin
   openai-codex-bin
   tidewave-app
@@ -46,23 +47,34 @@ resolve_dest_name_from_pkgbuild() {
   local asset_basename="$2"
   local pkgver="$3"
   local pkgrel="$4"
+  local carch="${CARCH:-x86_64}"
 
   local token=""
-  token="$(
-    awk -v needle="$asset_basename" '
+  local candidate=""
+  while IFS= read -r candidate; do
+    local resolved="$candidate"
+    resolved="${resolved//\$\{pkgver\}/$pkgver}"
+    resolved="${resolved//\$pkgver/$pkgver}"
+    resolved="${resolved//\$\{pkgrel\}/$pkgrel}"
+    resolved="${resolved//\$pkgrel/$pkgrel}"
+    resolved="${resolved//\$\{CARCH\}/$carch}"
+    resolved="${resolved//\$CARCH/$carch}"
+    if [[ "$resolved" == *"$asset_basename"* ]]; then
+      token="$resolved"
+      break
+    fi
+  done < <(
+    awk '
       {
         line = $0
         while (match(line, /"[^"]+"/)) {
           token = substr(line, RSTART + 1, RLENGTH - 2)
-          if (index(token, needle)) {
-            print token
-            exit
-          }
+          print token
           line = substr(line, RSTART + RLENGTH)
         }
       }
     ' "$pkgbuild_path" 2>/dev/null || true
-  )"
+  )
 
   local dest_name=""
   if [[ -n "$token" && "$token" == *"::"* ]]; then
@@ -75,6 +87,8 @@ resolve_dest_name_from_pkgbuild() {
   dest_name="${dest_name//\$pkgver/$pkgver}"
   dest_name="${dest_name//\$\{pkgrel\}/$pkgrel}"
   dest_name="${dest_name//\$pkgrel/$pkgrel}"
+  dest_name="${dest_name//\$\{CARCH\}/$carch}"
+  dest_name="${dest_name//\$CARCH/$carch}"
   dest_name="$(printf '%s' "$dest_name" | sed -E 's/\$\{[[:alpha:]_][[:alnum:]_]*\}//g; s/\$[[:alpha:]_][[:alnum:]_]*//g')"
 
   printf '%s' "$dest_name"
@@ -91,6 +105,12 @@ case "$(basename "$pkg_dir")" in
     pkg_type="github"
     repo="cniska/acolyte"
     asset_regex='acolyte-linux-x64\.tar\.gz'
+    strip_prefix="v"
+    ;;
+  dexter-bin)
+    pkg_type="github"
+    repo="remoteoss/dexter"
+    asset_regex='dexter_Linux_x86_64\.tar\.gz'
     strip_prefix="v"
     ;;
   mcp-proxy-bin)

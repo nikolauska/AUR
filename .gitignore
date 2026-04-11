@@ -7,3 +7,4 @@ src/
 tidewave-cli/tidewave-cli-x86_64-*
 tidewave-app/opt/
 *.AppImage
+.codex
