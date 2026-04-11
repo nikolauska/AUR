@@ -9,6 +9,7 @@ pkgbase = acolyte-agent-bin
 	provides = acolyte-agent
 	conflicts = acolyte-agent
 	options = !debug
+	options = !strip
 	source = acolyte-0.18.0-linux-x64.tar.gz::https://github.com/cniska/acolyte/releases/download/v0.18.0/acolyte-linux-x64.tar.gz
 	source = LICENSE::https://raw.githubusercontent.com/cniska/acolyte/v0.18.0/LICENSE
 	sha256sums = 4e256bf9d3fae410f183894335f3846ac8cb5be6137fa7ffc17843dfa4cdeafe
