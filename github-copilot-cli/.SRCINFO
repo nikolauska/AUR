@@ -1,6 +1,6 @@
 pkgbase = github-copilot-cli
 	pkgdesc = GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal.
-	pkgver = 1.0.35
+	pkgver = 1.0.36
 	pkgrel = 1
 	url = https://github.com/github/copilot-cli
 	arch = x86_64
@@ -14,13 +14,13 @@ pkgbase = github-copilot-cli
 	provides = copilot
 	conflicts = github-copilot-cli
 	conflicts = github-copilot-cli-legacy
-	noextract = copilot-1.0.35.tgz
+	noextract = copilot-1.0.36.tgz
 	options = !strip
 	options = !debug
 	options = emptydirs
 	options = staticlibs
 	options = zipman
-	source = https://registry.npmjs.org/@github/copilot/-/copilot-1.0.35.tgz
-	sha1sums = f0b8ce58a2a6d73f78def288b7f310dfbbeea089
+	source = https://registry.npmjs.org/@github/copilot/-/copilot-1.0.36.tgz
+	sha1sums = 9772ae84d12390640ee4e9f61c83268479687be0
 
 pkgname = github-copilot-cli
