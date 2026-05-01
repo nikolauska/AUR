@@ -122,7 +122,7 @@ case "$(basename "$pkg_dir")" in
   openai-codex-bin)
     pkg_type="github"
     repo="openai/codex"
-    asset_regex='codex-x86_64-unknown-linux-gnu\.tar\.gz'
+    asset_regex='^codex-x86_64-unknown-linux-musl\.tar\.gz$'
     strip_prefix="rust-v"
     ;;
   tidewave-cli)
