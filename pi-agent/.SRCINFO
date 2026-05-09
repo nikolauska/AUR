@@ -1,11 +1,13 @@
 pkgbase = pi-agent
 	pkgdesc = Minimal terminal coding agent that adapts to your workflows
 	pkgver = 0.74.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/earendil-works/pi
 	arch = x86_64
 	license = MIT
 	depends = glibc
+	depends = npm
+	depends = bash
 	provides = pi
 	conflicts = pi
 	options = !debug

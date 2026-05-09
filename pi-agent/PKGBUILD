@@ -2,7 +2,7 @@
 
 pkgname=pi-agent
 pkgver=0.74.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Minimal terminal coding agent that adapts to your workflows"
 arch=('x86_64')
 # Bun standalone executables carry the application payload in the binary; strip
@@ -10,7 +10,7 @@ arch=('x86_64')
 options=('!debug' '!strip')
 url="https://github.com/earendil-works/pi"
 license=('MIT')
-depends=('glibc')
+depends=('glibc' 'npm' 'bash')
 provides=('pi')
 conflicts=('pi')
 
@@ -36,7 +36,20 @@ package() {
     "pi/README.md" \
     "$pkgdir/usr/lib/$pkgname/"
   install -Dm755 "pi/pi" "$pkgdir/usr/lib/$pkgname/pi"
-  ln -s "../lib/$pkgname/pi" "$pkgdir/usr/bin/pi"
+  cat > "$pkgdir/usr/bin/pi" <<'EOF'
+#!/usr/bin/bash
+
+# Pi installs user-scoped npm packages with npm install -g. Arch's default npm
+# prefix is /usr, so point Pi's npm subprocesses at a user-writable prefix.
+if [ -z "${NPM_CONFIG_PREFIX+x}" ] && [ -z "${npm_config_prefix+x}" ]; then
+  pi_npm_prefix="${XDG_DATA_HOME:-$HOME/.local/share}/pi-agent/npm"
+  export NPM_CONFIG_PREFIX="$pi_npm_prefix"
+  export npm_config_prefix="$pi_npm_prefix"
+fi
+
+exec /usr/lib/pi-agent/pi "$@"
+EOF
+  chmod 755 "$pkgdir/usr/bin/pi"
 
   install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   install -Dm644 "pi/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
