@@ -1,0 +1,44 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=pi-agent
+pkgver=0.74.0
+pkgrel=1
+pkgdesc="Minimal terminal coding agent that adapts to your workflows"
+arch=('x86_64')
+# Bun standalone executables carry the application payload in the binary; strip
+# removes enough metadata that the result starts as bare Bun instead of Pi.
+options=('!debug' '!strip')
+url="https://github.com/earendil-works/pi"
+license=('MIT')
+depends=('glibc')
+provides=('pi')
+conflicts=('pi')
+
+source=(
+  "pi-${pkgver}-linux-x64.tar.gz::https://github.com/earendil-works/pi/releases/download/v${pkgver}/pi-linux-x64.tar.gz"
+  "LICENSE::https://raw.githubusercontent.com/earendil-works/pi/v${pkgver}/LICENSE"
+)
+sha256sums=('d67657a30d49c9faca80868d2a4bdba4dfcac04702893f45a6d14b249345eb8d'
+            '0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48')
+
+package() {
+  cd "$srcdir"
+
+  install -dm755 "$pkgdir/usr/lib/$pkgname" "$pkgdir/usr/bin"
+  cp -a --no-preserve=ownership \
+    "pi/assets" \
+    "pi/docs" \
+    "pi/export-html" \
+    "pi/theme" \
+    "pi/CHANGELOG.md" \
+    "pi/package.json" \
+    "pi/photon_rs_bg.wasm" \
+    "pi/README.md" \
+    "$pkgdir/usr/lib/$pkgname/"
+  install -Dm755 "pi/pi" "$pkgdir/usr/lib/$pkgname/pi"
+  ln -s "../lib/$pkgname/pi" "$pkgdir/usr/bin/pi"
+
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "pi/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 "pi/CHANGELOG.md" "$pkgdir/usr/share/doc/$pkgname/CHANGELOG.md"
+}

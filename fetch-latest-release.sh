@@ -18,6 +18,7 @@ Supported package dirs:
   tidewave-cli
   typescript-go
   github-copilot-cli
+  pi-agent
 
 Environment:
   GITHUB_TOKEN (optional) to raise GitHub API rate limits.
@@ -144,6 +145,12 @@ case "$(basename "$pkg_dir")" in
   github-copilot-cli)
     pkg_type="npm"
     npm_pkg="@github/copilot"
+    ;;
+  pi-agent)
+    pkg_type="github"
+    repo="earendil-works/pi"
+    asset_regex='^pi-linux-x64\.tar\.gz$'
+    strip_prefix="v"
     ;;
   *)
     echo "Unsupported package: $(basename "$pkg_dir")" >&2

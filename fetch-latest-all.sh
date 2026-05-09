@@ -49,6 +49,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
     tidewave-cli
     typescript-go
     github-copilot-cli
+    pi-agent
   )
 fi
 
