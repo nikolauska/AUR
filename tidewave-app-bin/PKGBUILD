@@ -1,6 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
-pkgname=tidewave-app
+pkgname=tidewave-app-bin
+_pkgname=tidewave-app
 pkgver=0.4.4
 pkgrel=1
 pkgdesc="Tidewave Desktop App"
@@ -9,12 +10,15 @@ url="https://github.com/tidewave-ai/tidewave_app"
 license=('Apache-2.0')
 depends=()
 provides=('tidewave-app')
+conflicts=('tidewave-app')
 options=('!strip' '!debug')
 
 source=(
   "tidewave-app-amd64-${pkgver}-${pkgrel}.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-app-amd64.AppImage"
+  "LICENSE::https://raw.githubusercontent.com/tidewave-ai/tidewave_app/v${pkgver}/LICENSE"
 )
-sha256sums=('d31cf41a7982a8b208b444fb77b088dee4ab51eac5e189a3eb69017065dbe439')
+sha256sums=('d31cf41a7982a8b208b444fb77b088dee4ab51eac5e189a3eb69017065dbe439'
+            '59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b')
 
 package() {
   local srcdir="${srcdir:?srcdir is not set}"
@@ -23,17 +27,19 @@ package() {
 
   install -Dm755 \
     "$srcdir/$appimage" \
-    "$pkgdir/usr/lib/$pkgname/$pkgname.AppImage"
+    "$pkgdir/usr/lib/$_pkgname/$_pkgname.AppImage"
 
   install -dm755 "$pkgdir/usr/bin"
-  ln -s "../lib/$pkgname/$pkgname.AppImage" "$pkgdir/usr/bin/$pkgname"
+  ln -s "../lib/$_pkgname/$_pkgname.AppImage" "$pkgdir/usr/bin/$_pkgname"
 
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$pkgname.desktop" <<EOF
+  install -Dm644 "${srcdir}/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" <<EOF
 [Desktop Entry]
 Type=Application
 Name=Tidewave
 Comment=Tidewave Desktop App
-Exec=$pkgname
+Exec=$_pkgname
 Icon=applications-development
 Categories=Development;
 Terminal=false

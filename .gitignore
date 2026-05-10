@@ -4,7 +4,7 @@
 pkg/
 .npm-cache
 src/
-tidewave-cli/tidewave-cli-x86_64-*
-tidewave-app/opt/
+tidewave-cli-bin/tidewave-cli-x86_64-*
+tidewave-app-bin/opt/
 *.AppImage
 .codex

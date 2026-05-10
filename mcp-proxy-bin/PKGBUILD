@@ -11,6 +11,7 @@ url="https://github.com/tidewave-ai/mcp_proxy_rust"
 license=('Apache-2.0')
 depends=('glibc' 'libgcc_s.so')
 provides=('mcp-proxy')
+conflicts=('mcp-proxy')
 
 source=(
   "mcp-proxy-${CARCH}-${pkgver}-unknown-linux-gnu.tar.gz::https://github.com/tidewave-ai/mcp_proxy_rust/releases/download/v${pkgver}/mcp-proxy-${CARCH}-unknown-linux-gnu.tar.gz"

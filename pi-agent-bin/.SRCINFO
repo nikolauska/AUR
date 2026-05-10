@@ -1,4 +1,4 @@
-pkgbase = pi-agent
+pkgbase = pi-agent-bin
 	pkgdesc = Minimal terminal coding agent that adapts to your workflows
 	pkgver = 0.74.0
 	pkgrel = 2
@@ -8,7 +8,9 @@ pkgbase = pi-agent
 	depends = glibc
 	depends = npm
 	depends = bash
+	provides = pi-agent
 	provides = pi
+	conflicts = pi-agent
 	conflicts = pi
 	options = !debug
 	options = !strip
@@ -17,4 +19,4 @@ pkgbase = pi-agent
 	sha256sums = d67657a30d49c9faca80868d2a4bdba4dfcac04702893f45a6d14b249345eb8d
 	sha256sums = 0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48
 
-pkgname = pi-agent
+pkgname = pi-agent-bin

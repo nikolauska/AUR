@@ -13,10 +13,10 @@ license=("Apache-2.0")
 depends=("nodejs")
 makedepends=("npm" "jq")
 
-source=("http://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz")
+source=("https://registry.npmjs.org/@typescript/native-preview/-/native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz")
 noextract=("native-preview-7.0.0-dev.${pkgver}.${pkgrel}.tgz")
 
-sha1sums=('19767f26410f7a211384b9c77e5d53893cc489c5')
+sha512sums=('240269117d3205a1257b6cf36d7e73f500219847cc2f54b241a7cbc1b28275c3ad9e419d939c43f0d288571abe9d3c188d1c2e57b90a9d0f9fa94de0a56634a9')
 
 package() {
   printf '  -> Installing with npm\n'
@@ -29,6 +29,16 @@ package() {
   find "${pkgdir}/usr" -type d -exec chmod 755 {} +
   chown -R root:root "${pkgdir}"
 
+  if [[ -f "${pkgdir}/usr/lib/node_modules/@typescript/native-preview/LICENSE.txt" ]]; then
+    install -Dm644 \
+      "${pkgdir}/usr/lib/node_modules/@typescript/native-preview/LICENSE.txt" \
+      "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.txt"
+  elif [[ -f "${pkgdir}/usr/lib/node_modules/@typescript/native-preview/LICENSE" ]]; then
+    install -Dm644 \
+      "${pkgdir}/usr/lib/node_modules/@typescript/native-preview/LICENSE" \
+      "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  fi
+
   printf '  -> Removing PKGDIR references from package metadata\n'
   find "${pkgdir}" -name package.json -print0 | xargs -r -0 sed -i '/_where/d'
 
@@ -36,7 +46,7 @@ package() {
   local pkgjson="${pkgdir}/usr/lib/node_modules/@typescript/native-preview/package.json"
   local tmppackage
   tmppackage="$(mktemp)"
-  jq '.|=with_entries(select(.key|test("_.+")|not))' "${pkgjson}" > "${tmppackage}"
+  jq '.|=with_entries(select(.key|test("_.+")|not))' "${pkgjson}" >"${tmppackage}"
   mv "${tmppackage}" "${pkgjson}"
   chmod 644 "${pkgjson}"
 
@@ -44,7 +54,7 @@ package() {
   find "${pkgdir}" -type f -name package.json | while IFS= read -r pkgjson; do
     local tmppackage
     tmppackage="$(mktemp)"
-    jq 'del(.man)' "${pkgjson}" > "${tmppackage}"
+    jq 'del(.man)' "${pkgjson}" >"${tmppackage}"
     mv "${tmppackage}" "${pkgjson}"
     chmod 644 "${pkgjson}"
   done

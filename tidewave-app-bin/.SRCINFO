@@ -1,4 +1,4 @@
-pkgbase = tidewave-app
+pkgbase = tidewave-app-bin
 	pkgdesc = Tidewave Desktop App
 	pkgver = 0.4.4
 	pkgrel = 1
@@ -6,9 +6,12 @@ pkgbase = tidewave-app
 	arch = x86_64
 	license = Apache-2.0
 	provides = tidewave-app
+	conflicts = tidewave-app
 	options = !strip
 	options = !debug
 	source = tidewave-app-amd64-0.4.4-1.AppImage::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.4.4/tidewave-app-amd64.AppImage
+	source = LICENSE::https://raw.githubusercontent.com/tidewave-ai/tidewave_app/v0.4.4/LICENSE
 	sha256sums = d31cf41a7982a8b208b444fb77b088dee4ab51eac5e189a3eb69017065dbe439
+	sha256sums = 59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b
 
-pkgname = tidewave-app
+pkgname = tidewave-app-bin

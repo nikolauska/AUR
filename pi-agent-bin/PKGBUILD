@@ -1,6 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
-pkgname=pi-agent
+pkgname=pi-agent-bin
+_pkgname=pi-agent
 pkgver=0.74.0
 pkgrel=2
 pkgdesc="Minimal terminal coding agent that adapts to your workflows"
@@ -11,8 +12,8 @@ options=('!debug' '!strip')
 url="https://github.com/earendil-works/pi"
 license=('MIT')
 depends=('glibc' 'npm' 'bash')
-provides=('pi')
-conflicts=('pi')
+provides=('pi-agent' 'pi')
+conflicts=('pi-agent' 'pi')
 
 source=(
   "pi-${pkgver}-linux-x64.tar.gz::https://github.com/earendil-works/pi/releases/download/v${pkgver}/pi-linux-x64.tar.gz"
@@ -24,7 +25,7 @@ sha256sums=('d67657a30d49c9faca80868d2a4bdba4dfcac04702893f45a6d14b249345eb8d'
 package() {
   cd "$srcdir"
 
-  install -dm755 "$pkgdir/usr/lib/$pkgname" "$pkgdir/usr/bin"
+  install -dm755 "$pkgdir/usr/lib/$_pkgname" "$pkgdir/usr/bin"
   cp -a --no-preserve=ownership \
     "pi/assets" \
     "pi/docs" \
@@ -34,8 +35,8 @@ package() {
     "pi/package.json" \
     "pi/photon_rs_bg.wasm" \
     "pi/README.md" \
-    "$pkgdir/usr/lib/$pkgname/"
-  install -Dm755 "pi/pi" "$pkgdir/usr/lib/$pkgname/pi"
+    "$pkgdir/usr/lib/$_pkgname/"
+  install -Dm755 "pi/pi" "$pkgdir/usr/lib/$_pkgname/pi"
   cat > "$pkgdir/usr/bin/pi" <<'EOF'
 #!/usr/bin/bash
 

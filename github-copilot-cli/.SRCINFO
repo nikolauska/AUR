@@ -12,7 +12,6 @@ pkgbase = github-copilot-cli
 	depends = glib2
 	depends = libsecret
 	provides = copilot
-	conflicts = github-copilot-cli
 	conflicts = github-copilot-cli-legacy
 	noextract = copilot-1.0.44.tgz
 	options = !strip
@@ -21,6 +20,6 @@ pkgbase = github-copilot-cli
 	options = staticlibs
 	options = zipman
 	source = https://registry.npmjs.org/@github/copilot/-/copilot-1.0.44.tgz
-	sha1sums = 1dfde1e51db6652519daec0ad279212e05fab66e
+	sha512sums = c2bfc698d3946892bf82224ae5a6f2075a13a44a3080528b8be3499e5c80ca62a22bf18a09a46526a897db71f645eb4cf2f0f6843614154166f654c2a281b2d2
 
 pkgname = github-copilot-cli
