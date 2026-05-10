@@ -106,6 +106,7 @@ repo=""
 asset_regex=""
 strip_prefix=""
 npm_pkg=""
+npm_tag="latest"
 
 case "$(basename "$pkg_dir")" in
 acolyte-agent-bin)
@@ -147,6 +148,7 @@ tidewave-app-bin)
 typescript-go)
 	pkg_type="npm"
 	npm_pkg="@typescript/native-preview"
+	npm_tag="beta"
 	;;
 github-copilot-cli)
 	pkg_type="npm"
@@ -219,8 +221,8 @@ if [[ "$pkg_type" == "github" ]]; then
 	updpkgsums
 
 else # npm package
-	echo "Querying npm registry for ${npm_pkg}…"
-	npm_json="$(NPM_CONFIG_CACHE=${NPM_CONFIG_CACHE:-$pkg_dir/.npm-cache} npm view "${npm_pkg}" version dist.tarball dist.integrity --json)"
+	echo "Querying npm registry for ${npm_pkg}@${npm_tag}…"
+	npm_json="$(NPM_CONFIG_CACHE=${NPM_CONFIG_CACHE:-$pkg_dir/.npm-cache} npm view "${npm_pkg}@${npm_tag}" version dist.tarball dist.integrity --json)"
 
 	version="$(jq -r 'if type=="array" then (.[-1].version // .[-1]) else (.version // .) end' <<<"$npm_json")"
 	tarball="$(jq -r 'if type=="array" then (.[-1]["dist.tarball"]) else (."dist.tarball") end' <<<"$npm_json")"
@@ -255,7 +257,7 @@ else # npm package
 
 	asset_name="$(basename "$tarball")"
 
-	echo "Latest npm version: ${version} -> pkgver=${pkgver}, pkgrel=${pkgrel}"
+	echo "NPM ${npm_tag} version: ${version} -> pkgver=${pkgver}, pkgrel=${pkgrel}"
 	echo "Tarball: ${asset_name}"
 	echo "sha512: ${sha512sum}"
 
