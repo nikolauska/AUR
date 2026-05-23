@@ -51,6 +51,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 		dexter-bin
 		mcp-proxy-bin
 		openai-codex-bin
+		stripe-mock-bin
 		tidewave-app-bin
 		tidewave-cli-bin
 		typescript-go

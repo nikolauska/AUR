@@ -1,0 +1,25 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=stripe-mock-bin
+pkgver=0.199.0
+pkgrel=1
+pkgdesc="Mock HTTP server that responds like the Stripe API"
+arch=('x86_64')
+options=('!debug')
+url="https://github.com/stripe/stripe-mock"
+license=('MIT')
+provides=('stripe-mock')
+conflicts=('stripe-mock')
+
+source=(
+  "stripe-mock_${pkgver}_linux_amd64.tar.gz::https://github.com/stripe/stripe-mock/releases/download/v${pkgver}/stripe-mock_${pkgver}_linux_amd64.tar.gz"
+)
+sha256sums=('9589cb5b0082b55949bfcc41342a0b85b6765db4aa4650d363c56e641464597c')
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 "stripe-mock" "$pkgdir/usr/bin/stripe-mock"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

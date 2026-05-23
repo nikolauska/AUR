@@ -14,6 +14,7 @@ Supported package dirs:
   dexter-bin
   mcp-proxy-bin
   openai-codex-bin
+  stripe-mock-bin
   tidewave-app-bin
   tidewave-cli-bin
   typescript-go
@@ -132,6 +133,12 @@ openai-codex-bin)
 	repo="openai/codex"
 	asset_regex='^codex-x86_64-unknown-linux-musl\.tar\.gz$'
 	strip_prefix="rust-v"
+	;;
+stripe-mock-bin)
+	pkg_type="github"
+	repo="stripe/stripe-mock"
+	asset_regex='^stripe-mock_[0-9.]+_linux_amd64\.tar\.gz$'
+	strip_prefix="v"
 	;;
 tidewave-cli-bin)
 	pkg_type="github"
