@@ -1,6 +1,6 @@
 pkgbase = stripe-mock-bin
 	pkgdesc = Mock HTTP server that responds like the Stripe API
-	pkgver = 0.200.0
+	pkgver = 0.201.0
 	pkgrel = 1
 	url = https://github.com/stripe/stripe-mock
 	arch = x86_64
@@ -8,7 +8,7 @@ pkgbase = stripe-mock-bin
 	provides = stripe-mock
 	conflicts = stripe-mock
 	options = !debug
-	source = stripe-mock_0.200.0_linux_amd64.tar.gz::https://github.com/stripe/stripe-mock/releases/download/v0.200.0/stripe-mock_0.200.0_linux_amd64.tar.gz
-	sha256sums = b6448357c12ecce077a5ea80e5aa7b2b906c58f3e70bca8b661f55a7a54ef7e2
+	source = stripe-mock_0.201.0_linux_amd64.tar.gz::https://github.com/stripe/stripe-mock/releases/download/v0.201.0/stripe-mock_0.201.0_linux_amd64.tar.gz
+	sha256sums = 86cb9726011ec92c63e96a4a622b910878669f63946d32efa795f6fe477b69c0
 
 pkgname = stripe-mock-bin

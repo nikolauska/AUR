@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=dexter-bin
-pkgver=0.6.0
+pkgver=0.7.0
 pkgrel=1
 pkgdesc="A fast, full-featured Elixir LSP optimized for large codebases"
 arch=('x86_64')
@@ -19,7 +19,7 @@ source=(
   "dexter-${pkgver}-Linux-${CARCH}.tar.gz::https://github.com/remoteoss/dexter/releases/download/v${pkgver}/dexter_Linux_${CARCH}.tar.gz"
   "LICENSE::https://raw.githubusercontent.com/remoteoss/dexter/v${pkgver}/LICENSE"
 )
-sha256sums=('78582a890739937332decd00c0b8553512f1ad526f3c414fd6d654aaebb8a2e6'
+sha256sums=('60e9f87e66994d8c789d41c4b46c047257250245668468276584b89e3b4affc9'
             '7c2a85d1e7f4a6a5e6b7b9418b72b5b55aba573a9a3a088d1e2a815caab28cec')
 
 package() {
