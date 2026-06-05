@@ -2,7 +2,7 @@
 
 pkgname=pi-agent-bin
 _pkgname=pi-agent
-pkgver=0.78.0
+pkgver=0.78.1
 pkgrel=1
 pkgdesc="Minimal terminal coding agent that adapts to your workflows"
 arch=('x86_64')
@@ -19,7 +19,7 @@ source=(
   "pi-${pkgver}-linux-x64.tar.gz::https://github.com/earendil-works/pi/releases/download/v${pkgver}/pi-linux-x64.tar.gz"
   "LICENSE::https://raw.githubusercontent.com/earendil-works/pi/v${pkgver}/LICENSE"
 )
-sha256sums=('8ac03343d1e1228106e8172157f32d6b882829e46b34feaf577f171a5f1387cc'
+sha256sums=('d741b0cdea0b4484b421cf8f9e776a35eeedd1e38f836105ee29948b4240e437'
             '0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48')
 
 package() {
