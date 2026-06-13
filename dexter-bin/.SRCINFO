@@ -1,6 +1,6 @@
 pkgbase = dexter-bin
 	pkgdesc = A fast, full-featured Elixir LSP optimized for large codebases
-	pkgver = 0.7.0
+	pkgver = 0.7.1
 	pkgrel = 1
 	url = https://github.com/remoteoss/dexter
 	arch = x86_64
@@ -10,9 +10,9 @@ pkgbase = dexter-bin
 	provides = dexter
 	conflicts = dexter
 	options = !debug
-	source = dexter-0.7.0-Linux-x86_64.tar.gz::https://github.com/remoteoss/dexter/releases/download/v0.7.0/dexter_Linux_x86_64.tar.gz
-	source = LICENSE::https://raw.githubusercontent.com/remoteoss/dexter/v0.7.0/LICENSE
-	sha256sums = 60e9f87e66994d8c789d41c4b46c047257250245668468276584b89e3b4affc9
+	source = dexter-0.7.1-Linux-x86_64.tar.gz::https://github.com/remoteoss/dexter/releases/download/v0.7.1/dexter_Linux_x86_64.tar.gz
+	source = LICENSE::https://raw.githubusercontent.com/remoteoss/dexter/v0.7.1/LICENSE
+	sha256sums = e50a3881389365286add6ca19b2e35c6145a83ec5006da3d8969500d577e8b68
 	sha256sums = 7c2a85d1e7f4a6a5e6b7b9418b72b5b55aba573a9a3a088d1e2a815caab28cec
 
 pkgname = dexter-bin
