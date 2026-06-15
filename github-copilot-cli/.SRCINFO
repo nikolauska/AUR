@@ -11,6 +11,7 @@ pkgbase = github-copilot-cli
 	depends = nodejs
 	depends = glib2
 	depends = libsecret
+	depends = dbus
 	provides = copilot
 	conflicts = github-copilot-cli-legacy
 	noextract = copilot-1.0.61.tgz
