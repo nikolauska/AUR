@@ -48,6 +48,7 @@ fetch_script="./fetch-latest-release.sh"
 if [[ ${#package_dirs[@]} -eq 0 ]]; then
 	package_dirs=(
 		acolyte-agent-bin
+		codebase-memory-mcp-bin
 		dexter-bin
 		mcp-proxy-bin
 		openai-codex-bin
