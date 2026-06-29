@@ -1,0 +1,27 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=lavish-axi
+pkgver=0.1.32
+pkgrel=1
+pkgdesc="HTML artifact editor for agent collaboration"
+arch=('any')
+url="https://github.com/kunchenguid/lavish-axi"
+license=('MIT')
+depends=('nodejs>=22')
+makedepends=('npm')
+optdepends=('xdg-utils: open the editor in a browser')
+
+source=("https://registry.npmjs.org/${pkgname}/-/${pkgname}-${pkgver}.tgz")
+noextract=("${pkgname}-${pkgver}.tgz")
+sha512sums=('b7d93b0cdf905239b0a22f2b1d00a6d80833968da3af41e6bba1a7beae030d0ed2952033ea7cc8753da2f556cbe950d91d0ba1c228bbf7003f01d7e6cdef1bb9')
+
+package() {
+  npm install -s -g \
+    --cache "${srcdir}/npm-cache" \
+    --prefix "${pkgdir}/usr" \
+    "${srcdir}/${pkgname}-${pkgver}.tgz"
+
+  install -Dm644 \
+    "${pkgdir}/usr/lib/node_modules/${pkgname}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

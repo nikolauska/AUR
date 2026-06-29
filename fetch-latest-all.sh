@@ -49,7 +49,10 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 	package_dirs=(
 		acolyte-agent-bin
 		codebase-memory-mcp-bin
+		chrome-devtools-axi
 		dexter-bin
+		gh-axi
+		lavish-axi
 		mcp-proxy-bin
 		openai-codex-bin
 		stripe-mock-bin
