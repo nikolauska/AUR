@@ -11,7 +11,7 @@ specified package dirs).
 Examples:
   ./fetch-latest-all.sh
   ./fetch-latest-all.sh --dry-run
-  ./fetch-latest-all.sh mcp-proxy-bin openai-codex-bin
+  ./fetch-latest-all.sh mcp-proxy-bin
 EOF
 	exit 1
 }
@@ -55,7 +55,6 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 		lavish-axi
 		mcp-proxy-bin
 		no-mistakes-bin
-		openai-codex-bin
 		stripe-mock-bin
 		tidewave-app-bin
 		tidewave-cli-bin

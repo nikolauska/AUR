@@ -18,7 +18,6 @@ Supported package dirs:
   lavish-axi
   mcp-proxy-bin
   no-mistakes-bin
-  openai-codex-bin
   stripe-mock-bin
   tidewave-app-bin
   tidewave-cli-bin
@@ -144,12 +143,6 @@ no-mistakes-bin)
 	repo="kunchenguid/no-mistakes"
 	asset_regex='^no-mistakes-v[0-9.]+-linux-amd64\.tar\.gz$'
 	strip_prefix="v"
-	;;
-openai-codex-bin)
-	pkg_type="github"
-	repo="openai/codex"
-	asset_regex='^codex-x86_64-unknown-linux-musl\.tar\.gz$'
-	strip_prefix="rust-v"
 	;;
 stripe-mock-bin)
 	pkg_type="github"
