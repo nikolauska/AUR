@@ -51,6 +51,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 		codebase-memory-mcp-bin
 		chrome-devtools-axi
 		dexter-bin
+		gnhf-bin
 		gh-axi
 		lavish-axi
 		mcp-proxy-bin

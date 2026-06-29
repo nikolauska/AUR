@@ -1,0 +1,29 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=gnhf-bin
+_pkgname=gnhf
+pkgver=0.1.41
+pkgrel=1
+pkgdesc="Keep coding agents running in an iterative loop"
+arch=('any')
+url="https://github.com/kunchenguid/gnhf"
+license=('MIT')
+depends=('git' 'nodejs>=20')
+makedepends=('npm')
+provides=('gnhf')
+conflicts=('gnhf')
+
+source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
+sha512sums=('fbfd0bc8f25221a9e3bd23e735d3be07d40eab4376b94e7b94bb5f48814f971774c160f4294f56eb511718a05a08bf57547fbccea3585517d44617b1175910c7')
+
+package() {
+  npm install -s -g \
+    --cache "${srcdir}/npm-cache" \
+    --prefix "${pkgdir}/usr" \
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
+
+  install -Dm644 \
+    "${pkgdir}/usr/lib/node_modules/${_pkgname}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

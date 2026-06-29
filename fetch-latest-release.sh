@@ -14,6 +14,7 @@ Supported package dirs:
   codebase-memory-mcp-bin
   chrome-devtools-axi
   dexter-bin
+  gnhf-bin
   gh-axi
   lavish-axi
   mcp-proxy-bin
@@ -174,6 +175,10 @@ github-copilot-cli)
 chrome-devtools-axi | gh-axi | lavish-axi)
 	pkg_type="npm"
 	npm_pkg="$(basename "$pkg_dir")"
+	;;
+gnhf-bin)
+	pkg_type="npm"
+	npm_pkg="gnhf"
 	;;
 pi-agent-bin)
 	pkg_type="github"
