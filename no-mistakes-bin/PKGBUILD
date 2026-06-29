@@ -1,0 +1,32 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=no-mistakes-bin
+pkgver=1.31.2
+pkgrel=1
+pkgdesc="Local Git proxy that validates code before pushing"
+arch=('x86_64')
+options=('!debug')
+url="https://github.com/kunchenguid/no-mistakes"
+license=('MIT')
+depends=('git')
+optdepends=(
+  'github-cli: GitHub pull requests and CI integration'
+  'glab: GitLab merge requests and CI integration'
+  'github-copilot-cli: GitHub Copilot validation agent'
+  'openai-codex: Codex validation agent'
+  'pi-agent: Pi validation agent'
+)
+provides=('no-mistakes')
+conflicts=('no-mistakes')
+
+source=(
+  "https://github.com/kunchenguid/no-mistakes/releases/download/v${pkgver}/no-mistakes-v${pkgver}-linux-amd64.tar.gz"
+  "LICENSE::https://raw.githubusercontent.com/kunchenguid/no-mistakes/v${pkgver}/LICENSE"
+)
+sha256sums=('e3009fe9986c51ca59ddb0152e127bb245858efe03dc84842138c0f192ff7f8b'
+            '945016bd37e1ba7211622ef60ee1d23ab727896ba7710edd21e8fbe983863969')
+
+package() {
+  install -Dm755 "$srcdir/no-mistakes" "$pkgdir/usr/bin/no-mistakes"
+  install -Dm644 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

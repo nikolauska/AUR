@@ -54,6 +54,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 		gh-axi
 		lavish-axi
 		mcp-proxy-bin
+		no-mistakes-bin
 		openai-codex-bin
 		stripe-mock-bin
 		tidewave-app-bin

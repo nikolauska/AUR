@@ -1,0 +1,22 @@
+pkgbase = no-mistakes-bin
+	pkgdesc = Local Git proxy that validates code before pushing
+	pkgver = 1.31.2
+	pkgrel = 1
+	url = https://github.com/kunchenguid/no-mistakes
+	arch = x86_64
+	license = MIT
+	depends = git
+	optdepends = github-cli: GitHub pull requests and CI integration
+	optdepends = glab: GitLab merge requests and CI integration
+	optdepends = github-copilot-cli: GitHub Copilot validation agent
+	optdepends = openai-codex: Codex validation agent
+	optdepends = pi-agent: Pi validation agent
+	provides = no-mistakes
+	conflicts = no-mistakes
+	options = !debug
+	source = https://github.com/kunchenguid/no-mistakes/releases/download/v1.31.2/no-mistakes-v1.31.2-linux-amd64.tar.gz
+	source = LICENSE::https://raw.githubusercontent.com/kunchenguid/no-mistakes/v1.31.2/LICENSE
+	sha256sums = e3009fe9986c51ca59ddb0152e127bb245858efe03dc84842138c0f192ff7f8b
+	sha256sums = 945016bd37e1ba7211622ef60ee1d23ab727896ba7710edd21e8fbe983863969
+
+pkgname = no-mistakes-bin

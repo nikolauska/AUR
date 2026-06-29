@@ -17,6 +17,7 @@ Supported package dirs:
   gh-axi
   lavish-axi
   mcp-proxy-bin
+  no-mistakes-bin
   openai-codex-bin
   stripe-mock-bin
   tidewave-app-bin
@@ -136,6 +137,12 @@ mcp-proxy-bin)
 	pkg_type="github"
 	repo="tidewave-ai/mcp_proxy_rust"
 	asset_regex='mcp-proxy-x86_64-unknown-linux-gnu\.tar\.gz'
+	strip_prefix="v"
+	;;
+no-mistakes-bin)
+	pkg_type="github"
+	repo="kunchenguid/no-mistakes"
+	asset_regex='^no-mistakes-v[0-9.]+-linux-amd64\.tar\.gz$'
 	strip_prefix="v"
 	;;
 openai-codex-bin)
