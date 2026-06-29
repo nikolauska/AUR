@@ -1,4 +1,4 @@
-pkgbase = gh-axi
+pkgbase = gh-axi-bin
 	pkgdesc = AXI-compliant GitHub CLI wrapper
 	pkgver = 0.1.24
 	pkgrel = 1
@@ -8,8 +8,10 @@ pkgbase = gh-axi
 	makedepends = npm
 	depends = github-cli
 	depends = nodejs
+	provides = gh-axi
+	conflicts = gh-axi
 	noextract = gh-axi-0.1.24.tgz
 	source = https://registry.npmjs.org/gh-axi/-/gh-axi-0.1.24.tgz
 	sha512sums = e4a620b43c49f2ddbca0ef2c5ea3b5b6af1d25efb09905f6a3ebe65941e3d62f38ba8eef113b2798ef7e5bd277f163f363d05997a5b7ce739b96274ed393bb60
 
-pkgname = gh-axi
+pkgname = gh-axi-bin

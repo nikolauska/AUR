@@ -1,6 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
-pkgname=gh-axi
+pkgname=gh-axi-bin
+_pkgname=gh-axi
 pkgver=0.1.24
 pkgrel=1
 pkgdesc="AXI-compliant GitHub CLI wrapper"
@@ -9,18 +10,20 @@ url="https://github.com/kunchenguid/gh-axi"
 license=('MIT')
 depends=('github-cli' 'nodejs')
 makedepends=('npm')
+provides=('gh-axi')
+conflicts=('gh-axi')
 
-source=("https://registry.npmjs.org/${pkgname}/-/${pkgname}-${pkgver}.tgz")
-noextract=("${pkgname}-${pkgver}.tgz")
+source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
 sha512sums=('e4a620b43c49f2ddbca0ef2c5ea3b5b6af1d25efb09905f6a3ebe65941e3d62f38ba8eef113b2798ef7e5bd277f163f363d05997a5b7ce739b96274ed393bb60')
 
 package() {
   npm install -s -g \
     --cache "${srcdir}/npm-cache" \
     --prefix "${pkgdir}/usr" \
-    "${srcdir}/${pkgname}-${pkgver}.tgz"
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
 
   install -Dm644 \
-    "${pkgdir}/usr/lib/node_modules/${pkgname}/LICENSE" \
+    "${pkgdir}/usr/lib/node_modules/${_pkgname}/LICENSE" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }

@@ -1,6 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
-pkgname=chrome-devtools-axi
+pkgname=chrome-devtools-axi-bin
+_pkgname=chrome-devtools-axi
 pkgver=0.1.25
 pkgrel=1
 pkgdesc="AXI-compliant chrome-devtools-mcp wrapper"
@@ -9,18 +10,20 @@ url="https://github.com/kunchenguid/chrome-devtools-axi"
 license=('MIT')
 depends=('nodejs' 'npm')
 optdepends=('chromium: local browser automation')
+provides=('chrome-devtools-axi')
+conflicts=('chrome-devtools-axi')
 
-source=("https://registry.npmjs.org/${pkgname}/-/${pkgname}-${pkgver}.tgz")
-noextract=("${pkgname}-${pkgver}.tgz")
+source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
 sha512sums=('275a9483d2abe78ffb31b140fcf5d918f1ceab7b0ef6ee14a4091e9dc6ffba5ff9aeca9af69dcd1c0260427577dc2dde2a9cc6a0bccf49128b2b8e8c9107b9bb')
 
 package() {
   npm install -s -g \
     --cache "${srcdir}/npm-cache" \
     --prefix "${pkgdir}/usr" \
-    "${srcdir}/${pkgname}-${pkgver}.tgz"
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
 
   install -Dm644 \
-    "${pkgdir}/usr/lib/node_modules/${pkgname}/LICENSE" \
+    "${pkgdir}/usr/lib/node_modules/${_pkgname}/LICENSE" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }

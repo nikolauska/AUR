@@ -12,11 +12,11 @@ checksums), and refreshes .SRCINFO.
 Supported package dirs:
   acolyte-agent-bin
   codebase-memory-mcp-bin
-  chrome-devtools-axi
+  chrome-devtools-axi-bin
   dexter-bin
   gnhf-bin
-  gh-axi
-  lavish-axi
+  gh-axi-bin
+  lavish-axi-bin
   mcp-proxy-bin
   no-mistakes-bin
   stripe-mock-bin
@@ -172,9 +172,9 @@ github-copilot-cli)
 	pkg_type="npm"
 	npm_pkg="@github/copilot"
 	;;
-chrome-devtools-axi | gh-axi | lavish-axi)
+chrome-devtools-axi-bin | gh-axi-bin | lavish-axi-bin)
 	pkg_type="npm"
-	npm_pkg="$(basename "$pkg_dir")"
+	npm_pkg="$(basename "$pkg_dir" -bin)"
 	;;
 gnhf-bin)
 	pkg_type="npm"
