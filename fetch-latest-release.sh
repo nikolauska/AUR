@@ -20,6 +20,7 @@ Supported package dirs:
   mcp-proxy-bin
   no-mistakes-bin
   stripe-mock-bin
+  treehouse-bin
   tidewave-app-bin
   tidewave-cli-bin
   typescript-go
@@ -149,6 +150,12 @@ stripe-mock-bin)
 	pkg_type="github"
 	repo="stripe/stripe-mock"
 	asset_regex='^stripe-mock_[0-9.]+_linux_amd64\.tar\.gz$'
+	strip_prefix="v"
+	;;
+treehouse-bin)
+	pkg_type="github"
+	repo="kunchenguid/treehouse"
+	asset_regex='^treehouse-v[0-9.]+-linux-amd64\.tar\.gz$'
 	strip_prefix="v"
 	;;
 tidewave-cli-bin)

@@ -57,6 +57,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 		mcp-proxy-bin
 		no-mistakes-bin
 		stripe-mock-bin
+		treehouse-bin
 		tidewave-app-bin
 		tidewave-cli-bin
 		typescript-go
