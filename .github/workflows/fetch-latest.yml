@@ -33,6 +33,8 @@ jobs:
       - name: Create build user
         run: |
           useradd -m builder
+          echo 'builder ALL=(ALL) NOPASSWD: /usr/bin/pacman' > /etc/sudoers.d/builder
+          chmod 0440 /etc/sudoers.d/builder
           chown -R builder:builder "$GITHUB_WORKSPACE"
       - name: Run update script
         env:
