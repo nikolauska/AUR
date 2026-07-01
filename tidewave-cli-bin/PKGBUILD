@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=tidewave-cli-bin
-pkgver=0.4.4
+pkgver=0.4.5
 pkgrel=1
 pkgdesc="Tidewave CLI"
 arch=('x86_64')
@@ -16,7 +16,7 @@ source=(
   "tidewave-cli-${CARCH}-${pkgver}-${pkgrel}-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v${pkgver}/tidewave-cli-${CARCH}-unknown-linux-gnu"
   "LICENSE::https://raw.githubusercontent.com/tidewave-ai/tidewave_app/v${pkgver}/LICENSE"
 )
-sha256sums=('22c31f7a34cab472651dbb10f6e2c9c0671841ddbf0a51c06a29480e7fc1f51a'
+sha256sums=('7f2a229a583531a9a9b282d7d0588341965550a664c7d77561522db858b8a0d0'
             '59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b')
 
 package() {

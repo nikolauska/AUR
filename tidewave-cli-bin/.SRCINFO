@@ -1,6 +1,6 @@
 pkgbase = tidewave-cli-bin
 	pkgdesc = Tidewave CLI
-	pkgver = 0.4.4
+	pkgver = 0.4.5
 	pkgrel = 1
 	url = https://github.com/tidewave-ai/tidewave_app
 	arch = x86_64
@@ -10,9 +10,9 @@ pkgbase = tidewave-cli-bin
 	provides = tidewave-cli
 	conflicts = tidewave-cli
 	options = !debug
-	source = tidewave-cli-x86_64-0.4.4-1-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.4.4/tidewave-cli-x86_64-unknown-linux-gnu
-	source = LICENSE::https://raw.githubusercontent.com/tidewave-ai/tidewave_app/v0.4.4/LICENSE
-	sha256sums = 22c31f7a34cab472651dbb10f6e2c9c0671841ddbf0a51c06a29480e7fc1f51a
+	source = tidewave-cli-x86_64-0.4.5-1-unknown-linux-gnu::https://github.com/tidewave-ai/tidewave_app/releases/download/v0.4.5/tidewave-cli-x86_64-unknown-linux-gnu
+	source = LICENSE::https://raw.githubusercontent.com/tidewave-ai/tidewave_app/v0.4.5/LICENSE
+	sha256sums = 7f2a229a583531a9a9b282d7d0588341965550a664c7d77561522db858b8a0d0
 	sha256sums = 59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b
 
 pkgname = tidewave-cli-bin
