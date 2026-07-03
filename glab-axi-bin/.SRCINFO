@@ -1,0 +1,20 @@
+pkgbase = glab-axi-bin
+	pkgdesc = Agent-oriented GitLab CLI with compact TOON output
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/nikolauska/glab-axi
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	depends = glab
+	provides = glab-axi
+	conflicts = glab-axi
+	options = !debug
+	source = LICENSE::https://raw.githubusercontent.com/nikolauska/glab-axi/v0.1.0/LICENSE
+	sha256sums = c770b9f4a2da970e9bb22311960dbf4de363ab828fe13d2591a5dc0a8e09b983
+	source_x86_64 = glab-axi-0.1.0-x86_64::https://github.com/nikolauska/glab-axi/releases/download/v0.1.0/glab-axi-linux-amd64
+	sha256sums_x86_64 = a2f75c8f5bc99fbde62f846d5395dfe5f4928bcb143b119129915b8d75e6dcdc
+	source_aarch64 = glab-axi-0.1.0-aarch64::https://github.com/nikolauska/glab-axi/releases/download/v0.1.0/glab-axi-linux-arm64
+	sha256sums_aarch64 = 3202cd166889920c3757e11dbf243a74b042a132f8916b3cc0ad69878f0ca5c9
+
+pkgname = glab-axi-bin
