@@ -1,0 +1,29 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=skills-bin
+_pkgname=skills
+pkgver=1.5.15
+pkgrel=1
+pkgdesc="CLI for the open agent skills ecosystem"
+arch=('any')
+url="https://github.com/vercel-labs/skills"
+license=('MIT')
+depends=('git' 'nodejs>=18')
+makedepends=('npm')
+provides=('skills')
+conflicts=('skills')
+
+source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
+sha512sums=('a8e8e4c50f816ee6ba516c7bd5749b904a40150a412ef385736e8f0cc1e44fb0529f0b9dd7f0b2cb25b21761c4947cade7518ddf6190d590cfac686c346e3b18')
+
+package() {
+  npm install -s -g \
+    --cache "${srcdir}/npm-cache" \
+    --prefix "${pkgdir}/usr" \
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
+
+  install -Dm644 \
+    "${pkgdir}/usr/lib/node_modules/${_pkgname}/ThirdPartyNoticeText.txt" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/ThirdPartyNoticeText.txt"
+}

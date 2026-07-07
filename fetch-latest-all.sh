@@ -63,6 +63,7 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 		typescript-go
 		github-copilot-cli
 		pi-agent-bin
+		skills-bin
 	)
 fi
 

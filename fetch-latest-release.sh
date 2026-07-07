@@ -26,6 +26,7 @@ Supported package dirs:
   typescript-go
   github-copilot-cli
   pi-agent-bin
+  skills-bin
 
 Environment:
   GITHUB_TOKEN (optional) to raise GitHub API rate limits.
@@ -179,7 +180,7 @@ github-copilot-cli)
 	pkg_type="npm"
 	npm_pkg="@github/copilot"
 	;;
-chrome-devtools-axi-bin | gh-axi-bin | lavish-axi-bin)
+chrome-devtools-axi-bin | gh-axi-bin | lavish-axi-bin | skills-bin)
 	pkg_type="npm"
 	npm_pkg="$(basename "$pkg_dir" -bin)"
 	;;
