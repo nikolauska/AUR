@@ -1,0 +1,20 @@
+pkgbase = herdr-bin
+	pkgdesc = Terminal workspace manager for AI coding agents
+	pkgver = 0.7.3
+	pkgrel = 1
+	url = https://github.com/ogulcancelik/herdr
+	arch = x86_64
+	arch = aarch64
+	license = AGPL-3.0-or-later
+	provides = herdr
+	conflicts = herdr
+	options = !debug
+	options = !strip
+	source = LICENSE::https://raw.githubusercontent.com/ogulcancelik/herdr/v0.7.3/LICENSE
+	sha256sums = a7fa24f74382fb3e4d320a608533a7c2999dbc0f780f1f734c8b891b31f0d9bd
+	source_x86_64 = herdr-0.7.3-x86_64::https://github.com/ogulcancelik/herdr/releases/download/v0.7.3/herdr-linux-x86_64
+	sha256sums_x86_64 = 043ef43ecbabda28465dcff1eec3184518150d567b8b8f20cda9c6c88770641d
+	source_aarch64 = herdr-0.7.3-aarch64::https://github.com/ogulcancelik/herdr/releases/download/v0.7.3/herdr-linux-aarch64
+	sha256sums_aarch64 = ea490094f2c7c39099870857d00c64c628ef7b5eba1967df4258033455ee2cb1
+
+pkgname = herdr-bin
