@@ -1,0 +1,25 @@
+pkgbase = agnix-bin
+	pkgdesc = Linter for AI agent configurations
+	pkgver = 0.37.5
+	pkgrel = 1
+	url = https://www.npmjs.com/package/agnix
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	license = Apache-2.0
+	depends = glibc
+	depends = gcc-libs
+	provides = agnix
+	conflicts = agnix
+	options = !debug
+	options = !strip
+	source = LICENSE-MIT::https://raw.githubusercontent.com/agent-sh/agnix/v0.37.5/LICENSE-MIT
+	source = LICENSE-APACHE::https://raw.githubusercontent.com/agent-sh/agnix/v0.37.5/LICENSE-APACHE
+	sha256sums = c3a85d8bd6d5967088912c35ea7df7b11d408466a094e3057a65a78b889888b2
+	sha256sums = bbfece0aadd9434b813a4e2955084a75fc4b1761a4cdb017323e87f6dd156a88
+	source_x86_64 = agnix-0.37.5-x86_64.tar.gz::https://github.com/agent-sh/agnix/releases/download/v0.37.5/agnix-x86_64-unknown-linux-gnu.tar.gz
+	sha256sums_x86_64 = 312e81a2caf58ef47004f5c708a0fadf0c4758eda99814f8c37a82c925c47cf2
+	source_aarch64 = agnix-0.37.5-aarch64.tar.gz::https://github.com/agent-sh/agnix/releases/download/v0.37.5/agnix-aarch64-unknown-linux-gnu.tar.gz
+	sha256sums_aarch64 = 48cfc13345bb25b75ff1a89af2ef9b6a72156b40cfd71930e9dd548d96678985
+
+pkgname = agnix-bin
