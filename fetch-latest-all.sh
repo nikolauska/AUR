@@ -55,6 +55,8 @@ if [[ ${#package_dirs[@]} -eq 0 ]]; then
 		lavish-axi-bin
 		mcp-proxy-bin
 		no-mistakes-bin
+		pup-cli-bin
+		sentry-cli-bin
 		stripe-mock-bin
 		treehouse-bin
 		tidewave-app-bin

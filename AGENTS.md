@@ -25,6 +25,8 @@
 ## Testing Guidelines
 
 - Primary validation is a clean `makepkg -si` on Arch or clean chroot; run `namcap` for lint coverage.
+- When adding a package, update `fetch-latest-all.sh` and `fetch-latest-release.sh`, then run `./validate-packages.sh <package-dir>` before marking it ready.
+- When removing a package, remove it from both fetch scripts and verify its name no longer appears in either file.
 - If upstream ships tests, enable them via `check()` and document any disabled cases in comments.
 - For new versions, verify binaries run (`codex --version`, `mcp-proxy --help`, `tsc --version`) after install.
 

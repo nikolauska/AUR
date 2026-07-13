@@ -18,6 +18,8 @@ Supported package dirs:
   lavish-axi-bin
   mcp-proxy-bin
   no-mistakes-bin
+  pup-cli-bin
+  sentry-cli-bin
   stripe-mock-bin
   treehouse-bin
   tidewave-app-bin
@@ -139,6 +141,17 @@ no-mistakes-bin)
 	repo="kunchenguid/no-mistakes"
 	asset_regex='^no-mistakes-v[0-9.]+-linux-amd64\.tar\.gz$'
 	strip_prefix="v"
+	;;
+pup-cli-bin)
+	pkg_type="github"
+	repo="DataDog/pup"
+	asset_regex='^pup_[0-9.]+_Linux_x86_64\.tar\.gz$'
+	strip_prefix="v"
+	;;
+sentry-cli-bin)
+	pkg_type="github"
+	repo="getsentry/cli"
+	asset_regex='^sentry-linux-x64\.gz$'
 	;;
 stripe-mock-bin)
 	pkg_type="github"
