@@ -1,0 +1,27 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=codebase-memory-mcp-bin
+_pkgname=codebase-memory-mcp
+pkgver=0.9.0
+pkgrel=1
+pkgdesc="High-performance code intelligence MCP server"
+arch=('x86_64')
+options=('!debug' '!strip')
+url="https://github.com/DeusData/codebase-memory-mcp"
+license=('MIT')
+depends=('glibc' 'gcc-libs' 'zlib')
+provides=('codebase-memory-mcp')
+conflicts=('codebase-memory-mcp')
+
+source=(
+  "codebase-memory-mcp-${pkgver}-linux-amd64.tar.gz::https://github.com/DeusData/codebase-memory-mcp/releases/download/v${pkgver}/codebase-memory-mcp-linux-amd64.tar.gz"
+)
+sha256sums=('e2832a8d207c26beaa30efa6222ed4a37cb3f526ca4bee060bfbf336ed6fc679')
+
+package() {
+  cd "$srcdir"
+
+  install -Dm755 "$_pkgname" "$pkgdir/usr/bin/$_pkgname"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "THIRD_PARTY_NOTICES.md" "$pkgdir/usr/share/doc/$pkgname/THIRD_PARTY_NOTICES.md"
+}

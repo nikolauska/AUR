@@ -41,6 +41,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           su - builder -c "cd \"$GITHUB_WORKSPACE\" && GITHUB_TOKEN=\"$GITHUB_TOKEN\" NPM_CONFIG_CACHE=/tmp/npm-cache ./fetch-latest-all.sh"
+      - name: Install local package dependencies
+        run: |
+          su - builder -c "cd \"$GITHUB_WORKSPACE/codebase-memory-mcp-bin\" && makepkg -si --noconfirm"
       - name: Validate packages
         run: |
           su - builder -c "cd \"$GITHUB_WORKSPACE\" && ./validate-packages.sh"

@@ -1,0 +1,21 @@
+pkgbase = codebase-memory-mcp-axi-bin
+	pkgdesc = Agent-oriented codebase-memory-mcp CLI with compact TOON output
+	pkgver = 0.2.5
+	pkgrel = 1
+	url = https://github.com/nikolauska/codebase-memory-mcp-axi
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	depends = codebase-memory-mcp
+	provides = codebase-memory-mcp-axi
+	conflicts = codebase-memory-mcp-axi
+	options = !debug
+	options = !strip
+	source = LICENSE::https://raw.githubusercontent.com/nikolauska/codebase-memory-mcp-axi/v0.2.5/LICENSE
+	sha256sums = c770b9f4a2da970e9bb22311960dbf4de363ab828fe13d2591a5dc0a8e09b983
+	source_x86_64 = cbm-axi-0.2.5-x86_64::https://github.com/nikolauska/codebase-memory-mcp-axi/releases/download/v0.2.5/cbm-axi-linux-amd64
+	sha256sums_x86_64 = 7c7fa0a024fdd2c8c65f43c770fd0a45b8cd12da00988ea85ee295549eb71b88
+	source_aarch64 = cbm-axi-0.2.5-aarch64::https://github.com/nikolauska/codebase-memory-mcp-axi/releases/download/v0.2.5/cbm-axi-linux-arm64
+	sha256sums_aarch64 = 0aacf360d67135cfac261b9373c4b13977ef59a73959d39476f7deb5dc0f9ca7
+
+pkgname = codebase-memory-mcp-axi-bin

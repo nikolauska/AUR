@@ -11,6 +11,7 @@ checksums), and refreshes .SRCINFO.
 
 Supported package dirs:
   acolyte-agent-bin
+  codebase-memory-mcp-bin
   chrome-devtools-axi-bin
   dexter-bin
   gnhf-bin
@@ -122,6 +123,12 @@ acolyte-agent-bin)
 	pkg_type="github"
 	repo="cniska/acolyte"
 	asset_regex='acolyte-linux-x64\.tar\.gz'
+	strip_prefix="v"
+	;;
+codebase-memory-mcp-bin)
+	pkg_type="github"
+	repo="DeusData/codebase-memory-mcp"
+	asset_regex='^codebase-memory-mcp-linux-amd64\.tar\.gz$'
 	strip_prefix="v"
 	;;
 dexter-bin)

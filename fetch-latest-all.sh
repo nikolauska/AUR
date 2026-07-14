@@ -48,6 +48,7 @@ fetch_script="./fetch-latest-release.sh"
 if [[ ${#package_dirs[@]} -eq 0 ]]; then
 	package_dirs=(
 		acolyte-agent-bin
+		codebase-memory-mcp-bin
 		chrome-devtools-axi-bin
 		dexter-bin
 		gnhf-bin
