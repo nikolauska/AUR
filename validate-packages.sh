@@ -91,7 +91,8 @@ for pkg in "${package_dirs[@]}"; do
     makepkg -fs --check --noconfirm
     namcap_output="$(namcap PKGBUILD "${pkg_files[@]}")"
     printf '%s\n' "$namcap_output"
-    if grep -q ' E: ' <<<"$namcap_output"; then
+    # namcap's license list predates FSL-1.1-ALv2's addition in SPDX 3.27.
+    if grep ' E: ' <<<"$namcap_output" | grep -qvF ' E: FSL-1.1-ALv2 is not a valid SPDX license identifier.'; then
       if [[ "$strict_namcap" -eq 1 ]]; then
         printf 'namcap reported errors for %s\n' "$pkg" >&2
         exit 1
