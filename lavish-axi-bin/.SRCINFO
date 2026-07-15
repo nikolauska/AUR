@@ -1,6 +1,6 @@
 pkgbase = lavish-axi-bin
 	pkgdesc = HTML artifact editor for agent collaboration
-	pkgver = 0.1.40
+	pkgver = 0.1.42
 	pkgrel = 1
 	url = https://github.com/kunchenguid/lavish-axi
 	arch = any
@@ -10,8 +10,8 @@ pkgbase = lavish-axi-bin
 	optdepends = xdg-utils: open the editor in a browser
 	provides = lavish-axi
 	conflicts = lavish-axi
-	noextract = lavish-axi-0.1.40.tgz
-	source = https://registry.npmjs.org/lavish-axi/-/lavish-axi-0.1.40.tgz
-	sha512sums = bc84aa71f47729c7489e1cc91c4f2f50cdb26a865b18763ebb1ac0523302e69b322277c9c03bdb8224702bd19915c093d91beceb9db066a5ed31af1d2c262808
+	noextract = lavish-axi-0.1.42.tgz
+	source = https://registry.npmjs.org/lavish-axi/-/lavish-axi-0.1.42.tgz
+	sha512sums = a050119f35634dcda7bb79ccc758ba2128d675a75ef444c5820bb4a0d9a37d14bff4c93578eb4ac4ee566b09afe3a12631c7e5d019c20024c8761a13bc32b478
 
 pkgname = lavish-axi-bin
