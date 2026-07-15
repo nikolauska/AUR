@@ -1,0 +1,17 @@
+pkgbase = clockify-cli-bin
+	pkgdesc = CLI for interacting with Clockify's API
+	pkgver = 0.64.1
+	pkgrel = 1
+	url = https://github.com/lucassabreu/clockify-cli
+	arch = x86_64
+	arch = aarch64
+	license = Apache-2.0
+	provides = clockify-cli
+	conflicts = clockify-cli
+	options = !debug
+	source_x86_64 = clockify-cli-0.64.1-x86_64.tar.gz::https://github.com/lucassabreu/clockify-cli/releases/download/v0.64.1/clockify-cli_Linux_x86_64.tar.gz
+	sha256sums_x86_64 = 19360ed5a85a6825ada183a69a4fa95ba09b6af68145560357abded3abec74a8
+	source_aarch64 = clockify-cli-0.64.1-aarch64.tar.gz::https://github.com/lucassabreu/clockify-cli/releases/download/v0.64.1/clockify-cli_Linux_arm64.tar.gz
+	sha256sums_aarch64 = 8b0ee6d86519340a9348cbf3f0d267072f7d33569933655e3436e98561e96014
+
+pkgname = clockify-cli-bin
