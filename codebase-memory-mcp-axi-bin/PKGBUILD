@@ -2,7 +2,7 @@
 
 pkgname=codebase-memory-mcp-axi-bin
 _pkgname=cbm-axi
-pkgver=0.2.5
+pkgver=0.2.7
 pkgrel=1
 pkgdesc="Agent-oriented codebase-memory-mcp CLI with compact TOON output"
 arch=('x86_64' 'aarch64')
@@ -23,8 +23,8 @@ source_aarch64=(
   "${_pkgname}-${pkgver}-aarch64::https://github.com/nikolauska/codebase-memory-mcp-axi/releases/download/v${pkgver}/${_pkgname}-linux-arm64"
 )
 sha256sums=('c770b9f4a2da970e9bb22311960dbf4de363ab828fe13d2591a5dc0a8e09b983')
-sha256sums_x86_64=('7c7fa0a024fdd2c8c65f43c770fd0a45b8cd12da00988ea85ee295549eb71b88')
-sha256sums_aarch64=('0aacf360d67135cfac261b9373c4b13977ef59a73959d39476f7deb5dc0f9ca7')
+sha256sums_x86_64=('ce9bd86af52e45f247e56d86b2bf8314c55204e6d7308438f2f0ba350c04b49e')
+sha256sums_aarch64=('4a582e877cd725e5b8b8c8b4ca25510d798629b9afd948d3512d51e81cbe0142')
 
 package() {
   install -Dm755 "$srcdir/${_pkgname}-${pkgver}-${CARCH}" "$pkgdir/usr/bin/$_pkgname"
