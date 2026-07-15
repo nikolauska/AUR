@@ -1,0 +1,31 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=agentfs-bin
+pkgver=0.6.4
+pkgrel=1
+pkgdesc="The filesystem for agents"
+arch=('x86_64' 'aarch64')
+options=('!debug' '!strip')
+url="https://github.com/tursodatabase/agentfs"
+license=('MIT')
+depends=('gcc-libs' 'glibc' 'openssl')
+provides=('agentfs')
+conflicts=('agentfs')
+
+source=("LICENSE::https://spdx.org/licenses/MIT.txt")
+source_x86_64=(
+  "agentfs-${pkgver}-x86_64.tar.xz::https://github.com/tursodatabase/agentfs/releases/download/v${pkgver}/agentfs-x86_64-unknown-linux-gnu.tar.xz"
+)
+source_aarch64=(
+  "agentfs-${pkgver}-aarch64.tar.xz::https://github.com/tursodatabase/agentfs/releases/download/v${pkgver}/agentfs-aarch64-unknown-linux-gnu.tar.xz"
+)
+sha256sums=('c3b1b78bc8bd3ea13aa4bc9778442d16560270afa235006d816e5e88cef24db4')
+sha256sums_x86_64=('ba314bd58262ca355e16afc3ecf405cfd934995b15af231d32a0426b72d74700')
+sha256sums_aarch64=('2652fd39384ea301b101456989785c2ef009a74de02cbf7648d14cec5431a662')
+
+package() {
+  install -Dm755 "${srcdir}/agentfs-${CARCH}-unknown-linux-gnu/agentfs" \
+    "${pkgdir}/usr/bin/agentfs"
+  install -Dm644 "${srcdir}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

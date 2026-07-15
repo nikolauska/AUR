@@ -1,0 +1,23 @@
+pkgbase = agentfs-bin
+	pkgdesc = The filesystem for agents
+	pkgver = 0.6.4
+	pkgrel = 1
+	url = https://github.com/tursodatabase/agentfs
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	depends = gcc-libs
+	depends = glibc
+	depends = openssl
+	provides = agentfs
+	conflicts = agentfs
+	options = !debug
+	options = !strip
+	source = LICENSE::https://spdx.org/licenses/MIT.txt
+	sha256sums = c3b1b78bc8bd3ea13aa4bc9778442d16560270afa235006d816e5e88cef24db4
+	source_x86_64 = agentfs-0.6.4-x86_64.tar.xz::https://github.com/tursodatabase/agentfs/releases/download/v0.6.4/agentfs-x86_64-unknown-linux-gnu.tar.xz
+	sha256sums_x86_64 = ba314bd58262ca355e16afc3ecf405cfd934995b15af231d32a0426b72d74700
+	source_aarch64 = agentfs-0.6.4-aarch64.tar.xz::https://github.com/tursodatabase/agentfs/releases/download/v0.6.4/agentfs-aarch64-unknown-linux-gnu.tar.xz
+	sha256sums_aarch64 = 2652fd39384ea301b101456989785c2ef009a74de02cbf7648d14cec5431a662
+
+pkgname = agentfs-bin
