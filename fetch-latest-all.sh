@@ -5,13 +5,13 @@ usage() {
 	cat >&2 <<'EOF'
 Usage: ./fetch-latest-all.sh [--dry-run] [--continue-on-error] [package-dir...]
 
-Runs ./fetch-latest-release.sh for all packages in this repo (or for the
-specified package dirs).
+Runs ./fetch-latest-release.sh for all top-level package dirs containing a
+PKGBUILD (or for the specified package dirs).
 
 Examples:
   ./fetch-latest-all.sh
   ./fetch-latest-all.sh --dry-run
-  ./fetch-latest-all.sh mcp-proxy-bin
+  ./fetch-latest-all.sh package-dir
 EOF
 	exit 1
 }
@@ -46,28 +46,20 @@ fetch_script="./fetch-latest-release.sh"
 }
 
 if [[ ${#package_dirs[@]} -eq 0 ]]; then
-	package_dirs=(
-		acolyte-agent-bin
-		codebase-memory-mcp-bin
-		chrome-devtools-axi-bin
-		dexter-bin
-		gnhf-bin
-		gh-axi-bin
-		lavish-axi-bin
-		mcp-proxy-bin
-		no-mistakes-bin
-		pup-cli-bin
-		sentry-cli-bin
-		stripe-mock-bin
-		treehouse-bin
-		tidewave-app-bin
-		tidewave-cli-bin
-		typescript-go
-		github-copilot-cli
-		pi-agent-bin
-		skills-bin
-	)
+	mapfile -t package_dirs < <(find . -mindepth 2 -maxdepth 2 -type f -name PKGBUILD -printf '%h\n' | sed 's|^\./||' | sort)
 fi
+
+for pkg_dir in "${package_dirs[@]}"; do
+	[[ -f "$pkg_dir/PKGBUILD" ]] || {
+		echo "PKGBUILD missing in $pkg_dir" >&2
+		exit 1
+	}
+	[[ -f "$pkg_dir/fetch-latest.conf" ]] || {
+		echo "Updater config missing in $pkg_dir" >&2
+		exit 1
+	}
+	bash -n "$pkg_dir/fetch-latest.conf"
+done
 
 args=()
 [[ "$dry_run" -eq 1 ]] && args+=(--dry-run)

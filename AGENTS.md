@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-- Root contains one AUR-style package per directory, such as `mcp-proxy-bin/`, `openai-codex-bin/`, `pi-agent-bin/`, `tidewave-app-bin/`, `tidewave-cli-bin/`, and `typescript-go/`. Each holds `PKGBUILD`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
+- Root contains one AUR-style package per directory, such as `mcp-proxy-bin/`, `pi-agent-bin/`, `tidewave-app-bin/`, `tidewave-cli-bin/`, and `typescript-go/`. Each holds `PKGBUILD`, `fetch-latest.conf`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
 - Treat each directory as its own package workspace. Updates rarely touch sibling packages unless shared tooling changes.
 
 ## Build, Test, and Development Commands
@@ -11,8 +11,8 @@
 - `makepkg --printsrcinfo > .SRCINFO`: refresh metadata after any PKGBUILD edit (commit the result).
 - `updpkgsums`: regenerate checksums when sources change.
 - `namcap PKGBUILD *.pkg.tar.*`: static lint for packaging mistakes before pushing.
-- `./fetch-latest-release.sh <pkg> [--dry-run]`: pull latest upstream (GitHub or npm) release, update `PKGBUILD`, run `updpkgsums`, and sync `.SRCINFO` for supported package directories.
-- `./fetch-latest-all.sh [--dry-run] [--continue-on-error] [package-dir...]`: update every supported package or a selected subset.
+- `./fetch-latest-release.sh <pkg> [--dry-run]`: read the package's `fetch-latest.conf`, pull its latest upstream GitHub or npm release, update `PKGBUILD`, run `updpkgsums`, and sync `.SRCINFO`.
+- `./fetch-latest-all.sh [--dry-run] [--continue-on-error] [package-dir...]`: discover and update every top-level package or a selected subset.
 - Scripts assume `curl`, `jq`, `makepkg`, and `updpkgsums` are available (Arch base-devel + pacman-contrib).
 
 ## Coding Style & Naming Conventions
@@ -25,7 +25,7 @@
 ## Testing Guidelines
 
 - Primary validation is a clean `makepkg -si` on Arch or clean chroot; run `namcap` for lint coverage.
-- When adding a package, update `fetch-latest-all.sh` and `fetch-latest-release.sh`, then run `./validate-packages.sh <package-dir>` before marking it ready.
+- When adding a package, add `fetch-latest.conf` with `pkg_type=github`, `npm`, or `manual`, then run `./validate-packages.sh <package-dir>` before marking it ready. The fetch scripts discover package directories automatically.
 - When removing a package, remove it from both fetch scripts and verify its name no longer appears in either file.
 - If upstream ships tests, enable them via `check()` and document any disabled cases in comments.
 - For new versions, verify binaries run (`codex --version`, `mcp-proxy --help`, `tsc --version`) after install.

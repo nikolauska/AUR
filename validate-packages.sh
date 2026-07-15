@@ -77,6 +77,12 @@ fi
 
 for pkg in "${package_dirs[@]}"; do
   echo "==> Validating ${pkg}"
+  config="$pkg/fetch-latest.conf"
+  if [[ ! -f "$config" ]]; then
+    printf 'Updater config missing in %s\n' "$pkg" >&2
+    exit 1
+  fi
+  shellcheck --shell=bash --exclude=SC2034 "$config"
   (
     cd "$pkg"
     mapfile -t pkg_files < <(makepkg --packagelist)

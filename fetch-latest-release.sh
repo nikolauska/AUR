@@ -9,26 +9,8 @@ Fetches the latest upstream release for a supported package, downloads the
 matching asset into the package directory, updates PKGBUILD (pkgver, pkgrel,
 checksums), and refreshes .SRCINFO.
 
-Supported package dirs:
-  acolyte-agent-bin
-  codebase-memory-mcp-bin
-  chrome-devtools-axi-bin
-  dexter-bin
-  gnhf-bin
-  gh-axi-bin
-  lavish-axi-bin
-  mcp-proxy-bin
-  no-mistakes-bin
-  pup-cli-bin
-  sentry-cli-bin
-  stripe-mock-bin
-  treehouse-bin
-  tidewave-app-bin
-  tidewave-cli-bin
-  typescript-go
-  github-copilot-cli
-  pi-agent-bin
-  skills-bin
+The package directory must contain fetch-latest.conf. Set pkg_type=manual in
+that file to explicitly skip automatic updates.
 
 Environment:
   GITHUB_TOKEN (optional) to raise GitHub API rate limits.
@@ -58,30 +40,36 @@ done
 	echo "PKGBUILD missing in $pkg_dir" >&2
 	exit 1
 }
+[[ -f "$pkg_dir/fetch-latest.conf" ]] || {
+	echo "Updater config missing in $pkg_dir" >&2
+	exit 1
+}
 
 resolve_dest_name_from_pkgbuild() {
 	local pkgbuild_path="$1"
 	local asset_basename="$2"
 	local pkgver="$3"
 	local pkgrel="$4"
+	local dest_name="${5:-}"
 	local carch="${CARCH:-x86_64}"
 
-	local token=""
-	local candidate=""
-	while IFS= read -r candidate; do
-		local resolved="$candidate"
-		resolved="${resolved//\$\{pkgver\}/$pkgver}"
-		resolved="${resolved//\$pkgver/$pkgver}"
-		resolved="${resolved//\$\{pkgrel\}/$pkgrel}"
-		resolved="${resolved//\$pkgrel/$pkgrel}"
-		resolved="${resolved//\$\{CARCH\}/$carch}"
-		resolved="${resolved//\$CARCH/$carch}"
-		if [[ "$resolved" == *"$asset_basename"* ]]; then
-			token="$resolved"
-			break
-		fi
-	done < <(
-		awk '
+	if [[ -z "$dest_name" ]]; then
+		local token=""
+		local candidate=""
+		while IFS= read -r candidate; do
+			local resolved="$candidate"
+			resolved="${resolved//\$\{pkgver\}/$pkgver}"
+			resolved="${resolved//\$pkgver/$pkgver}"
+			resolved="${resolved//\$\{pkgrel\}/$pkgrel}"
+			resolved="${resolved//\$pkgrel/$pkgrel}"
+			resolved="${resolved//\$\{CARCH\}/$carch}"
+			resolved="${resolved//\$CARCH/$carch}"
+			if [[ "$resolved" == *"$asset_basename"* ]]; then
+				token="$resolved"
+				break
+			fi
+		done < <(
+			awk '
       {
         line = $0
         while (match(line, /"[^"]+"/)) {
@@ -91,13 +79,13 @@ resolve_dest_name_from_pkgbuild() {
         }
       }
     ' "$pkgbuild_path" 2>/dev/null || true
-	)
+		)
 
-	local dest_name=""
-	if [[ -n "$token" && "$token" == *"::"* ]]; then
-		dest_name="${token%%::*}"
-	else
-		dest_name="$asset_basename"
+		if [[ -n "$token" && "$token" == *"::"* ]]; then
+			dest_name="${token%%::*}"
+		else
+			dest_name="$asset_basename"
+		fi
 	fi
 
 	dest_name="${dest_name//\$\{pkgver\}/$pkgver}"
@@ -117,99 +105,38 @@ asset_regex=""
 strip_prefix=""
 npm_pkg=""
 npm_tag="latest"
+dest_name_template=""
 
-case "$(basename "$pkg_dir")" in
-acolyte-agent-bin)
-	pkg_type="github"
-	repo="cniska/acolyte"
-	asset_regex='acolyte-linux-x64\.tar\.gz'
-	strip_prefix="v"
+# shellcheck disable=SC1090,SC1091
+if ! source "$pkg_dir/fetch-latest.conf"; then
+	echo "Failed to load updater config in $pkg_dir" >&2
+	exit 1
+fi
+
+case "$pkg_type" in
+github)
+	[[ -n "$repo" ]] || {
+		echo "Missing repo in $pkg_dir/fetch-latest.conf" >&2
+		exit 1
+	}
+	[[ -n "$asset_regex" ]] || {
+		echo "Missing asset_regex in $pkg_dir/fetch-latest.conf" >&2
+		exit 1
+	}
 	;;
-codebase-memory-mcp-bin)
-	pkg_type="github"
-	repo="DeusData/codebase-memory-mcp"
-	asset_regex='^codebase-memory-mcp-linux-amd64\.tar\.gz$'
-	strip_prefix="v"
+npm)
+	[[ -n "$npm_pkg" ]] || {
+		echo "Missing npm_pkg in $pkg_dir/fetch-latest.conf" >&2
+		exit 1
+	}
 	;;
-dexter-bin)
-	pkg_type="github"
-	repo="remoteoss/dexter"
-	asset_regex='dexter_Linux_x86_64\.tar\.gz'
-	strip_prefix="v"
-	;;
-mcp-proxy-bin)
-	pkg_type="github"
-	repo="tidewave-ai/mcp_proxy_rust"
-	asset_regex='mcp-proxy-x86_64-unknown-linux-gnu\.tar\.gz'
-	strip_prefix="v"
-	;;
-no-mistakes-bin)
-	pkg_type="github"
-	repo="kunchenguid/no-mistakes"
-	asset_regex='^no-mistakes-v[0-9.]+-linux-amd64\.tar\.gz$'
-	strip_prefix="v"
-	;;
-pup-cli-bin)
-	pkg_type="github"
-	repo="DataDog/pup"
-	asset_regex='^pup_[0-9.]+_Linux_x86_64\.tar\.gz$'
-	strip_prefix="v"
-	;;
-sentry-cli-bin)
-	pkg_type="github"
-	repo="getsentry/cli"
-	asset_regex='^sentry-linux-x64\.gz$'
-	;;
-stripe-mock-bin)
-	pkg_type="github"
-	repo="stripe/stripe-mock"
-	asset_regex='^stripe-mock_[0-9.]+_linux_amd64\.tar\.gz$'
-	strip_prefix="v"
-	;;
-treehouse-bin)
-	pkg_type="github"
-	repo="kunchenguid/treehouse"
-	asset_regex='^treehouse-v[0-9.]+-linux-amd64\.tar\.gz$'
-	strip_prefix="v"
-	;;
-tidewave-cli-bin)
-	pkg_type="github"
-	repo="tidewave-ai/tidewave_app"
-	asset_regex='tidewave-cli-x86_64-unknown-linux-gnu$'
-	strip_prefix="v"
-	;;
-tidewave-app-bin)
-	pkg_type="github"
-	repo="tidewave-ai/tidewave_app"
-	asset_regex='tidewave-app-amd64\.AppImage$'
-	strip_prefix="v"
-	;;
-typescript-go)
-	pkg_type="npm"
-	npm_pkg="@typescript/native-preview"
-	npm_tag="beta"
-	;;
-github-copilot-cli)
-	pkg_type="npm"
-	npm_pkg="@github/copilot"
-	;;
-chrome-devtools-axi-bin | gh-axi-bin | lavish-axi-bin | skills-bin)
-	pkg_type="npm"
-	npm_pkg="$(basename "$pkg_dir" -bin)"
-	;;
-gnhf-bin)
-	pkg_type="npm"
-	npm_pkg="gnhf"
-	;;
-pi-agent-bin)
-	pkg_type="github"
-	repo="earendil-works/pi"
-	asset_regex='^pi-linux-x64\.tar\.gz$'
-	strip_prefix="v"
+manual)
+	echo "Skipping manually updated package: $(basename "$pkg_dir")"
+	exit 0
 	;;
 *)
-	echo "Unsupported package: $(basename "$pkg_dir")" >&2
-	usage
+	echo "Unknown pkg_type '$pkg_type' in $pkg_dir/fetch-latest.conf" >&2
+	exit 1
 	;;
 esac
 
@@ -244,7 +171,7 @@ if [[ "$pkg_type" == "github" ]]; then
 		pkgrel="1"
 	fi
 	asset_name="$(basename "$asset_url")"
-	dest_name="$(resolve_dest_name_from_pkgbuild "$pkg_dir/PKGBUILD" "$asset_name" "$pkgver" "$pkgrel")"
+	dest_name="$(resolve_dest_name_from_pkgbuild "$pkg_dir/PKGBUILD" "$asset_name" "$pkgver" "$pkgrel" "$dest_name_template")"
 
 	echo "Latest tag: $tag_name -> pkgver=${pkgver} (current ${current_pkgver}-${current_pkgrel})"
 	echo "Asset: $asset_name"
@@ -303,25 +230,33 @@ else # npm package
 	fi
 
 	asset_name="$(basename "$tarball")"
+	dest_name="$(resolve_dest_name_from_pkgbuild "$pkg_dir/PKGBUILD" "$asset_name" "$pkgver" "$pkgrel" "$dest_name_template")"
 
 	echo "NPM ${npm_tag} version: ${version} -> pkgver=${pkgver}, pkgrel=${pkgrel}"
 	echo "Tarball: ${asset_name}"
 	echo "sha512: ${sha512sum}"
 
 	if [[ "$dry_run" -eq 1 ]]; then
-		echo "[dry-run] Would download to ${pkg_dir}/${asset_name}"
+		echo "[dry-run] Would download to ${pkg_dir}/${dest_name}"
 		exit 0
 	fi
 
 	cd "$pkg_dir"
 
 	echo "Downloading tarball…"
-	curl -fL "$tarball" -o "$asset_name"
+	curl -fL "$tarball" -o "$dest_name"
+	actual_sha512="$(sha512sum "$dest_name" | awk '{print $1}')"
+	[[ "$actual_sha512" == "$sha512sum" ]] || {
+		echo "npm integrity mismatch for $dest_name" >&2
+		exit 1
+	}
 
 	echo "Updating PKGBUILD (pkgver=${pkgver}, pkgrel=${pkgrel})…"
 	sed -i -E "s/^pkgver=.*/pkgver=${pkgver}/" PKGBUILD
 	sed -i -E "s/^pkgrel=.*/pkgrel=${pkgrel}/" PKGBUILD
-	sed -i -E "s|^sha[0-9]+sums=\\('.*'\\)|sha512sums=('${sha512sum}')|" PKGBUILD
+
+	echo "Regenerating checksums…"
+	updpkgsums
 fi
 
 echo "Refreshing .SRCINFO…"
