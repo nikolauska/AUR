@@ -34,6 +34,7 @@
 
 - Write commits in imperative mood, scoped to one package when possible (e.g., `mcp-proxy-bin: bump to 0.2.4`).
 - Include `.SRCINFO` and updated sums in the same commit as PKGBUILD changes.
+- Before committing, verify no binary files are staged; add binary artifacts to the affected package directory's `.gitignore`.
 - PRs should list: upstream release or issue link, build/test commands run, and any namcap warnings you chose to waive (with justification).
 - Avoid committing built `pkg/` or `src/` contents; `.gitignore` already excludes them—leave it that way.
 
