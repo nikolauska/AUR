@@ -2,31 +2,29 @@
 
 pkgname=codebase-memory-mcp-axi-bin
 _pkgname=cbm-axi
-pkgver=0.2.7
+pkgver=0.3.1
 pkgrel=1
 pkgdesc="Agent-oriented codebase-memory-mcp CLI with compact TOON output"
 arch=('x86_64' 'aarch64')
 options=('!debug' '!strip')
-url="https://github.com/nikolauska/codebase-memory-mcp-axi"
+url="https://www.npmjs.com/package/@nikolauska/cbm-axi"
 license=('MIT')
-depends=('codebase-memory-mcp')
+depends=('codebase-memory-mcp' 'nodejs>=18')
+makedepends=('npm')
 provides=('codebase-memory-mcp-axi')
 conflicts=('codebase-memory-mcp-axi')
 
-source=(
-  "LICENSE::https://raw.githubusercontent.com/nikolauska/codebase-memory-mcp-axi/v${pkgver}/LICENSE"
-)
-source_x86_64=(
-  "${_pkgname}-${pkgver}-x86_64::https://github.com/nikolauska/codebase-memory-mcp-axi/releases/download/v${pkgver}/${_pkgname}-linux-amd64"
-)
-source_aarch64=(
-  "${_pkgname}-${pkgver}-aarch64::https://github.com/nikolauska/codebase-memory-mcp-axi/releases/download/v${pkgver}/${_pkgname}-linux-arm64"
-)
-sha256sums=('c770b9f4a2da970e9bb22311960dbf4de363ab828fe13d2591a5dc0a8e09b983')
-sha256sums_x86_64=('ce9bd86af52e45f247e56d86b2bf8314c55204e6d7308438f2f0ba350c04b49e')
-sha256sums_aarch64=('4a582e877cd725e5b8b8c8b4ca25510d798629b9afd948d3512d51e81cbe0142')
+source=("${_pkgname}-${pkgver}.tgz::https://registry.npmjs.org/@nikolauska/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
+sha512sums=('aa82d4ea1298b62bd46eb9c6c30b3531704faef629ab6a5938ded7c023c26a91242929a186fac3e68727c8ea562b6318ac5bf92466c95385b7d6381ae926befa')
 
 package() {
-  install -Dm755 "$srcdir/${_pkgname}-${pkgver}-${CARCH}" "$pkgdir/usr/bin/$_pkgname"
-  install -Dm644 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  npm install -s -g \
+    --cache "${srcdir}/npm-cache" \
+    --prefix "${pkgdir}/usr" \
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
+
+  install -Dm644 \
+    "${pkgdir}/usr/lib/node_modules/@nikolauska/${_pkgname}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }

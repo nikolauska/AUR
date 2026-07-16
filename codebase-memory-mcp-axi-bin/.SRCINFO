@@ -1,21 +1,20 @@
 pkgbase = codebase-memory-mcp-axi-bin
 	pkgdesc = Agent-oriented codebase-memory-mcp CLI with compact TOON output
-	pkgver = 0.2.7
+	pkgver = 0.3.1
 	pkgrel = 1
-	url = https://github.com/nikolauska/codebase-memory-mcp-axi
+	url = https://www.npmjs.com/package/@nikolauska/cbm-axi
 	arch = x86_64
 	arch = aarch64
 	license = MIT
+	makedepends = npm
 	depends = codebase-memory-mcp
+	depends = nodejs>=18
 	provides = codebase-memory-mcp-axi
 	conflicts = codebase-memory-mcp-axi
+	noextract = cbm-axi-0.3.1.tgz
 	options = !debug
 	options = !strip
-	source = LICENSE::https://raw.githubusercontent.com/nikolauska/codebase-memory-mcp-axi/v0.2.7/LICENSE
-	sha256sums = c770b9f4a2da970e9bb22311960dbf4de363ab828fe13d2591a5dc0a8e09b983
-	source_x86_64 = cbm-axi-0.2.7-x86_64::https://github.com/nikolauska/codebase-memory-mcp-axi/releases/download/v0.2.7/cbm-axi-linux-amd64
-	sha256sums_x86_64 = ce9bd86af52e45f247e56d86b2bf8314c55204e6d7308438f2f0ba350c04b49e
-	source_aarch64 = cbm-axi-0.2.7-aarch64::https://github.com/nikolauska/codebase-memory-mcp-axi/releases/download/v0.2.7/cbm-axi-linux-arm64
-	sha256sums_aarch64 = 4a582e877cd725e5b8b8c8b4ca25510d798629b9afd948d3512d51e81cbe0142
+	source = cbm-axi-0.3.1.tgz::https://registry.npmjs.org/@nikolauska/cbm-axi/-/cbm-axi-0.3.1.tgz
+	sha512sums = aa82d4ea1298b62bd46eb9c6c30b3531704faef629ab6a5938ded7c023c26a91242929a186fac3e68727c8ea562b6318ac5bf92466c95385b7d6381ae926befa
 
 pkgname = codebase-memory-mcp-axi-bin
