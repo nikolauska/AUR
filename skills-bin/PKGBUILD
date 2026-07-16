@@ -2,7 +2,7 @@
 
 pkgname=skills-bin
 _pkgname=skills
-pkgver=1.5.17
+pkgver=1.5.18
 pkgrel=1
 pkgdesc="CLI for the open agent skills ecosystem"
 arch=('any')
@@ -15,7 +15,7 @@ conflicts=('skills')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('322f0fd2ccbfe2b2d81123d30b0e2db28d618fcef3a43dca4558358855252dbcb6574f92340c96347a3f1aaf5caee370c3ca024a307d4b68485ad51b56792572')
+sha512sums=('5b042ea888664b69eb9f51f71c06c4dad19eededa7a5cd5cc0c72e70c2aa9a405dab39bb9f1cdc6414ea5e21e350a8696a540b13f9cd3ed11d731dd0617e134f')
 
 package() {
   npm install -s -g \
