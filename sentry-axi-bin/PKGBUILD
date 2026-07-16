@@ -1,0 +1,29 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=sentry-axi-bin
+_pkgname=sentry-axi
+pkgver=0.1.1
+pkgrel=1
+pkgdesc="AXI wrapper for the Sentry MCP server"
+arch=('any')
+url="https://www.npmjs.com/package/@nikolauska/sentry-axi"
+license=('MIT')
+depends=('nodejs>=24')
+makedepends=('npm')
+provides=('sentry-axi')
+conflicts=('sentry-axi')
+
+source=("${_pkgname}-${pkgver}.tgz::https://registry.npmjs.org/@nikolauska/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
+sha512sums=('0006587a66e1c57856fa9fb79354a292bd940e2d1d9377c529c6e046770e977202fddb44ae1309a36ef163ca39a5adbf533d8778f33c78295a0ddd67e5bc4df1')
+
+package() {
+  npm install -s -g \
+    --cache "${srcdir}/npm-cache" \
+    --prefix "${pkgdir}/usr" \
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
+
+  install -Dm644 \
+    "${pkgdir}/usr/lib/node_modules/@nikolauska/${_pkgname}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
