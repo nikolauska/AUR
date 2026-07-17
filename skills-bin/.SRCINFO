@@ -1,6 +1,6 @@
 pkgbase = skills-bin
 	pkgdesc = CLI for the open agent skills ecosystem
-	pkgver = 1.5.18
+	pkgver = 1.5.19
 	pkgrel = 1
 	url = https://github.com/vercel-labs/skills
 	arch = any
@@ -10,8 +10,8 @@ pkgbase = skills-bin
 	depends = nodejs>=18
 	provides = skills
 	conflicts = skills
-	noextract = skills-1.5.18.tgz
-	source = https://registry.npmjs.org/skills/-/skills-1.5.18.tgz
-	sha512sums = 5b042ea888664b69eb9f51f71c06c4dad19eededa7a5cd5cc0c72e70c2aa9a405dab39bb9f1cdc6414ea5e21e350a8696a540b13f9cd3ed11d731dd0617e134f
+	noextract = skills-1.5.19.tgz
+	source = https://registry.npmjs.org/skills/-/skills-1.5.19.tgz
+	sha512sums = 491d3971b364f91d7b19f68216ff781e5ab91170e95026c6d192fdf84622e54107cd43c0025fa496cd8bc424feebbc005a53806a7530cd97a421542fa429a9e7
 
 pkgname = skills-bin
