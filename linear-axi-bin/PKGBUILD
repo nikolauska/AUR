@@ -2,10 +2,11 @@
 
 pkgname=linear-axi-bin
 _pkgname=linear-axi
-pkgver=0.2.1
+pkgver=0.3.1
 pkgrel=1
 pkgdesc="AXI wrapper for the Linear MCP server"
-arch=('any')
+arch=('x86_64' 'aarch64')
+options=('!debug' '!strip')
 url="https://www.npmjs.com/package/@nikolauska/linear-axi"
 license=('MIT')
 depends=('nodejs>=20')
@@ -15,7 +16,7 @@ conflicts=('linear-axi')
 
 source=("${_pkgname}-${pkgver}.tgz::https://registry.npmjs.org/@nikolauska/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('8772214b17043c008fb0b670939286a67b381984461f5aff33e496e3f773e0594d9788f243c11dd0946edafdecb31ed2ebbef817a163db826f745cd4dd619164')
+sha512sums=('f9c8f72c2cc9dbd13b96929c81d3e5611ec172b171645efdf2edd415ee8e81a4501fcebc011c2320991a506a37b4cd130e324d2e779cc06edc4c1e12211dfee7')
 
 package() {
   npm install -s -g \
