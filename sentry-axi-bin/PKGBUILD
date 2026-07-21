@@ -2,10 +2,11 @@
 
 pkgname=sentry-axi-bin
 _pkgname=sentry-axi
-pkgver=0.1.1
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="AXI wrapper for the Sentry MCP server"
-arch=('any')
+arch=('x86_64' 'aarch64')
+options=('!debug' '!strip')
 url="https://www.npmjs.com/package/@nikolauska/sentry-axi"
 license=('MIT')
 depends=('nodejs>=24')
@@ -15,7 +16,7 @@ conflicts=('sentry-axi')
 
 source=("${_pkgname}-${pkgver}.tgz::https://registry.npmjs.org/@nikolauska/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('0006587a66e1c57856fa9fb79354a292bd940e2d1d9377c529c6e046770e977202fddb44ae1309a36ef163ca39a5adbf533d8778f33c78295a0ddd67e5bc4df1')
+sha512sums=('0935d696244d502fa0f3e950ffbc2c24c7f759db8eed8bceaa32c6cfcec6f2dd4bbbe743225f4b68b6e0038b7d3da96dd5584e4b8129bf3ece247950729fa00d')
 
 package() {
   npm install -s -g \
