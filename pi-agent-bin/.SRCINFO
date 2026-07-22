@@ -1,6 +1,6 @@
 pkgbase = pi-agent-bin
 	pkgdesc = Minimal terminal coding agent that adapts to your workflows
-	pkgver = 0.80.10
+	pkgver = 0.81.1
 	pkgrel = 1
 	url = https://github.com/earendil-works/pi
 	arch = x86_64
@@ -14,9 +14,9 @@ pkgbase = pi-agent-bin
 	conflicts = pi
 	options = !debug
 	options = !strip
-	source = pi-0.80.10-linux-x64.tar.gz::https://github.com/earendil-works/pi/releases/download/v0.80.10/pi-linux-x64.tar.gz
-	source = LICENSE::https://raw.githubusercontent.com/earendil-works/pi/v0.80.10/LICENSE
-	sha256sums = ab6604f6c3f3d050783e7abbbdd1f79b775b20f3969833ce9721740685d01e13
+	source = pi-0.81.1-linux-x64.tar.gz::https://github.com/earendil-works/pi/releases/download/v0.81.1/pi-linux-x64.tar.gz
+	source = LICENSE::https://raw.githubusercontent.com/earendil-works/pi/v0.81.1/LICENSE
+	sha256sums = 1f6e23d9ec0668a13cea9c786e3d54c1fc679b8e22e7f6bfade0349f4807cbf2
 	sha256sums = 0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48
 
 pkgname = pi-agent-bin

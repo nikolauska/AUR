@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=acolyte-agent-bin
-pkgver=0.22.0
+pkgver=0.22.1
 pkgrel=1
 pkgdesc="A terminal-first AI coding assistant: local-first, observable, and built for extension"
 arch=('x86_64')
@@ -16,7 +16,7 @@ source=(
   "acolyte-${pkgver}-linux-x64.tar.gz::https://github.com/cniska/acolyte/releases/download/v${pkgver}/acolyte-linux-x64.tar.gz"
   "LICENSE::https://raw.githubusercontent.com/cniska/acolyte/v${pkgver}/LICENSE"
 )
-sha256sums=('bc5cbbc58b6f6e9957ac6173fa049be5cdc4e35cc46924a3eef2f2f436092152'
+sha256sums=('1d984e60a01a19a089ba1b8d800708259fff045644384a904758136f76967642'
             'b7b35ff331074f29ea4ff1887c097833d979a453eb877f2f818d0f76584b8476')
 
 package() {
