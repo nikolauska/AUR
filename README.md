@@ -9,6 +9,14 @@ This repository is a personal collection of Arch Linux packages. It is maintaine
 - **Fork-friendly:** If you need some changes for yourself you are free to fork and fix it for yourself. Not interested in pull requests.
 - **Not intended for AUR:** I’m not interested in publishing these packages to the AUR. If you want to do so, feel free to fork and publish.
 
+## Installation
+
+Install packages one at a time, skipping those whose installed version matches the `PKGBUILD`:
+
+```bash
+./install-all.sh
+```
+
 ## Validation
 
 Use the validation script to lint shell code and verify package metadata/builds:
