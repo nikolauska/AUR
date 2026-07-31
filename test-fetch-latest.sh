@@ -13,9 +13,26 @@ done < <(find "$script_dir" -mindepth 2 -maxdepth 2 -type f -name PKGBUILD -prin
 cp "$script_dir/fetch-latest-all.sh" "$tmp_dir/fetch-latest-all.sh"
 cat >"$tmp_dir/fetch-latest-release.sh" <<'EOF'
 #!/usr/bin/env bash
+# shellcheck disable=SC2153
 printf '%s\n' "$1" >>"$CALLS_FILE"
+if [[ -n "${ACTIVE_DIR:-}" ]]; then
+	if mkdir "$ACTIVE_DIR/marker" 2>/dev/null; then
+		trap 'rmdir "$ACTIVE_DIR/marker"' EXIT
+	else
+# shellcheck disable=SC2153
+		: >"$PARALLEL_FILE"
+	fi
+	sleep 0.2
+fi
 EOF
 chmod +x "$tmp_dir/fetch-latest-release.sh"
+
+mkdir "$tmp_dir/bin" "$tmp_dir/active"
+cat >"$tmp_dir/bin/nproc" <<'EOF'
+#!/usr/bin/env bash
+printf '2\n'
+EOF
+chmod +x "$tmp_dir/bin/nproc"
 
 for pkg_dir in a b; do
 	mkdir "$tmp_dir/$pkg_dir"
@@ -23,12 +40,14 @@ for pkg_dir in a b; do
 done
 
 calls_file="$tmp_dir/calls"
-CALLS_FILE="$calls_file" "$tmp_dir/fetch-latest-all.sh" >/dev/null
-diff -u <(printf 'a\nb\n') "$calls_file"
+parallel_file="$tmp_dir/parallel"
+PATH="$tmp_dir/bin:$PATH" CALLS_FILE="$calls_file" ACTIVE_DIR="$tmp_dir/active" PARALLEL_FILE="$parallel_file" "$tmp_dir/fetch-latest-all.sh" >/dev/null
+[[ -f "$parallel_file" ]]
+diff -u <(printf 'a\nb\n') <(sort "$calls_file")
 
 : >"$calls_file"
 CALLS_FILE="$calls_file" "$tmp_dir/fetch-latest-all.sh" b a >/dev/null
-diff -u <(printf 'b\na\n') "$calls_file"
+diff -u <(printf 'a\nb\n') <(sort "$calls_file")
 
 rm "$tmp_dir/b/fetch-latest.conf"
 : >"$calls_file"

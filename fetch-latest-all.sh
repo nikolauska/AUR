@@ -7,6 +7,7 @@ Usage: ./fetch-latest-all.sh [--dry-run] [--continue-on-error] [package-dir...]
 
 Runs ./fetch-latest-release.sh for all top-level package dirs containing a
 PKGBUILD (or for the specified package dirs).
+Independent package updates run in parallel, up to one worker per CPU.
 
 Examples:
   ./fetch-latest-all.sh
@@ -45,6 +46,16 @@ fetch_script="./fetch-latest-release.sh"
 	exit 2
 }
 
+require_cmd() {
+	local cmd="$1"
+	if ! command -v "$cmd" >/dev/null 2>&1; then
+		printf 'Missing required command: %s\n' "$cmd" >&2
+		exit 2
+	fi
+}
+
+require_cmd nproc
+
 if [[ ${#package_dirs[@]} -eq 0 ]]; then
 	mapfile -t package_dirs < <(find . -mindepth 2 -maxdepth 2 -type f -name PKGBUILD -printf '%h\n' | sed 's|^\./||' | sort)
 fi
@@ -61,21 +72,40 @@ for pkg_dir in "${package_dirs[@]}"; do
 	bash -n "$pkg_dir/fetch-latest.conf"
 done
 
-args=()
-[[ "$dry_run" -eq 1 ]] && args+=(--dry-run)
+fetch_package() {
+	local pkg_dir="$1"
+	local fetch_args=()
+	[[ "$dry_run" -eq 1 ]] && fetch_args+=(--dry-run)
 
-failed=0
-for pkg_dir in "${package_dirs[@]}"; do
 	echo "=== ${pkg_dir} ==="
-	if "$fetch_script" "$pkg_dir" "${args[@]}"; then
-		:
-	else
-		failed=$((failed + 1))
-		if [[ "$continue_on_error" -eq 0 ]]; then
-			exit 1
-		fi
+	if "$fetch_script" "$pkg_dir" "${fetch_args[@]}"; then
+		echo
+		return 0
 	fi
 	echo
+	return 1
+}
+
+parallel_jobs="$(nproc)"
+failed=0
+package_count="${#package_dirs[@]}"
+# Batches keep fail-fast mode from starting later packages while filling all workers.
+for ((batch_start = 0; batch_start < package_count; batch_start += parallel_jobs)); do
+	pids=()
+	for ((batch_end = batch_start; batch_end < batch_start + parallel_jobs && batch_end < package_count; batch_end++)); do
+		fetch_package "${package_dirs[batch_end]}" &
+		pids+=("$!")
+	done
+	for pid in "${pids[@]}"; do
+		if wait "$pid"; then
+			:
+		else
+			failed=$((failed + 1))
+		fi
+	done
+	if [[ "$failed" -ne 0 && "$continue_on_error" -eq 0 ]]; then
+		exit 1
+	fi
 done
 
 if [[ "$failed" -ne 0 ]]; then
