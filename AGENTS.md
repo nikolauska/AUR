@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-- Root contains one AUR-style package per directory, such as `mcp-proxy-bin/`, `pi-agent-bin/`, `sentry-axi-bin/`, and `linear-axi-bin/`. Each holds `PKGBUILD`, `fetch-latest.conf`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
+- Root contains one AUR-style package per directory, such as `sentry-axi-bin/`, `linear-axi-bin/`, `oh-my-pi-bin/`, and `codebase-memory-mcp-bin/`. Each holds `PKGBUILD`, `fetch-latest.conf`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
 - Treat each directory as its own package workspace. Updates rarely touch sibling packages unless shared tooling changes.
 
 ## Build, Test, and Development Commands
@@ -38,11 +38,11 @@
   - [ ] Run `./test-fetch-latest.sh` and `./validate-packages.sh` for the remaining packages.
   - [ ] If installed locally, remove it separately with `sudo pacman -Rns <pkgname>`.
 - If upstream ships tests, enable them via `check()` and document any disabled cases in comments.
-- For new versions, verify binaries run (`codex --version`, `mcp-proxy --help`, `tsc --version`) after install.
+- For new versions, verify binaries run (`sentry --version`, `omp --version`) after install.
 
 ## Commit & Pull Request Guidelines
 
-- Write commits in imperative mood, scoped to one package when possible (e.g., `mcp-proxy-bin: bump to 0.2.4`).
+- Write commits in imperative mood, scoped to one package when possible (e.g., `sentry-cli-bin: bump to 0.40.0`).
 - Include `.SRCINFO` and updated sums in the same commit as PKGBUILD changes.
 - Before committing, verify no binary files are staged; add binary artifacts to the affected package directory's `.gitignore`.
 - PRs should list: upstream release or issue link, build/test commands run, and any namcap warnings you chose to waive (with justification).

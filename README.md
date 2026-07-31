@@ -34,5 +34,5 @@ Use the validation script to lint shell code and verify package metadata/builds:
 Validate specific package directories only:
 
 ```bash
-./validate-packages.sh mcp-proxy-bin openai-codex-bin
+./validate-packages.sh sentry-cli-bin oh-my-pi-bin
 ```
