@@ -14,6 +14,7 @@ Runs packaging validation for each package:
   - namcap PKGBUILD *.pkg.tar.*
 
 If package dirs are omitted, all top-level package dirs with a PKGBUILD are validated.
+Independent package validations run in parallel, up to one worker per CPU.
 USAGE
   exit 1
 }
@@ -46,6 +47,8 @@ done
 require_cmd makepkg
 require_cmd namcap
 require_cmd shellcheck
+require_cmd xargs
+require_cmd nproc
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 cd "$script_dir"
@@ -75,12 +78,13 @@ if [[ ${#helper_scripts[@]} -gt 0 ]]; then
   shellcheck --shell=bash "${helper_scripts[@]}"
 fi
 
-for pkg in "${package_dirs[@]}"; do
+validate_package() {
+  local pkg="$1"
   echo "==> Validating ${pkg}"
-  config="$pkg/fetch-latest.conf"
+  local config="$pkg/fetch-latest.conf"
   if [[ ! -f "$config" ]]; then
     printf 'Updater config missing in %s\n' "$pkg" >&2
-    exit 1
+    return 1
   fi
   shellcheck --shell=bash --exclude=SC2034 "$config"
   (
@@ -106,6 +110,14 @@ for pkg in "${package_dirs[@]}"; do
       printf 'namcap reported errors for %s (advisory mode)\n' "$pkg" >&2
     fi
   )
-done
+}
+
+parallel_jobs="$(nproc)"
+export -f validate_package
+export strict_namcap
+if [[ ${#package_dirs[@]} -gt 0 ]]; then
+  printf '%s\0' "${package_dirs[@]}" |
+    xargs -0 -r -n1 -P "$parallel_jobs" bash -euo pipefail -c "validate_package \"\$1\"" _
+fi
 
 echo 'All validations passed.'
