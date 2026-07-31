@@ -1,0 +1,16 @@
+pkgbase = tasks-axi-bin
+	pkgdesc = AXI-compliant task/backlog CLI
+	pkgver = 0.2.4
+	pkgrel = 1
+	url = https://github.com/kunchenguid/tasks-axi
+	arch = any
+	license = MIT
+	makedepends = npm
+	depends = nodejs>=20
+	provides = tasks-axi
+	conflicts = tasks-axi
+	noextract = tasks-axi-0.2.4.tgz
+	source = https://registry.npmjs.org/tasks-axi/-/tasks-axi-0.2.4.tgz
+	sha512sums = 03c08828a5f6198483f0f6ce8642fcabd43f9660878bd155729f7b01dd83e32ee2417d18e0bf5cba07762954d9fcadad4fe013f2746755caf7d720559a1fd473
+
+pkgname = tasks-axi-bin

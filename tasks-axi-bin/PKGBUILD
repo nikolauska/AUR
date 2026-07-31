@@ -1,0 +1,29 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=tasks-axi-bin
+_pkgname=tasks-axi
+pkgver=0.2.4
+pkgrel=1
+pkgdesc="AXI-compliant task/backlog CLI"
+arch=('any')
+url="https://github.com/kunchenguid/tasks-axi"
+license=('MIT')
+depends=('nodejs>=20')
+makedepends=('npm')
+provides=('tasks-axi')
+conflicts=('tasks-axi')
+
+source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
+sha512sums=('03c08828a5f6198483f0f6ce8642fcabd43f9660878bd155729f7b01dd83e32ee2417d18e0bf5cba07762954d9fcadad4fe013f2746755caf7d720559a1fd473')
+
+package() {
+  npm install -s -g \
+    --cache "${srcdir}/npm-cache" \
+    --prefix "${pkgdir}/usr" \
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
+
+  install -Dm644 \
+    "${pkgdir}/usr/lib/node_modules/${_pkgname}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
