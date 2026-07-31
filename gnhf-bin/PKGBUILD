@@ -2,7 +2,7 @@
 
 pkgname=gnhf-bin
 _pkgname=gnhf
-pkgver=0.1.41
+pkgver=0.1.43
 pkgrel=1
 pkgdesc="Keep coding agents running in an iterative loop"
 arch=('any')
@@ -15,7 +15,7 @@ conflicts=('gnhf')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('fbfd0bc8f25221a9e3bd23e735d3be07d40eab4376b94e7b94bb5f48814f971774c160f4294f56eb511718a05a08bf57547fbccea3585517d44617b1175910c7')
+sha512sums=('7b32c1594f2b62467c86ff6c01c0fa85c064154872da1de443411924e7fff3821aa9284095ed6f841c919827d66b1c53e37c854b88128ac11cb6cd7c3481fab4')
 
 package() {
   npm install -s -g \
