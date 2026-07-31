@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-- Root contains one AUR-style package per directory, such as `mcp-proxy-bin/`, `pi-agent-bin/`, `tidewave-app-bin/`, `tidewave-cli-bin/`, and `typescript-go/`. Each holds `PKGBUILD`, `fetch-latest.conf`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
+- Root contains one AUR-style package per directory, such as `mcp-proxy-bin/`, `pi-agent-bin/`, `tidewave-app-bin/`, and `tidewave-cli-bin/`. Each holds `PKGBUILD`, `fetch-latest.conf`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
 - Treat each directory as its own package workspace. Updates rarely touch sibling packages unless shared tooling changes.
 
 ## Build, Test, and Development Commands
@@ -26,7 +26,17 @@
 
 - Primary validation is a clean `makepkg -si` on Arch or clean chroot; run `namcap` for lint coverage.
 - When adding a package, add `fetch-latest.conf` with `pkg_type=github`, `npm`, or `manual`, then run `./validate-packages.sh <package-dir>` before marking it ready. The fetch scripts discover package directories automatically.
-- When removing a package, remove it from both fetch scripts and verify its name no longer appears in either file.
+- When removing a package, use this checklist:
+  - [ ] Check `PKGBUILD` for the package directory and actual Arch package name.
+  - [ ] Search the repository for references, dependencies, and documentation that need updates.
+  - [ ] Remove package-specific references from `fetch-latest-all.sh` and `fetch-latest-release.sh`; these scripts currently auto-discover package directories, so no script edit is normally needed.
+  - [ ] Verify the package name and directory no longer appear in either fetch script:
+    `git grep -n '<pkgname>\|<package-dir>' -- fetch-latest-all.sh fetch-latest-release.sh`
+  - [ ] Remove the package directory with `git rm -r <package-dir>`, including `PKGBUILD`, `fetch-latest.conf`, `.SRCINFO`, and tracked source files.
+  - [ ] Delete remaining ignored build artifacts such as `pkg/` and `src/` after checking `git status`.
+  - [ ] Confirm removal with `test ! -e <package-dir>/PKGBUILD`.
+  - [ ] Run `./test-fetch-latest.sh` and `./validate-packages.sh` for the remaining packages.
+  - [ ] If installed locally, remove it separately with `sudo pacman -Rns <pkgname>`.
 - If upstream ships tests, enable them via `check()` and document any disabled cases in comments.
 - For new versions, verify binaries run (`codex --version`, `mcp-proxy --help`, `tsc --version`) after install.
 
