@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-- Root contains one AUR-style package per directory, such as `mcp-proxy-bin/`, `pi-agent-bin/`, `tidewave-app-bin/`, and `tidewave-cli-bin/`. Each holds `PKGBUILD`, `fetch-latest.conf`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
+- Root contains one AUR-style package per directory, such as `mcp-proxy-bin/`, `pi-agent-bin/`, `sentry-axi-bin/`, and `linear-axi-bin/`. Each holds `PKGBUILD`, `fetch-latest.conf`, generated `pkg/` and `src/` trees (ignored in git), plus any cached tarballs for reproducible builds.
 - Treat each directory as its own package workspace. Updates rarely touch sibling packages unless shared tooling changes.
 
 ## Build, Test, and Development Commands
