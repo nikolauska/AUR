@@ -1,6 +1,6 @@
 pkgbase = acolyte-agent-bin
 	pkgdesc = A terminal-first AI coding assistant: local-first, observable, and built for extension
-	pkgver = 0.23.0
+	pkgver = 0.24.0
 	pkgrel = 1
 	url = https://github.com/cniska/acolyte
 	arch = x86_64
@@ -10,9 +10,9 @@ pkgbase = acolyte-agent-bin
 	conflicts = acolyte-agent
 	options = !debug
 	options = !strip
-	source = acolyte-0.23.0-linux-x64.tar.gz::https://github.com/cniska/acolyte/releases/download/v0.23.0/acolyte-linux-x64.tar.gz
-	source = LICENSE::https://raw.githubusercontent.com/cniska/acolyte/v0.23.0/LICENSE
-	sha256sums = b4548abd4ac367a962db012a8f05fc16b86c7155ddf0e0d7906e085cb8d5015e
+	source = acolyte-0.24.0-linux-x64.tar.gz::https://github.com/cniska/acolyte/releases/download/v0.24.0/acolyte-linux-x64.tar.gz
+	source = LICENSE::https://raw.githubusercontent.com/cniska/acolyte/v0.24.0/LICENSE
+	sha256sums = ab709fab3d2a5d6a0a8e7b88dbfb0a4d6d984e81b87c555732a2b783159579f4
 	sha256sums = b7b35ff331074f29ea4ff1887c097833d979a453eb877f2f818d0f76584b8476
 
 pkgname = acolyte-agent-bin
