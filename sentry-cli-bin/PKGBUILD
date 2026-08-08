@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=sentry-cli-bin
-pkgver=0.41.0
+pkgver=0.42.2
 pkgrel=1
 pkgdesc="Command-line interface for Sentry"
 arch=('x86_64' 'aarch64')
@@ -16,8 +16,8 @@ source=("LICENSE.md::https://raw.githubusercontent.com/getsentry/cli/${pkgver}/L
 source_x86_64=("sentry-${pkgver}-x86_64.gz::https://github.com/getsentry/cli/releases/download/${pkgver}/sentry-linux-x64.gz")
 source_aarch64=("sentry-${pkgver}-aarch64.gz::https://github.com/getsentry/cli/releases/download/${pkgver}/sentry-linux-arm64.gz")
 sha256sums=('c51f382a888f8f59f54a72af01e2d72032f2ba8f31d8194f8bf489123438195a')
-sha256sums_x86_64=('d555a8647b8c7016b7642b4b968fff2789c0c82968c8f029cb82925b868930d1')
-sha256sums_aarch64=('fb9286752fc23cb467cacf5cf0cd9f7a3a9fc4bfb33bd157694cb947908c9fa7')
+sha256sums_x86_64=('65c19a006ba6440cd1e641eb74c8697a3afb6a213a2ad64b73a03ba75799fe10')
+sha256sums_aarch64=('ac7e2aba35e7909fd61d5122fff30fc7a9cd2474ff33e1448ed350f4b89ad315')
 
 package() {
   install -Dm755 "$srcdir/sentry-${pkgver}-${CARCH}" "$pkgdir/usr/bin/sentry"
