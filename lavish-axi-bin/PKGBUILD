@@ -2,7 +2,7 @@
 
 pkgname=lavish-axi-bin
 _pkgname=lavish-axi
-pkgver=0.1.48
+pkgver=0.1.49
 pkgrel=1
 pkgdesc="HTML artifact editor for agent collaboration"
 arch=('any')
@@ -16,7 +16,7 @@ conflicts=('lavish-axi')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('7466f6bbe40d7617ad1892801a68bf538f833e061446b347f82f47b0f705c4dba4e77248c39b466ce277754a9c70ced669029be0916a617eb141cf1c4c1d432d')
+sha512sums=('dffbc8ba97c7f8b2a1e91d2615ca94be24aa43bf8e24f409bde9c20503ef8db957fd3e7ebad0826dfd3aeefea6b643be91e8b752c12d18cf086ee819bfdf69e7')
 
 package() {
   npm install -s -g \
