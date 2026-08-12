@@ -1,0 +1,12 @@
+[Unit]
+Description=Codebase Memory MCP daemon
+Documentation=https://github.com/DeusData/codebase-memory-mcp
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/codebase-memory-mcp daemon start
+ExecStop=/usr/bin/codebase-memory-mcp daemon stop
+
+[Install]
+WantedBy=default.target
