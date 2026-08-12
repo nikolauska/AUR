@@ -1,0 +1,58 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=pi-agent-bin
+_pkgname=pi-agent
+pkgver=0.84.1
+pkgrel=1
+pkgdesc="Minimal terminal coding agent that adapts to your workflows"
+arch=('x86_64')
+# Bun standalone executables carry the application payload in the binary; strip
+# removes enough metadata that the result starts as bare Bun instead of Pi.
+options=('!debug' '!strip')
+url="https://github.com/earendil-works/pi"
+license=('MIT')
+depends=('glibc' 'npm' 'bash')
+provides=('pi-agent' 'pi')
+conflicts=('pi-agent' 'pi')
+
+source=(
+  "pi-${pkgver}-linux-x64.tar.gz::https://github.com/earendil-works/pi/releases/download/v${pkgver}/pi-linux-x64.tar.gz"
+  "LICENSE::https://raw.githubusercontent.com/earendil-works/pi/v${pkgver}/LICENSE"
+)
+sha256sums=('5634d7ebd18274b63af3371e942f342d74bea012389575c1d1ff15ce6ca80c2f'
+            '0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48')
+
+package() {
+  cd "$srcdir"
+
+  install -dm755 "$pkgdir/usr/lib/$_pkgname" "$pkgdir/usr/bin"
+  cp -a --no-preserve=ownership \
+    "pi/assets" \
+    "pi/docs" \
+    "pi/export-html" \
+    "pi/theme" \
+    "pi/CHANGELOG.md" \
+    "pi/package.json" \
+    "pi/photon_rs_bg.wasm" \
+    "pi/README.md" \
+    "$pkgdir/usr/lib/$_pkgname/"
+  install -Dm755 "pi/pi" "$pkgdir/usr/lib/$_pkgname/pi"
+  cat > "$pkgdir/usr/bin/pi" <<'EOF'
+#!/usr/bin/bash
+
+# Pi installs user-scoped npm packages with npm install -g. Arch's default npm
+# prefix is /usr, so point Pi's npm subprocesses at a user-writable prefix.
+if [ -z "${NPM_CONFIG_PREFIX+x}" ] && [ -z "${npm_config_prefix+x}" ]; then
+  pi_npm_prefix="${XDG_DATA_HOME:-$HOME/.local/share}/pi-agent/npm"
+  export NPM_CONFIG_PREFIX="$pi_npm_prefix"
+  export npm_config_prefix="$pi_npm_prefix"
+fi
+
+exec /usr/lib/pi-agent/pi "$@"
+EOF
+  chmod 755 "$pkgdir/usr/bin/pi"
+
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "pi/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+  install -Dm644 "pi/CHANGELOG.md" "$pkgdir/usr/share/doc/$pkgname/CHANGELOG.md"
+}
