@@ -2,7 +2,7 @@
 
 pkgname=codebase-memory-mcp-axi-bin
 _pkgname=cbm-axi
-pkgver=0.5.0
+pkgver=0.6.0
 pkgrel=1
 pkgdesc="Agent-oriented codebase-memory-mcp CLI with compact TOON output"
 arch=('x86_64' 'aarch64')
@@ -16,7 +16,7 @@ conflicts=('codebase-memory-mcp-axi')
 
 source=("${_pkgname}-${pkgver}.tgz::https://registry.npmjs.org/@nikolauska/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('378ffdd56309e0a92f4e9ae9e03024735225213f9ccce198a94d037d43e54be105dd328054f5c8aeeae3631ccda720d4d20dc4aa2dd4777f7cc6c0f7b7bb377e')
+sha512sums=('77faee6c23cd58c27846f4bb168cf8bec7e3b63cfa9774c985e10a7adf2f7de93d7c485cc0af7deba138ce74408b2be82233d00206dfb4929e4790449b8c8deb')
 
 package() {
   npm install -s -g \
