@@ -1,6 +1,6 @@
 pkgbase = herdr-bin
 	pkgdesc = Terminal workspace manager for AI coding agents
-	pkgver = 0.8.0
+	pkgver = 0.8.2
 	pkgrel = 1
 	url = https://github.com/ogulcancelik/herdr
 	arch = x86_64
@@ -10,11 +10,11 @@ pkgbase = herdr-bin
 	conflicts = herdr
 	options = !debug
 	options = !strip
-	source = LICENSE::https://raw.githubusercontent.com/ogulcancelik/herdr/v0.8.0/LICENSE
+	source = LICENSE::https://raw.githubusercontent.com/ogulcancelik/herdr/v0.8.2/LICENSE
 	sha256sums = a7fa24f74382fb3e4d320a608533a7c2999dbc0f780f1f734c8b891b31f0d9bd
-	source_x86_64 = herdr-0.8.0-x86_64::https://github.com/ogulcancelik/herdr/releases/download/v0.8.0/herdr-linux-x86_64
-	sha256sums_x86_64 = b872ea7e40fa2cb17e857ac9b62b1bf26db7b403c622f5d2f3f5b35f6e9acd28
-	source_aarch64 = herdr-0.8.0-aarch64::https://github.com/ogulcancelik/herdr/releases/download/v0.8.0/herdr-linux-aarch64
-	sha256sums_aarch64 = f647ac66468d9efbc642fe534fb284468f0aea60641606fc008dfc0d82a3ca87
+	source_x86_64 = herdr-0.8.2-x86_64::https://github.com/ogulcancelik/herdr/releases/download/v0.8.2/herdr-linux-x86_64
+	sha256sums_x86_64 = 976150a14d490c94b243ea2e1a7eb2dfb67f12e36b182db90936f6728e6aecf4
+	source_aarch64 = herdr-0.8.2-aarch64::https://github.com/ogulcancelik/herdr/releases/download/v0.8.2/herdr-linux-aarch64
+	sha256sums_aarch64 = f55610658e1c2e0d2aaef730b4b2ab885f7f8ba00285ab372bfb14f2e3d5b40d
 
 pkgname = herdr-bin
