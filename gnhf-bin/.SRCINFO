@@ -1,6 +1,6 @@
 pkgbase = gnhf-bin
 	pkgdesc = Keep coding agents running in an iterative loop
-	pkgver = 0.1.45
+	pkgver = 0.1.46
 	pkgrel = 1
 	url = https://github.com/kunchenguid/gnhf
 	arch = any
@@ -10,8 +10,8 @@ pkgbase = gnhf-bin
 	depends = nodejs>=20
 	provides = gnhf
 	conflicts = gnhf
-	noextract = gnhf-0.1.45.tgz
-	source = https://registry.npmjs.org/gnhf/-/gnhf-0.1.45.tgz
-	sha512sums = 898af95c4fdce4e002c0098df7314cfa431afccbb894051a1411e1a754062a0b079b411bc050173f7af8c179e9214e06b1ee65872437f3388889ceb12b57be95
+	noextract = gnhf-0.1.46.tgz
+	source = https://registry.npmjs.org/gnhf/-/gnhf-0.1.46.tgz
+	sha512sums = 5d91a4af8a6678319b7382f7a1d9b6706f02e80833cd7930bfb44f03779fb96b361ebfd226bfd30aa97f715b47bd2dfb3e7eb38ccbd02f867be7b5475502f903
 
 pkgname = gnhf-bin
