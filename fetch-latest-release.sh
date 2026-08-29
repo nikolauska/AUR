@@ -106,6 +106,7 @@ strip_prefix=""
 npm_pkg=""
 npm_tag="latest"
 dest_name_template=""
+allow_prerelease=false
 
 # shellcheck disable=SC1090,SC1091
 if ! source "$pkg_dir/fetch-latest.conf"; then
@@ -121,6 +122,10 @@ github)
 	}
 	[[ -n "$asset_regex" ]] || {
 		echo "Missing asset_regex in $pkg_dir/fetch-latest.conf" >&2
+		exit 1
+	}
+	[[ "$allow_prerelease" == "true" || "$allow_prerelease" == "false" ]] || {
+		echo "allow_prerelease must be true or false in $pkg_dir/fetch-latest.conf" >&2
 		exit 1
 	}
 	;;
@@ -141,7 +146,11 @@ manual)
 esac
 
 if [[ "$pkg_type" == "github" ]]; then
-	api_url="https://api.github.com/repos/${repo}/releases/latest"
+	if [[ "$allow_prerelease" == "true" ]]; then
+		api_url="https://api.github.com/repos/${repo}/releases?per_page=100"
+	else
+		api_url="https://api.github.com/repos/${repo}/releases/latest"
+	fi
 	auth_header=()
 	[[ -n "${GITHUB_TOKEN:-}" ]] && auth_header=(-H "Authorization: token ${GITHUB_TOKEN}")
 
@@ -149,11 +158,18 @@ if [[ "$pkg_type" == "github" ]]; then
 	current_pkgrel="$(awk -F= '/^pkgrel=/{print $2; exit}' "$pkg_dir/PKGBUILD")"
 	[[ -n "$current_pkgrel" ]] || current_pkgrel="1"
 
-	echo "Querying latest release for ${repo}…"
+	if [[ "$allow_prerelease" == "true" ]]; then
+		echo "Querying latest release, including prereleases, for ${repo}…"
+	else
+		echo "Querying latest stable release for ${repo}…"
+	fi
 	release_json="$(curl -sfL "${auth_header[@]}" "$api_url")"
+	if [[ "$allow_prerelease" == "true" ]]; then
+		release_json="$(jq 'map(select(.draft == false))[0]' <<<"$release_json")"
+	fi
 
 	tag_name="$(jq -r '.tag_name' <<<"$release_json")"
-	[[ "$tag_name" != "null" ]] || {
+	[[ -n "$tag_name" && "$tag_name" != "null" ]] || {
 		echo "Could not read tag_name from release JSON" >&2
 		exit 1
 	}

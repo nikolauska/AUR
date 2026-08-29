@@ -73,4 +73,57 @@ if "$tmp_dir/release.sh" "$tmp_dir/missing" >/dev/null 2>&1; then
 	exit 1
 fi
 
+mkdir "$tmp_dir/stable" "$tmp_dir/prerelease" "$tmp_dir/bad-prerelease"
+for pkg_dir in stable prerelease bad-prerelease; do
+	cat >"$tmp_dir/$pkg_dir/PKGBUILD" <<'EOF'
+pkgver=0
+pkgrel=1
+EOF
+done
+cat >"$tmp_dir/stable/fetch-latest.conf" <<'EOF'
+pkg_type=github
+repo=example/tool
+asset_regex='linux-amd64\.tar\.gz$'
+strip_prefix=v
+EOF
+cat >"$tmp_dir/prerelease/fetch-latest.conf" <<'EOF'
+pkg_type=github
+repo=example/tool
+asset_regex='linux-amd64\.tar\.gz$'
+strip_prefix=v
+allow_prerelease=true
+EOF
+cat >"$tmp_dir/bad-prerelease/fetch-latest.conf" <<'EOF'
+pkg_type=github
+repo=example/tool
+asset_regex='linux-amd64\.tar\.gz$'
+allow_prerelease=yes
+EOF
+cat >"$tmp_dir/bin/curl" <<'EOF'
+#!/usr/bin/env bash
+url="${*: -1}"
+case "$url" in
+*/releases/latest)
+	printf '%s\n' '{"tag_name":"v1.0.0","assets":[{"name":"tool-linux-amd64.tar.gz","browser_download_url":"https://example.test/tool-linux-amd64.tar.gz"}]}'
+	;;
+*/releases?per_page=100)
+	printf '%s\n' '[{"tag_name":"v2.0.0-rc.1","draft":false,"prerelease":true,"assets":[{"name":"tool-linux-amd64.tar.gz","browser_download_url":"https://example.test/tool-linux-amd64.tar.gz"}]}]'
+	;;
+*)
+	echo "Unexpected URL: $url" >&2
+	exit 1
+	;;
+esac
+EOF
+chmod +x "$tmp_dir/bin/curl"
+
+stable_output="$(PATH="$tmp_dir/bin:$PATH" "$tmp_dir/release.sh" "$tmp_dir/stable" --dry-run)"
+[[ "$stable_output" == *"Latest tag: v1.0.0 -> pkgver=1.0.0"* ]]
+prerelease_output="$(PATH="$tmp_dir/bin:$PATH" "$tmp_dir/release.sh" "$tmp_dir/prerelease" --dry-run)"
+[[ "$prerelease_output" == *"Latest tag: v2.0.0-rc.1 -> pkgver=2.0.0-rc.1"* ]]
+if PATH="$tmp_dir/bin:$PATH" "$tmp_dir/release.sh" "$tmp_dir/bad-prerelease" --dry-run >/dev/null 2>&1; then
+	echo "fetch-latest-release accepted an invalid allow_prerelease value" >&2
+	exit 1
+fi
+
 echo "fetch-latest tests passed."
