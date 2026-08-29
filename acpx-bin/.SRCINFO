@@ -1,0 +1,19 @@
+pkgbase = acpx-bin
+	pkgdesc = Headless CLI client for stateful Agent Client Protocol sessions
+	pkgver = 0.13.2
+	pkgrel = 1
+	url = https://github.com/openclaw/acpx
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	makedepends = npm
+	depends = nodejs>=22.13.0
+	provides = acpx
+	conflicts = acpx
+	noextract = acpx-0.13.2.tgz
+	options = !debug
+	options = !strip
+	source = https://registry.npmjs.org/acpx/-/acpx-0.13.2.tgz
+	sha512sums = e2138b128da413f9c2acfaf9d12b5bcd4dc6d56bf31e498a13faf7bf114022be86448dd54a64911fad970ad9c3a5571036904cf1f54f01e4e3dfd7b056127075
+
+pkgname = acpx-bin

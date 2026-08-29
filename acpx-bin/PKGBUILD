@@ -1,0 +1,30 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=acpx-bin
+_pkgname=acpx
+pkgver=0.13.2
+pkgrel=1
+pkgdesc="Headless CLI client for stateful Agent Client Protocol sessions"
+arch=('x86_64' 'aarch64')
+options=('!debug' '!strip')
+url="https://github.com/openclaw/acpx"
+license=('MIT')
+depends=('nodejs>=22.13.0')
+makedepends=('npm')
+provides=('acpx')
+conflicts=('acpx')
+
+source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
+noextract=("${_pkgname}-${pkgver}.tgz")
+sha512sums=('e2138b128da413f9c2acfaf9d12b5bcd4dc6d56bf31e498a13faf7bf114022be86448dd54a64911fad970ad9c3a5571036904cf1f54f01e4e3dfd7b056127075')
+
+package() {
+  npm install -s -g \
+    --cache "${srcdir}/npm-cache" \
+    --prefix "${pkgdir}/usr" \
+    "${srcdir}/${_pkgname}-${pkgver}.tgz"
+
+  install -Dm644 \
+    "${pkgdir}/usr/lib/node_modules/${_pkgname}/LICENSE" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
