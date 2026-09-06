@@ -1,0 +1,43 @@
+# Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
+
+pkgname=collie-bin
+pkgver=1.5.2
+pkgrel=1
+pkgdesc="Mobile web interface for terminal multiplexers and AI coding agents"
+arch=('x86_64' 'aarch64')
+url="https://github.com/AltanS/collie"
+license=('MIT')
+depends=('glibc')
+optdepends=('herdr>=0.7.0: Herdr multiplexer backend'
+            'tmux: tmux multiplexer backend'
+            'zellij: Zellij multiplexer backend'
+            'tailscale: publish the default secure remote access endpoint')
+provides=('collie')
+conflicts=('collie')
+options=('!debug' '!strip')
+
+source_x86_64=("https://github.com/AltanS/collie/releases/download/v${pkgver}/collie-${pkgver}-linux-x64.tar.gz")
+source_aarch64=("https://github.com/AltanS/collie/releases/download/v${pkgver}/collie-${pkgver}-linux-arm64.tar.gz")
+sha256sums_x86_64=('3a7357267b9b20ed3a830e6e7f40706bd158e28fe390c8cffb1b7cb24ce7f939')
+sha256sums_aarch64=('42fa0ac1f7b4900d67a1fab8ad9fc23dd063445b8de52ce4a52d244bd04d9d4d')
+
+package() {
+  local platform
+  case "$CARCH" in
+    x86_64) platform=x64 ;;
+    aarch64) platform=arm64 ;;
+  esac
+  cd "$srcdir/collie-${pkgver}-linux-${platform}"
+
+  # The binary resolves its web bundle and metadata relative to its real path.
+  # A flat layout leaves updates to pacman instead of enabling the self-updater.
+  install -Dm755 bin/collie "$pkgdir/usr/lib/collie/bin/collie"
+  install -Dm644 herdr-plugin.toml package.json .env.example -t "$pkgdir/usr/lib/collie"
+  cp -a web "$pkgdir/usr/lib/collie/"
+  install -d "$pkgdir/usr/bin" "$pkgdir/usr/share/doc/collie"
+  ln -s ../lib/collie/bin/collie "$pkgdir/usr/bin/collie"
+  cp -a docs/. "$pkgdir/usr/share/doc/collie/"
+  install -m644 README.md CHANGELOG.md "$pkgdir/usr/share/doc/collie/"
+  ln -s ../../share/doc/collie "$pkgdir/usr/lib/collie/docs"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

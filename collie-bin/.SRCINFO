@@ -1,0 +1,23 @@
+pkgbase = collie-bin
+	pkgdesc = Mobile web interface for terminal multiplexers and AI coding agents
+	pkgver = 1.5.2
+	pkgrel = 1
+	url = https://github.com/AltanS/collie
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	depends = glibc
+	optdepends = herdr>=0.7.0: Herdr multiplexer backend
+	optdepends = tmux: tmux multiplexer backend
+	optdepends = zellij: Zellij multiplexer backend
+	optdepends = tailscale: publish the default secure remote access endpoint
+	provides = collie
+	conflicts = collie
+	options = !debug
+	options = !strip
+	source_x86_64 = https://github.com/AltanS/collie/releases/download/v1.5.2/collie-1.5.2-linux-x64.tar.gz
+	sha256sums_x86_64 = 3a7357267b9b20ed3a830e6e7f40706bd158e28fe390c8cffb1b7cb24ce7f939
+	source_aarch64 = https://github.com/AltanS/collie/releases/download/v1.5.2/collie-1.5.2-linux-arm64.tar.gz
+	sha256sums_aarch64 = 42fa0ac1f7b4900d67a1fab8ad9fc23dd063445b8de52ce4a52d244bd04d9d4d
+
+pkgname = collie-bin
