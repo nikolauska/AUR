@@ -12,6 +12,25 @@ if (( $# )); then
   install_missing=1
 fi
 
+# Builds can outlast sudo's timestamp timeout; refresh it without prompting again.
+sudo -v
+(
+  trap 'kill "$!" 2>/dev/null || true; exit 0' TERM INT
+  while true; do
+    sleep 30 &
+    wait "$!"
+    sudo -n -v || exit
+  done
+) &
+sudo_keepalive_pid=$!
+cleanup() {
+  kill "$sudo_keepalive_pid" 2>/dev/null || true
+  wait "$sudo_keepalive_pid" 2>/dev/null || true
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
 for pkgbuild in "$script_dir"/*/PKGBUILD; do
   (
     cd "${pkgbuild%/*}"
@@ -39,7 +58,8 @@ for pkgbuild in "$script_dir"/*/PKGBUILD; do
     else
       printf 'Installing %s %s (installed: %s)\n' \
         "$pkgname" "$expected_version" "${installed_version:-none}"
-      makepkg -si
+      # makepkg otherwise uses sudo -k, ignoring the credentials we keep alive.
+      PACMAN_AUTH=sudo makepkg -si
     fi
   )
 done
