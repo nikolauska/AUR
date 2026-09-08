@@ -1,6 +1,6 @@
 pkgbase = collie-bin
 	pkgdesc = Mobile web interface for terminal multiplexers and AI coding agents
-	pkgver = 1.5.4
+	pkgver = 1.6.0
 	pkgrel = 1
 	url = https://github.com/AltanS/collie
 	arch = x86_64
@@ -15,9 +15,9 @@ pkgbase = collie-bin
 	conflicts = collie
 	options = !debug
 	options = !strip
-	source_x86_64 = https://github.com/AltanS/collie/releases/download/v1.5.4/collie-1.5.4-linux-x64.tar.gz
-	sha256sums_x86_64 = 7d4395b10e5772d8c35c00f044c651ab8a0e4918874ab43a858bedb4dd3f37bc
-	source_aarch64 = https://github.com/AltanS/collie/releases/download/v1.5.4/collie-1.5.4-linux-arm64.tar.gz
-	sha256sums_aarch64 = f357f4a68eae5549c0b825d9dfa1c024b25b1ad1e14649bae1f8dd6eec623511
+	source_x86_64 = https://github.com/AltanS/collie/releases/download/v1.6.0/collie-1.6.0-linux-x64.tar.gz
+	sha256sums_x86_64 = ec4dfec7d14b22e6ad9393e841249e97299717239caef3b1b7c32fddc062e1a7
+	source_aarch64 = https://github.com/AltanS/collie/releases/download/v1.6.0/collie-1.6.0-linux-arm64.tar.gz
+	sha256sums_aarch64 = 7b242bbcbb382aa080a345e81c83bda79fea204ac4806bd184ff33c35b2fd070
 
 pkgname = collie-bin
