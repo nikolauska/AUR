@@ -1,6 +1,6 @@
 pkgbase = sentry-axi-bin
 	pkgdesc = AXI wrapper for the Sentry MCP server
-	pkgver = 0.3.0
+	pkgver = 0.3.1
 	pkgrel = 1
 	url = https://www.npmjs.com/package/@nikolauska/sentry-axi
 	arch = x86_64
@@ -10,10 +10,10 @@ pkgbase = sentry-axi-bin
 	depends = nodejs>=24
 	provides = sentry-axi
 	conflicts = sentry-axi
-	noextract = sentry-axi-0.3.0.tgz
+	noextract = sentry-axi-0.3.1.tgz
 	options = !debug
 	options = !strip
-	source = sentry-axi-0.3.0.tgz::https://registry.npmjs.org/@nikolauska/sentry-axi/-/sentry-axi-0.3.0.tgz
-	sha512sums = d6aed6056a4728afe892b8ca4ed7d800da85af78a0af0cb2ea9879284f25310ebb933305f8073be61337a1b2fd4f20472917710fb03f2f66dadcb77fbe01bb74
+	source = sentry-axi-0.3.1.tgz::https://registry.npmjs.org/@nikolauska/sentry-axi/-/sentry-axi-0.3.1.tgz
+	sha512sums = c995bdcba6d80f722ae808b97c47f46c686bfa21c1f83ccefbff5e3097481aa1e7a51fcd13b3080a3ed1fb1d87b8e30cf3e4c1c2cf13b25de9ddbd33366a4e9a
 
 pkgname = sentry-axi-bin

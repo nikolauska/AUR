@@ -1,6 +1,6 @@
 pkgbase = linear-axi-bin
 	pkgdesc = AXI wrapper for the Linear MCP server
-	pkgver = 0.3.1
+	pkgver = 0.4.0
 	pkgrel = 1
 	url = https://www.npmjs.com/package/@nikolauska/linear-axi
 	arch = x86_64
@@ -10,10 +10,10 @@ pkgbase = linear-axi-bin
 	depends = nodejs>=20
 	provides = linear-axi
 	conflicts = linear-axi
-	noextract = linear-axi-0.3.1.tgz
+	noextract = linear-axi-0.4.0.tgz
 	options = !debug
 	options = !strip
-	source = linear-axi-0.3.1.tgz::https://registry.npmjs.org/@nikolauska/linear-axi/-/linear-axi-0.3.1.tgz
-	sha512sums = f9c8f72c2cc9dbd13b96929c81d3e5611ec172b171645efdf2edd415ee8e81a4501fcebc011c2320991a506a37b4cd130e324d2e779cc06edc4c1e12211dfee7
+	source = linear-axi-0.4.0.tgz::https://registry.npmjs.org/@nikolauska/linear-axi/-/linear-axi-0.4.0.tgz
+	sha512sums = 0b2151df3b7005f8c1e9a74202cb8c2eec1d03500e72c4919c89e44c457c6328db2ca608fb6d204c209b9fc1b4b4d4d8da5b0082b56a62da62df75725401b436
 
 pkgname = linear-axi-bin
