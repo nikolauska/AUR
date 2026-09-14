@@ -26,6 +26,22 @@ This requires sudo credential caching; a sudo policy that disables caching (such
 as `timestamp_timeout=0`) can still prompt on each install. An explicit
 `PACMAN_AUTH` setting in your makepkg configuration overrides the script's setting.
 
+## Uninstallation
+
+Remove every installed package defined by a `PKGBUILD` in one of the repository's
+top-level package directories:
+
+```bash
+./uninstall-all.sh
+```
+
+The script only scans those immediate child directories, so nested `PKGBUILD`
+files in generated or extracted source trees are excluded. It skips repository
+packages that are not installed and removes all
+matches in one transaction. Pacman's `-Rns` semantics also remove dependencies
+that are no longer needed and do not retain configuration files as `.pacsave`
+backups.
+
 ## Validation
 
 Use the validation script to lint shell code and verify package metadata/builds:
