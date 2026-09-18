@@ -1,6 +1,6 @@
 pkgbase = clockify-cli-bin
 	pkgdesc = CLI for interacting with Clockify's API
-	pkgver = 0.64.2
+	pkgver = 0.64.3
 	pkgrel = 1
 	url = https://github.com/lucassabreu/clockify-cli
 	arch = x86_64
@@ -9,9 +9,9 @@ pkgbase = clockify-cli-bin
 	provides = clockify-cli
 	conflicts = clockify-cli
 	options = !debug
-	source_x86_64 = clockify-cli-0.64.2-x86_64.tar.gz::https://github.com/lucassabreu/clockify-cli/releases/download/v0.64.2/clockify-cli_Linux_x86_64.tar.gz
-	sha256sums_x86_64 = 9c4b19a2f8581ba658fd4a68695fe008dbf8fb8a6c0444282ed15cbb06077f3e
-	source_aarch64 = clockify-cli-0.64.2-aarch64.tar.gz::https://github.com/lucassabreu/clockify-cli/releases/download/v0.64.2/clockify-cli_Linux_arm64.tar.gz
-	sha256sums_aarch64 = d918ac8a29c3b5ea716510617618022bad223bbe4ec88657f07deae2d54d18c8
+	source_x86_64 = clockify-cli-0.64.3-x86_64.tar.gz::https://github.com/lucassabreu/clockify-cli/releases/download/v0.64.3/clockify-cli_Linux_x86_64.tar.gz
+	sha256sums_x86_64 = cb273852fe2ff87c307ca287c9149559d43f2fbc9fe5ad0ac93b32bbe7bd0b9a
+	source_aarch64 = clockify-cli-0.64.3-aarch64.tar.gz::https://github.com/lucassabreu/clockify-cli/releases/download/v0.64.3/clockify-cli_Linux_arm64.tar.gz
+	sha256sums_aarch64 = 2a0ad5d03919611d84affee02e94e5d10e5d6bc8305c29b61d46c137ed581cbc
 
 pkgname = clockify-cli-bin
