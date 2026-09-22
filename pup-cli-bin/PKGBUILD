@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=pup-cli-bin
-pkgver=1.22.1
+pkgver=1.23.0
 pkgrel=1
 pkgdesc="CLI companion for interacting with Datadog products"
 arch=('x86_64' 'aarch64')
@@ -13,8 +13,8 @@ conflicts=('pup-cli' 'pup')
 
 source_x86_64=("pup-${pkgver}-x86_64.tar.gz::https://github.com/DataDog/pup/releases/download/v${pkgver}/pup_${pkgver}_Linux_x86_64.tar.gz")
 source_aarch64=("pup-${pkgver}-aarch64.tar.gz::https://github.com/DataDog/pup/releases/download/v${pkgver}/pup_${pkgver}_Linux_arm64.tar.gz")
-sha256sums_x86_64=('7960cc0c63c3b9f227efd17eace4bdcf3cc3e0a4d43f563aae54a4248b174999')
-sha256sums_aarch64=('8548cbd4bbb188bc6c6cd0e293fb757aca56ce6dca0b50e517cd4138b50dd07d')
+sha256sums_x86_64=('b3b70fa92485dcd065f6142ba15be4eb1f0dd4126f484a6cd3b837843e09f7f0')
+sha256sums_aarch64=('9211fd10c7d0b94fefeb5249e9d2ea8bf6d8ddfee88cab8ede9b18519441b691')
 
 package() {
   install -Dm755 "$srcdir/pup" "$pkgdir/usr/bin/pup"
