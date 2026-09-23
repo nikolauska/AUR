@@ -2,7 +2,7 @@
 
 pkgname=tasks-axi-bin
 _pkgname=tasks-axi
-pkgver=0.2.5
+pkgver=0.2.6
 pkgrel=1
 pkgdesc="AXI-compliant task/backlog CLI"
 arch=('any')
@@ -15,7 +15,7 @@ conflicts=('tasks-axi')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('171b2c116efe32e50d1d627bba1746ad1b010debff670e4dbad5011dc7fcaff9e91bacfdf8d7d450879775c7431eb0bd8b110a3aa43d52899acb64cba4307a12')
+sha512sums=('2c35d249807ec95c25a31ab55c6b5929e59a98e7ffa03f5716a9e884962516ba9a960e571277b54a919c359310a8dcd0b61b18fa2c8cbc251e1b13b3acbe7ff5')
 
 package() {
   npm install -s -g \
