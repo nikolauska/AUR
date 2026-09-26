@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=stripe-mock-bin
-pkgver=0.204.0
+pkgver=0.205.0
 pkgrel=1
 pkgdesc="Mock HTTP server that responds like the Stripe API"
 arch=('x86_64')
@@ -14,7 +14,7 @@ conflicts=('stripe-mock')
 source=(
   "stripe-mock_${pkgver}_linux_amd64.tar.gz::https://github.com/stripe/stripe-mock/releases/download/v${pkgver}/stripe-mock_${pkgver}_linux_amd64.tar.gz"
 )
-sha256sums=('29084a714052801b9301e0008f2eae8582e6aa64bd880fa22b1adcc940669baf')
+sha256sums=('1696dc952c3e0c1940b7cea52be640704daaa88a17a4a0f696b5092db816eb9e')
 
 package() {
   cd "$srcdir"
