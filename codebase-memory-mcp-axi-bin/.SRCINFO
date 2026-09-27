@@ -1,6 +1,6 @@
 pkgbase = codebase-memory-mcp-axi-bin
 	pkgdesc = Agent-oriented codebase-memory-mcp CLI with compact TOON output
-	pkgver = 0.7.2
+	pkgver = 0.8.0
 	pkgrel = 1
 	url = https://www.npmjs.com/package/@nikolauska/cbm-axi
 	arch = x86_64
@@ -11,10 +11,10 @@ pkgbase = codebase-memory-mcp-axi-bin
 	depends = nodejs>=18
 	provides = codebase-memory-mcp-axi
 	conflicts = codebase-memory-mcp-axi
-	noextract = cbm-axi-0.7.2.tgz
+	noextract = cbm-axi-0.8.0.tgz
 	options = !debug
 	options = !strip
-	source = cbm-axi-0.7.2.tgz::https://registry.npmjs.org/@nikolauska/cbm-axi/-/cbm-axi-0.7.2.tgz
-	sha512sums = 01b861644ff79f606e99ebad8e2a28b95eacd96cef442e0a59ea66efc320b29d1d147baede1ac5cbbd1d5485f7afab5d5b0617e185b56167a333548d9a77a35c
+	source = cbm-axi-0.8.0.tgz::https://registry.npmjs.org/@nikolauska/cbm-axi/-/cbm-axi-0.8.0.tgz
+	sha512sums = da83e37c5bec5fa393d42de8ef11c71a5fbc3ddaac855e418b6b40f1b42c21c774efbb239c2e97f8720d4c5ae97361b47098be7dfd1f65db50d2a8e6e2de7234
 
 pkgname = codebase-memory-mcp-axi-bin
