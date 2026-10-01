@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=oh-my-pi-bin
-pkgver=18.4.4
+pkgver=18.4.8
 pkgrel=1
 pkgdesc="AI coding agent for the terminal"
 arch=('x86_64' 'aarch64')
@@ -16,8 +16,8 @@ source=("LICENSE::https://raw.githubusercontent.com/can1357/oh-my-pi/v${pkgver}/
 source_x86_64=("omp-${pkgver}-${CARCH}::https://github.com/can1357/oh-my-pi/releases/download/v${pkgver}/omp-linux-x64")
 source_aarch64=("omp-${pkgver}-${CARCH}::https://github.com/can1357/oh-my-pi/releases/download/v${pkgver}/omp-linux-arm64")
 sha256sums=('545636e19386d3d4e0ae6d77354527499999c3ebfbca61b9fa5aa4ead7c0b308')
-sha256sums_x86_64=('24c830fceb0bd6884bf5bf2c7a2b7407bc23fafe655e924c695ef9be308e46f3')
-sha256sums_aarch64=('24c830fceb0bd6884bf5bf2c7a2b7407bc23fafe655e924c695ef9be308e46f3')
+sha256sums_x86_64=('1b88f7a0da3f61edda915d836e11f63f20f2b56aeac2ddfa4ece0faa726f31c2')
+sha256sums_aarch64=('1b88f7a0da3f61edda915d836e11f63f20f2b56aeac2ddfa4ece0faa726f31c2')
 
 package() {
   install -Dm755 "$srcdir/omp-${pkgver}-${CARCH}" "$pkgdir/usr/bin/omp"
