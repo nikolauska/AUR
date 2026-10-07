@@ -1,6 +1,6 @@
 pkgbase = pup-cli-bin
 	pkgdesc = CLI companion for interacting with Datadog products
-	pkgver = 1.24.0
+	pkgver = 1.24.2
 	pkgrel = 1
 	url = https://github.com/DataDog/pup
 	arch = x86_64
@@ -10,9 +10,9 @@ pkgbase = pup-cli-bin
 	conflicts = pup-cli
 	conflicts = pup
 	options = !debug
-	source_x86_64 = pup-1.24.0-x86_64.tar.gz::https://github.com/DataDog/pup/releases/download/v1.24.0/pup_1.24.0_Linux_x86_64.tar.gz
-	sha256sums_x86_64 = bf6387ce33deee3bf2b8fbb72ec32387cd6a52ac9ce19f4fdaadc85c2c4b3b18
-	source_aarch64 = pup-1.24.0-aarch64.tar.gz::https://github.com/DataDog/pup/releases/download/v1.24.0/pup_1.24.0_Linux_arm64.tar.gz
-	sha256sums_aarch64 = 23632e567c0935a790468de6080a078fb9999a65fd2c53fd0ddada01d2cd28ee
+	source_x86_64 = pup-1.24.2-x86_64.tar.gz::https://github.com/DataDog/pup/releases/download/v1.24.2/pup_1.24.2_Linux_x86_64.tar.gz
+	sha256sums_x86_64 = d63919e5d46650ec11c0b61ef5e858557966c63159c94fa29cc11d4b4067f690
+	source_aarch64 = pup-1.24.2-aarch64.tar.gz::https://github.com/DataDog/pup/releases/download/v1.24.2/pup_1.24.2_Linux_arm64.tar.gz
+	sha256sums_aarch64 = 03ed407e297fd8a6cf31da7c753f5a801f1b1d0587e5d21cdcb3e4faabb66f69
 
 pkgname = pup-cli-bin
