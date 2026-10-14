@@ -2,7 +2,7 @@
 
 pkgname=chrome-devtools-axi-bin
 _pkgname=chrome-devtools-axi
-pkgver=0.1.40
+pkgver=0.1.41
 pkgrel=1
 pkgdesc="AXI-compliant chrome-devtools-mcp wrapper"
 arch=('any')
@@ -15,7 +15,7 @@ conflicts=('chrome-devtools-axi')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('e00b96c23099f4a6157c9815cee698951741929bf96925e40f074c69db0ae152a036c62ecca087e2ab6028fa8314db64307f111fe226fe05460c66c15ad5b7a0')
+sha512sums=('5c6ed2c0defbbe13721e93ad60aededfa5be0cb8e08a8047c8f9ee786897b7e3cd8aef0a18ea021b4e5ecb2ef5a141b746c2535bb879b333a17e00f518e7f8fb')
 
 package() {
   npm install -s -g \
