@@ -1,6 +1,6 @@
 pkgbase = chrome-devtools-axi-bin
 	pkgdesc = AXI-compliant chrome-devtools-mcp wrapper
-	pkgver = 0.1.41
+	pkgver = 0.1.42
 	pkgrel = 1
 	url = https://github.com/kunchenguid/chrome-devtools-axi
 	arch = any
@@ -10,8 +10,8 @@ pkgbase = chrome-devtools-axi-bin
 	optdepends = chromium: local browser automation
 	provides = chrome-devtools-axi
 	conflicts = chrome-devtools-axi
-	noextract = chrome-devtools-axi-0.1.41.tgz
-	source = https://registry.npmjs.org/chrome-devtools-axi/-/chrome-devtools-axi-0.1.41.tgz
-	sha512sums = 5c6ed2c0defbbe13721e93ad60aededfa5be0cb8e08a8047c8f9ee786897b7e3cd8aef0a18ea021b4e5ecb2ef5a141b746c2535bb879b333a17e00f518e7f8fb
+	noextract = chrome-devtools-axi-0.1.42.tgz
+	source = https://registry.npmjs.org/chrome-devtools-axi/-/chrome-devtools-axi-0.1.42.tgz
+	sha512sums = 4a631ed03799e7c888a4c5031dd1e78215b1adc290691a414d089cde1f9051573be5b7553733e30851df9bb04e123ee017bdf667757c5c494faf448c81225644
 
 pkgname = chrome-devtools-axi-bin

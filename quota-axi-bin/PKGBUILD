@@ -2,7 +2,7 @@
 
 pkgname=quota-axi-bin
 _pkgname=quota-axi
-pkgver=0.1.61
+pkgver=0.1.62
 pkgrel=1
 pkgdesc="AXI CLI that reports local agent-provider quota windows"
 arch=('any')
@@ -15,7 +15,7 @@ conflicts=('quota-axi')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('540aaae2a574eabfa41c8811f0d50ed1b77dd49795b2496d693984cbee5cf9776bc5f649fcf4940ba4656ae7c421eea9ed4617bd4dade89f0ebfdf977dff99d2')
+sha512sums=('97a761a5b9ffcae44c1ca5ba5c3cfb98f97937175374cc9361a340cf5086f0324133272c507114d3666544720f75cde33e419666c8fa902f9df5756ca8aa356a')
 
 package() {
   npm install -s -g \
