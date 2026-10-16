@@ -2,7 +2,7 @@
 
 pkgname=codebase-memory-mcp-bin
 _pkgname=codebase-memory-mcp
-pkgver=0.11.0
+pkgver=0.12.0
 pkgrel=1
 pkgdesc="High-performance code intelligence MCP server"
 arch=('x86_64')
@@ -17,7 +17,7 @@ source=(
   "codebase-memory-mcp-${pkgver}-linux-amd64.tar.gz::https://github.com/DeusData/codebase-memory-mcp/releases/download/v${pkgver}/codebase-memory-mcp-linux-amd64.tar.gz"
   "$_pkgname.service"
 )
-sha256sums=('032b33c1833919a2d1de67ff6367fa6ea46aee8689c86ef223c88fae3b6e4536'
+sha256sums=('2c0a3f3314874e2315ed169165f1fdf74d9628c7f8b301579b900fcc6d7bcd9c'
             '8f252589020ac6155ee6e4d236517599a1c0084fc2e6e93d079e0dee4be1ea08')
 
 package() {
