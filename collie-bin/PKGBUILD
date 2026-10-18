@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=collie-bin
-pkgver=1.22.0
+pkgver=1.22.6
 pkgrel=1
 pkgdesc="Mobile web interface for terminal multiplexers and AI coding agents"
 arch=('x86_64' 'aarch64')
@@ -18,8 +18,8 @@ options=('!debug' '!strip')
 
 source_x86_64=("https://github.com/AltanS/collie/releases/download/v${pkgver}/collie-${pkgver}-linux-x64.tar.gz")
 source_aarch64=("https://github.com/AltanS/collie/releases/download/v${pkgver}/collie-${pkgver}-linux-arm64.tar.gz")
-sha256sums_x86_64=('4cb56e52f5d3e9f5f4de17701cf619ed0d878cb70bd570337e4a30100d10b7e5')
-sha256sums_aarch64=('b9bf73c21633a9f616e20cd18630e1d884b9e260c8b45f52e8d390ecc47b5942')
+sha256sums_x86_64=('e30de6eddba24ce88b4eaf2d8e9cf708ae40ee794369aa7e6759c2ffe7a2307a')
+sha256sums_aarch64=('0f31660c4f21efdb90f5590c025dd9b8e5620f0ca14f0cb874fc02da22f1206e')
 
 package() {
   local platform
