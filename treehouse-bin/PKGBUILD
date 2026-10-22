@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=treehouse-bin
-pkgver=3.1.4
+pkgver=3.1.5
 pkgrel=1
 pkgdesc="Manage worktrees without managing worktrees"
 arch=('x86_64')
@@ -16,7 +16,7 @@ source=(
   "https://github.com/kunchenguid/treehouse/releases/download/v${pkgver}/treehouse-v${pkgver}-linux-amd64.tar.gz"
   "LICENSE::https://raw.githubusercontent.com/kunchenguid/treehouse/v${pkgver}/LICENSE"
 )
-sha256sums=('a169277ffdc5f48b51a4b53ce6c2e46fe3c222a5017c67f72bf9260a9b382ae2'
+sha256sums=('69f83270056650b1049d95229e8348153f7052f11b9d3fd634acb0f368abd14f'
             '1b962d20f826f6a758c737f8aa4e8e76dc719b8aa78fcfacdfb46681bb36c2f4')
 
 package() {
