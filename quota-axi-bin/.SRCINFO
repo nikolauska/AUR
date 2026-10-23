@@ -1,6 +1,6 @@
 pkgbase = quota-axi-bin
 	pkgdesc = AXI CLI that reports local agent-provider quota windows
-	pkgver = 0.1.65
+	pkgver = 0.1.66
 	pkgrel = 1
 	url = https://github.com/kunchenguid/quota-axi
 	arch = any
@@ -9,8 +9,8 @@ pkgbase = quota-axi-bin
 	depends = nodejs>=22.19
 	provides = quota-axi
 	conflicts = quota-axi
-	noextract = quota-axi-0.1.65.tgz
-	source = https://registry.npmjs.org/quota-axi/-/quota-axi-0.1.65.tgz
-	sha512sums = eab5585a33ab99b92a59bb3ccf2699b4cd2f94f176d4576a57a3fffe21beae1cbfb9d7556432d600e4b0243dc4379e4bb82916d3a9ab4c2d7b4093a5647c33bd
+	noextract = quota-axi-0.1.66.tgz
+	source = https://registry.npmjs.org/quota-axi/-/quota-axi-0.1.66.tgz
+	sha512sums = e3239e9758c27cf3d09367b106c04c7c29850816bc5cd68b493ee6810d5927b323f7a495f0b720bf17a59e872ef1bbabed42f52e94dfe41402d04ae0d75a0709
 
 pkgname = quota-axi-bin

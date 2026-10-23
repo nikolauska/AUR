@@ -3,7 +3,7 @@
 pkgname=github-copilot-cli
 _pkgexec=copilot
 
-pkgver=1.0.102
+pkgver=1.0.103
 pkgrel=1
 
 pkgdesc="GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal."
@@ -24,7 +24,7 @@ license=("LicenseRef-GitHub")
 source=("https://registry.npmjs.org/@github/copilot/-/copilot-${pkgver}.tgz")
 noextract=("copilot-${pkgver}.tgz")
 
-sha512sums=('9afe9c4d63213082f183964382a27a52c9e93eec9208f58e3db65568ef252f47699a3637543f59849afa0c5706edf8545d9bfa3a6bcb75c4426b9309ea1048f9')
+sha512sums=('c23db1d3c1a9a8fb4d11b5034e5c57f913e3484776ad3743f809b4a07ef4c68a5d81c4281ae7d6fa99c85b5db7a41a89f54e66fdc66fd5e164f28c28ff26404f')
 
 # Document: https://wiki.archlinux.org/title/Node.js_package_guidelines
 package() {
