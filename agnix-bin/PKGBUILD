@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=agnix-bin
-pkgver=0.59.0
+pkgver=0.59.3
 pkgrel=1
 pkgdesc="Linter for AI agent configurations"
 arch=('x86_64' 'aarch64')
@@ -24,8 +24,8 @@ source_aarch64=(
 )
 sha256sums=('c3a85d8bd6d5967088912c35ea7df7b11d408466a094e3057a65a78b889888b2'
             'bbfece0aadd9434b813a4e2955084a75fc4b1761a4cdb017323e87f6dd156a88')
-sha256sums_x86_64=('fd7a8ac5b40217764a2647bfbe465b43dc5cd7caeb7ce48b6a9626bba2c198de')
-sha256sums_aarch64=('c293abbfcd009b1bf5594ae06f3b0495cb7b0c21a72c61bc1fe9baebc3216873')
+sha256sums_x86_64=('f2e0549286fb148b2814559222129bd561db69ddc21cd3c6c05b52f3cef09ee4')
+sha256sums_aarch64=('a350ac48b1607e02b9ba8f50abff533a4b911559dde2a1f6ca832b1690436e93')
 
 package() {
   install -dm755 "${pkgdir}/usr/bin"

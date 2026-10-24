@@ -2,7 +2,7 @@
 
 pkgname=acpx-bin
 _pkgname=acpx
-pkgver=0.20.0
+pkgver=0.21.0
 pkgrel=1
 pkgdesc="Headless CLI client for stateful Agent Client Protocol sessions"
 arch=('x86_64' 'aarch64')
@@ -16,7 +16,7 @@ conflicts=('acpx')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('580d37338abe3b2211eebd4cad5371f3518e2f94f80d76685d1f8a2b712c7cc9818571745adcba65f113773ddc02acf4e10d66cfdc43f5ffa116fe8b53a0ca91')
+sha512sums=('f97d50660b1b3bff59ba4d5028ccdcc1d004b2f67fe136b8210a5e1704e6c58ebca8b8d7f368c54c03d7079d5259c1fc81a948626f35c4c1f1499831734e88a6')
 
 package() {
   npm install -s -g \
