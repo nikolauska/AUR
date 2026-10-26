@@ -1,6 +1,6 @@
 pkgbase = treehouse-bin
 	pkgdesc = Manage worktrees without managing worktrees
-	pkgver = 3.1.5
+	pkgver = 3.1.6
 	pkgrel = 1
 	url = https://github.com/kunchenguid/treehouse
 	arch = x86_64
@@ -10,9 +10,9 @@ pkgbase = treehouse-bin
 	provides = treehouse
 	conflicts = treehouse
 	options = !debug
-	source = https://github.com/kunchenguid/treehouse/releases/download/v3.1.5/treehouse-v3.1.5-linux-amd64.tar.gz
-	source = LICENSE::https://raw.githubusercontent.com/kunchenguid/treehouse/v3.1.5/LICENSE
-	sha256sums = 69f83270056650b1049d95229e8348153f7052f11b9d3fd634acb0f368abd14f
+	source = https://github.com/kunchenguid/treehouse/releases/download/v3.1.6/treehouse-v3.1.6-linux-amd64.tar.gz
+	source = LICENSE::https://raw.githubusercontent.com/kunchenguid/treehouse/v3.1.6/LICENSE
+	sha256sums = e89891caf913b3b228387c7dccf53ff908327fca47839b7957681084578cb1a1
 	sha256sums = 1b962d20f826f6a758c737f8aa4e8e76dc719b8aa78fcfacdfb46681bb36c2f4
 
 pkgname = treehouse-bin
