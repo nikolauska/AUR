@@ -1,6 +1,6 @@
 pkgbase = agnix-bin
 	pkgdesc = Linter for AI agent configurations
-	pkgver = 0.60.1
+	pkgver = 0.60.2
 	pkgrel = 1
 	url = https://www.npmjs.com/package/agnix
 	arch = x86_64
@@ -13,13 +13,13 @@ pkgbase = agnix-bin
 	conflicts = agnix
 	options = !debug
 	options = !strip
-	source = LICENSE-MIT::https://raw.githubusercontent.com/agent-sh/agnix/v0.60.1/LICENSE-MIT
-	source = LICENSE-APACHE::https://raw.githubusercontent.com/agent-sh/agnix/v0.60.1/LICENSE-APACHE
+	source = LICENSE-MIT::https://raw.githubusercontent.com/agent-sh/agnix/v0.60.2/LICENSE-MIT
+	source = LICENSE-APACHE::https://raw.githubusercontent.com/agent-sh/agnix/v0.60.2/LICENSE-APACHE
 	sha256sums = c3a85d8bd6d5967088912c35ea7df7b11d408466a094e3057a65a78b889888b2
 	sha256sums = bbfece0aadd9434b813a4e2955084a75fc4b1761a4cdb017323e87f6dd156a88
-	source_x86_64 = agnix-0.60.1-x86_64.tar.gz::https://github.com/agent-sh/agnix/releases/download/v0.60.1/agnix-x86_64-unknown-linux-gnu.tar.gz
-	sha256sums_x86_64 = fd6bb3e9a0366faf7ad5e2c086bc4060e7a7a936c51ca20fc35f2d0d7221b9ce
-	source_aarch64 = agnix-0.60.1-aarch64.tar.gz::https://github.com/agent-sh/agnix/releases/download/v0.60.1/agnix-aarch64-unknown-linux-gnu.tar.gz
-	sha256sums_aarch64 = 2200833406eb53f9a0466ccbcbb29c3ffbff78756d30a3e4d2dbedc040fb53d4
+	source_x86_64 = agnix-0.60.2-x86_64.tar.gz::https://github.com/agent-sh/agnix/releases/download/v0.60.2/agnix-x86_64-unknown-linux-gnu.tar.gz
+	sha256sums_x86_64 = 3164c7735e7d3103757291063f897f55e6a1ca5af80a66d2971c5af1d68cb692
+	source_aarch64 = agnix-0.60.2-aarch64.tar.gz::https://github.com/agent-sh/agnix/releases/download/v0.60.2/agnix-aarch64-unknown-linux-gnu.tar.gz
+	sha256sums_aarch64 = 95bd20a936507df654c6a6e0e9e203f49aff8afa1d11dbfc4133b39a45c1716a
 
 pkgname = agnix-bin
