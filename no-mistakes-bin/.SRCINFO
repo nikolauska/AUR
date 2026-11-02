@@ -1,6 +1,6 @@
 pkgbase = no-mistakes-bin
 	pkgdesc = Local Git proxy that validates code before pushing
-	pkgver = 1.106.1
+	pkgver = 1.107.1
 	pkgrel = 1
 	url = https://github.com/kunchenguid/no-mistakes
 	arch = x86_64
@@ -14,9 +14,9 @@ pkgbase = no-mistakes-bin
 	provides = no-mistakes
 	conflicts = no-mistakes
 	options = !debug
-	source = https://github.com/kunchenguid/no-mistakes/releases/download/v1.106.1/no-mistakes-v1.106.1-linux-amd64.tar.gz
-	source = LICENSE::https://raw.githubusercontent.com/kunchenguid/no-mistakes/v1.106.1/LICENSE
-	sha256sums = fbf131356a278623a509b6b50ecb39c5375b1a82e7dcfc48e42d10e761416d1e
+	source = https://github.com/kunchenguid/no-mistakes/releases/download/v1.107.1/no-mistakes-v1.107.1-linux-amd64.tar.gz
+	source = LICENSE::https://raw.githubusercontent.com/kunchenguid/no-mistakes/v1.107.1/LICENSE
+	sha256sums = fc0b66e6b5b926c033e4b0f7bdbee59abef293d1b6f625a20f33bd76a2ea3ea8
 	sha256sums = 945016bd37e1ba7211622ef60ee1d23ab727896ba7710edd21e8fbe983863969
 
 pkgname = no-mistakes-bin

@@ -2,7 +2,7 @@
 
 pkgname=gh-axi-bin
 _pkgname=gh-axi
-pkgver=0.1.46
+pkgver=0.1.47
 pkgrel=1
 pkgdesc="AXI-compliant GitHub CLI wrapper"
 arch=('any')
@@ -15,7 +15,7 @@ conflicts=('gh-axi')
 
 source=("https://registry.npmjs.org/${_pkgname}/-/${_pkgname}-${pkgver}.tgz")
 noextract=("${_pkgname}-${pkgver}.tgz")
-sha512sums=('79aeccd280f4eabc7cc2333c16abcbd972da8df7c862367524130650a78650f405808966cc4227e9a1107b1b25cf2233b39ee54bb85a51fe4814c05ae9543f81')
+sha512sums=('16a6244f95fd6a4c474ed1f6649186777f2950e9839f7741baa0cd0d9be0b54b9ce4067358974cbc75e71ccad306591a2d600a2527f8212ee6c978d8028d291b')
 
 package() {
   npm install -s -g \
