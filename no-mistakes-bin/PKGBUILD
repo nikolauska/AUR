@@ -1,7 +1,7 @@
 # Maintainer: Niko Lehtovirta <niko@lehtovirta.dev>
 
 pkgname=no-mistakes-bin
-pkgver=1.107.1
+pkgver=1.108.0
 pkgrel=1
 pkgdesc="Local Git proxy that validates code before pushing"
 arch=('x86_64')
@@ -23,7 +23,7 @@ source=(
   "https://github.com/kunchenguid/no-mistakes/releases/download/v${pkgver}/no-mistakes-v${pkgver}-linux-amd64.tar.gz"
   "LICENSE::https://raw.githubusercontent.com/kunchenguid/no-mistakes/v${pkgver}/LICENSE"
 )
-sha256sums=('fc0b66e6b5b926c033e4b0f7bdbee59abef293d1b6f625a20f33bd76a2ea3ea8'
+sha256sums=('8217676e3516d48d43187241b79554ec0025b0ff00f6bc86d99f91db1d2fee70'
             '945016bd37e1ba7211622ef60ee1d23ab727896ba7710edd21e8fbe983863969')
 
 package() {
