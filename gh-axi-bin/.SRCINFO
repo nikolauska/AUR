@@ -1,6 +1,6 @@
 pkgbase = gh-axi-bin
 	pkgdesc = AXI-compliant GitHub CLI wrapper
-	pkgver = 0.1.49
+	pkgver = 0.1.51
 	pkgrel = 1
 	url = https://github.com/kunchenguid/gh-axi
 	arch = any
@@ -10,8 +10,8 @@ pkgbase = gh-axi-bin
 	depends = nodejs
 	provides = gh-axi
 	conflicts = gh-axi
-	noextract = gh-axi-0.1.49.tgz
-	source = https://registry.npmjs.org/gh-axi/-/gh-axi-0.1.49.tgz
-	sha512sums = ea415a774a8efea4e3b161196a90758cb0fcc6d173dc8c3bc34e83ed504106f3f5265a3bdf2500121b5421a945b4094e72f13eafdd646a26c1cab2ede96be23e
+	noextract = gh-axi-0.1.51.tgz
+	source = https://registry.npmjs.org/gh-axi/-/gh-axi-0.1.51.tgz
+	sha512sums = b99fc320acdf99838f91c1dd33b0e7f1f06674eedb66ded0cdc67a657533e799b9f146dd7de990deb9593584fa6af1f787b77db4f023c1478c27d26616a56300
 
 pkgname = gh-axi-bin
